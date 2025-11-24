@@ -32,6 +32,8 @@
             <a class= "headerLinks" href="/homeDecor">Home Decor</a>
             <a class= "headerLinks" href="/kitchenWare">Kitchen Ware</a>
             <a class= "headerLinks" href="/lighting">Lighting</a>
+              <a class= "headerLinks" href="/aboutUs">About Us</a>
+              <a class= "headerLinks" href="/ourProducts">Our Products</a>
 
         </section>
     </header>
