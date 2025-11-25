@@ -4,7 +4,7 @@
  class ProductController extends Controller{
 
     public function show($pid){
-        $product = Product::where('product_id', $pid)->first();
+        $product = Products::where('product_id', $pid)->first();
         return view('/show', array('product'=>$product));
     }
  }
