@@ -1,0 +1,169 @@
+html {
+  font-family: "Noto Sans", sans-serif;
+}
+.removeWhitespace{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.headerLinks {
+  color:white ;
+  text-decoration: none;
+}
+.headerLinks:hover {
+color:#8a3324;
+ text-decoration: underline;
+}
+.center {
+  margin: auto;
+  width: 50%;
+
+  padding: 5px;
+}
+.searchBar {
+  float:left;
+  display: block;
+  width: 50%;
+  margin: 5px auto 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+
+}
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: #FF8C00;
+    margin: 0;
+    border: 5px  #FF8C00;
+    box-sizing: border-box;
+}
+#categories{
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: #E97451;
+    margin: 0;
+    border: 5px  #E97451;
+    box-sizing: border-box;
+    color:white ;
+      text-decoration: none;
+
+}
+
+#categoryColour{
+color: brown;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+#searchBar {
+  display: flex;
+  width: 50%;
+  gap: 8px;
+}
+
+#searchBar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#searchBar button {
+  padding: 10px 16px;
+  border: none;
+  background-color: brown;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+body {
+  margin: 0;
+  padding: 0; 
+  background-color: white;
+}
+.contact-us {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 40px;
+    font-family: Arial, sans-serif;
+}
+.description {
+    width: 50%;
+}
+
+.contactUs-img {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color:rgb(0, 0, 0);
+}
+
+.description p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: rgb(0, 0, 0);
+}
+.contactUs-box {
+    width: 50%;
+    background: rgb(255, 140, 0);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.contact-form label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+.contact-form input{
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid brown;
+    outline: none;
+}
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid brown;
+    outline: none;
+}
+
+.contact-form button {
+    margin-top: 25px;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    background-color:brown;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
