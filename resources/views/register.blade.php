@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HomeDome – Login</title>
+    <title>HomeDome – Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet"
@@ -158,7 +158,8 @@
         .hero-inner {position: relative;
             z-index: 1; }
 
-        .hero-title { font-size: 48px;
+        .hero-title { 
+            font-size: 48px;
             font-weight: 900;
             letter-spacing: -0.03em;
             line-height: 1.1;
@@ -166,14 +167,14 @@
             white-space: nowrap;
             animation: fadeSlide 0.8s ease-out forwards;
             opacity: 0;
-            transform: translateY(12px);  }
+            transform: translateY(12px); }
 
-            @keyframes fadeSlide {
+        @keyframes fadeSlide {
             0% { opacity: 0;
-                transform: translateY(20px); }
+            transform: translateY(20px); }
             100% { opacity: 1;
-                transform: translateY(0); } }
-
+        transform: translateY(0); } }
+        
         .hero-sub { margin-top: 10px;
             font-size: 16px;
             max-width: 320px; }
@@ -299,7 +300,7 @@
             .form-side { padding-inline: 20px; }
 
             .hero { padding-inline: 20px; }
-            
+
             .hero-title { font-size: 32px;
                 white-space: normal; }}
     </style>
@@ -348,54 +349,56 @@
     <main class="content">
         <section class="hero">
             <div class="hero-inner">
-    <h1 class="hero-title">
-        Welcome to HomeDome
-    </h1>
+                
+<h1 class="hero-title">
+    Join us at HomeDome
+</h1>
                 <p class="hero-sub">
-                    Log in for a personalised experience at HomeDome.
+                    Sign up for a free HomeDome account — everything you need for your home.
                 </p>
-                <span class="hero-badge">Safe and Secure login | Protected with reCAPTCHA</span>
+                <span class="hero-badge">Quick sign up | Protected with reCAPTCHA | Hassle free checkout</span>
             </div>
         </section>
 
     <section class="form-side">
         <div class="form-inner">
-            <h2 class="form-heading">Log in to your account</h2>
+            <h2 class="form-heading">Create your HomeDome account</h2>
             <p class="form-sub">
-                Enter your details to access your HomeDome account.
+                Enter your details to get started.
             </p>
 
             <form method="POST" action="#">
 <!-- backend will later change action and add @csrf -->
 
                 <div class="field">
+                    <label for="name">Full name</label>
+                    <input id="name" name="name" type="text" placeholder="Bob Smith" required>
+                </div>
+
+                <div class="field">
                     <label for="email">Email address</label>
                     <input id="email" name="email" type="email" placeholder="you@example.com" required>
                 </div>
-
+                   
                 <div class="field">
                     <label for="password">Password</label>
                     <input id="password" name="password" type="password" placeholder="**********" required>
                 </div>
-
-                <div class="row-between">
-                    <label class="checkbox">
-                        <input type="checkbox" name="remember">
-                        <span>Remember me</span>
-                    </label>
-
-                    <a href="/forgot-password" class="link-inline">Forgot password?</a>
+                
+                <div class="field">
+                    <label for="password_confirmation">Confirm password</label>
+                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="**********" required>
                 </div>
 
                 <div class="captcha-box">
                     reCAPTCHA v2 (“I’m not a robot”) will appear here.
                 </div>
 
-                <button type="submit" class="btn-primary">Login</button>
+                <button type="submit" class="btn-primary">Create account</button>
 
                 <p class="helper-text">
-                    New to HomeDome?
-                    <a href="/register">Create an account</a>
+                    Already a HomeDome member?
+                    <a href="/login">Log in</a>
                 </p>
             </form>
           </div>
