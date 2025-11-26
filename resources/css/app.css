@@ -29,18 +29,7 @@ color:#8a3324;
 
   padding: 5px;
 }
-.searchBar {
-  float:left;
-  display: block;
-  width: 50%;
-  margin: 5px auto 0;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
 
-}
 .headerContainer {
   display: flex;
   align-items: center;
@@ -100,5 +89,67 @@ color: brown;
 }
 body {
   margin: 0;
-  padding: 0; /* It's good practice to also remove default padding */
+  padding: 0;
+}
+.product-container {
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 20px;
+
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+
+  flex: 0 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+
+.product-card img {
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;}
+
+
+  .welcome-banner {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fff8f0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #FF8C00;
+  }
+
+  .welcome-banner h1 {
+    font-family: "Noto Sans", sans-serif;
+    color: #8a3324;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+.product_showing {
+  text-align: center; /* Center the text inside the div */
+  padding: 20px 10px; /* Add some vertical padding */
+  margin: 30px auto 20px auto; /* Add vertical margins and center horizontally */
+  max-width: 1200px; /* Match the max-width of your .product-container */
+  background-color: #fff8f0; /* Use a light, complementary background color (similar to .welcome-banner) */
+
+}
+
+
+.product_showing h2 {
+  font-family: "Noto Sans", sans-serif;
+  color: #8a3324;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin: 0;
 }

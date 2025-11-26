@@ -7,9 +7,10 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>@yield('title', 'HomeDome')</title>
      <link rel="stylesheet" href="resources/css/app.css">
+
  </head>
 <body>
- @include('partials.header')
+@include('partials.header')
 
   <main>
         @yield('content')

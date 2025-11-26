@@ -25,4 +25,8 @@ class Product extends Model
         'is_available',
     ];
 
+    public function media()
+    {
+        return $this->hasMany(ProductMedia::class, 'product_id');
+    }
 }
