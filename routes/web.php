@@ -11,3 +11,11 @@ Route::get('p.search', function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/register', function () {
+    return view('register');
+});

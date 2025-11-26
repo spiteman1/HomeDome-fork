@@ -1,5 +1,9 @@
-@vite('resources/css/app.css')
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeDome – Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet"
      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -35,11 +39,10 @@
             display: flex;
             align-items: center;
             gap: 16px; }
+            .top-bar a {
+                      text-decoration: none;
 
-        .top-bar a {
-          text-decoration: none;
-
-        }
+                    }
 
         .top-logo { display: flex;
             align-items: center;
@@ -302,7 +305,9 @@
             .hero { padding-inline: 20px; }
 
             .hero-title { font-size: 32px;
-                white-space: normal; }}
+                white-space: normal;
+
+                }}
     </style>
 </head>
 <body>
@@ -310,8 +315,8 @@
 
     <header class="top-bar">
         <div class="top-logo">
-            <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
-            <a href="/"><span class="top-logo-text">HomeDome</span></a>
+               <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
+                        <a href="/"><span class="top-logo-text">HomeDome</span></a>
         </div>
 
         <div class="top-search">
@@ -345,3 +350,63 @@
         <a href="/kitchen-ware">Kitchenware</a>
         <a href="/lighting">Lighting</a>
     </div>
+
+    <main class="content">
+        <section class="hero">
+            <div class="hero-inner">
+    <h1 class="hero-title">
+        Welcome to HomeDome
+    </h1>
+                <p class="hero-sub">
+                    Log in for a personalised experience at HomeDome.
+                </p>
+                <span class="hero-badge">Safe and Secure login | Protected with reCAPTCHA</span>
+            </div>
+        </section>
+
+    <section class="form-side">
+        <div class="form-inner">
+            <h2 class="form-heading">Log in to your account</h2>
+            <p class="form-sub">
+                Enter your details to access your HomeDome account.
+            </p>
+
+            <form method="POST" action="#">
+<!-- backend will later change action and add @csrf -->
+
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" placeholder="**********" required>
+                </div>
+
+                <div class="row-between">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+
+                    <a href="/forgot-password" class="link-inline">Forgot password?</a>
+                </div>
+
+                <div class="captcha-box">
+                    reCAPTCHA v2 (“I’m not a robot”) will appear here.
+                </div>
+
+                <button type="submit" class="btn-primary">Login</button>
+
+                <p class="helper-text">
+                    New to HomeDome?
+                    <a href="/register">Create an account</a>
+                </p>
+            </form>
+          </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
