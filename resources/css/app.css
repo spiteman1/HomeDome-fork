@@ -136,11 +136,11 @@ body {
   }
 
 .product_showing {
-  text-align: center; /* Center the text inside the div */
-  padding: 20px 10px; /* Add some vertical padding */
-  margin: 30px auto 20px auto; /* Add vertical margins and center horizontally */
-  max-width: 1200px; /* Match the max-width of your .product-container */
-  background-color: #fff8f0; /* Use a light, complementary background color (similar to .welcome-banner) */
+  text-align: center;
+  padding: 20px 10px;
+  margin: 30px auto 20px auto;
+  max-width: 1200px;
+  background-color: #fff8f0; /
 
 }
 
