@@ -304,6 +304,7 @@
             .hero-title { font-size: 32px;
                 white-space: normal; }}
     </style>
+
 </head>
 <body>
 <div class="page">
@@ -315,9 +316,13 @@
         </div>
 
         <div class="top-search">
+
             <input class="top-search-input" type="text" placeholder="Search for products...">
             <button class="top-search-button">Search</button>
+
         </div>
+
+
 
         <div class="top-icons">
             <a href="/login" class="icon-item">
@@ -344,4 +349,6 @@
         <a href="/home-decor">Home Decor</a>
         <a href="/kitchen-ware">Kitchenware</a>
         <a href="/lighting">Lighting</a>
+        <a class= "headerLinks" href="/aboutUs">About Us</a>
+        <a class= "headerLinks" href="/ourProducts">Our Products</a>
     </div>
