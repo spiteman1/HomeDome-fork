@@ -42,7 +42,11 @@
 
         .top-logo { display: flex;
             align-items: center;
-            gap: 8px; }
+            gap: 8px;
+            text-decoration: none;
+            color: inherit; }
+
+        .top-logo:hover { opacity: 0.85; }
 
         .top-logo img { width: 44px;
             height: 44px;
@@ -308,10 +312,10 @@
 <div class="page">
 
     <header class="top-bar">
-        <div class="top-logo">
+        <a href="/" class="top-logo">
             <img src="{{ asset('images/homedome-logo.png') }}" alt="HomeDome logo">
             <span class="top-logo-text">HomeDome</span>
-        </div>
+        </a>
 
         <div class="top-search">
             <input class="top-search-input" type="text" placeholder="Search for products...">
