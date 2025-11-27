@@ -23,9 +23,9 @@
 
         //Validate delete operation 
         if ($removeProductFromBasket){
-            redirect()->route()->with('success', 'Successfully removed product from basket'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully removed product from basket'); 
         } else {
-            redirect()->route()->with('error', 'Unable to remove product from the basket'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to remove product from the basket'); 
         }
     }
 
@@ -41,9 +41,9 @@
         
         //Verify insert operation
         if ($productInsert){
-            redirect()->route()->with('success', 'Successfully added product to the basket'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully added product to the basket'); 
         } else {
-            redirect()->route()->with('error', 'Unable to add product to the basket'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to add product to the basket'); 
         }
     }
 
@@ -55,13 +55,15 @@
         }
         $update = DB::table('shopping_basket')
             ->where('id', $basket_id)
-            ->update('quantity', $quantity); 
+            ->update([
+                'quantity', $quantity, 
+            ]); 
         
         
         if ($update){
-            redirect()->route()->with('success', 'Successfully updated quantity'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully updated quantity'); 
         } else {
-            redirect()->route()->with('error', 'Unable to update the quantity'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to update the quantity'); 
         }
     }
  }
