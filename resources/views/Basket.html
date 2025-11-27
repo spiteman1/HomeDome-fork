@@ -23,7 +23,7 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 
         body { min-height: 100vh;
-           background: #ffffff;
+           background: #fff7ed;
            display: block;
            margin: 0; }
 
@@ -133,6 +133,130 @@
             background: #ffffff;
             min-height: calc(100vh - 70px); 
             align-items: stretch; }
+             /*Page CSS*/
+       #Checkout{   /*Checkout Button*/
+    color: white;
+    background-color:#F57C00 ;
+    font-size: 14px;
+    border: none;
+    padding: 10px;
+    border-radius: 999px;
+    width: 250px;
+        cursor: pointer;
+}      
+#Checkout:hover {
+  background: #ea580c;
+}
+    #title{
+        padding-bottom: 20px;
+        justify-content: center;
+        padding-top: 20px;
+        background-color: #F57C00;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: white;
+    }
+    .BasketContainer{
+        display: flex;
+        justify-content: space-between;
+        padding-left: 30px;
+        padding-top: 20px;
+        font-weight: bolder;
+
+    }
+    .ProductInfo{
+        background-color: #6e5b3b;
+        width: 750px;
+        height: 200px;
+        display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    color: white;
+    border-radius: 6px;
+    padding: 20px 30px;
+    padding-right: 40px;
+    }
+
+    #delete {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #F57C00;
+    background-color: #F57C00;
+    color: #ffffff;
+    cursor: pointer;
+}
+#delete:hover {
+  background: #ea580c;
+}
+.ProductName{
+    flex:1;
+    margin: 0;
+    font-weight: bolder;
+
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+    
+    #BasketImg{
+          width: 150px;
+  border-radius: 4px;
+  flex-shrink: 0; 
+  padding-left: 15px;
+  padding-top: 15px;
+    }
+
+    .summary{
+        height: 300px;
+        width: 300px;
+        background-color: #6e5b3b;
+        padding-top: 20px;
+        padding-left: 30px;
+        margin-right: 40px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        color: white;
+    }
+    .ProductDetails{
+            text-align: right;
+    flex-shrink: 0;
+    }
+
+.rightText{
+        text-align: right;
+    flex-shrink: 0;
+
+}
+.price {
+    margin: 0 0 110px;
+}
+.controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.qty-label {
+    font-size: 0.9rem;
+    color: #fef3c7;
+    
+}
+    select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+}
+#quantity {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    cursor: pointer;
+}
+
     </style>
 </head>
 <body>
@@ -172,33 +296,45 @@
         <a href="/lighting">Lighting</a>
     </div>
 </div>
-<div class="page">
 
-<h2 id="title">Your trolley</h2>
+<h2 id="title">Your Trolley</h2>
+<!--Add in aomething that says your items and then it also calculates how many items there are-->
 <!--The amount of items the user has should be displayed here-->
-<div id="ProductInfo">
-    <img src="" alt="ProductImage">
-    <p>Items Name</p>
-    <button id="delete">Delete</button>
-    <select name="quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <p class="price">Price</p>
-</select>
+
+<div class="BasketContainer">
+<div class="ProductInfo">
+    <img id= "BasketImg" src="table.webp" alt="ProductImage">
+
+    <div class="ProductName">
+    <p>Premium French Door Refrigerator</p>
+    </div>
+<!--Add in the colour of what we have selected-->
+    <div class="ProductDetails">
+        <p class="price">£247.39</p>
+
+        <div class="controls-row">
+            <span class="qty-label">Qty</span>
+        <select name="quantity" id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button id="delete">Delete</button>
+    </div>
 </div>
-<div id="summary">
-    <h3 class="summaryTitle">Order Summary</h3>
-    <p id="subtotal">Subtotal</p>
+</div>
+<div class="summary">
+    <h2 class="summaryTitle">Order Summary</h3>
+    <p id="subtotal">Subtotal:</p>
     <!--Here the price without delivery will be displayed-->
-    <p id="delivery">Estimated delivery cost</p>
+    <p id="delivery">Estimated delivery cost:</p>
     <!--Here the delivery price will be displayed-->
-    <h5 id="total">Total Price:</h5>
+    <p id="total">Total Price:</p>
     <!--Here the total price will be displayed-->
+    <button id="Checkout">Go to Checkout</button>
 </div>
-<button id="Checkout">Go to Checkout</button>
 </div>
 <div class="footer">
     
