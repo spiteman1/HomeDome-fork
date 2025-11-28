@@ -302,7 +302,10 @@
             .hero { padding-inline: 20px; }
 
             .hero-title { font-size: 32px;
-                white-space: normal; }}
+                white-space: normal; }
+
+
+                }
     </style>
 
 </head>
@@ -315,12 +318,45 @@
             <a href="/"><span class="top-logo-text">HomeDome</span></a>
         </div>
 
-        <div class="top-search">
+       <div class="top-search">
+         <input
+           id="searchInput"
+           class="top-search-input"
+           type="text"
+           placeholder="Search for products..."
+         >
+         <button
+           id="searchButton"
+           class="top-search-button"
+         >
+           Search
+         </button>
+       </div>
 
-            <input class="top-search-input" type="text" placeholder="Search for products...">
-            <button class="top-search-button">Search</button>
+        <script>
+          const searchInput = document.getElementById('searchInput');
+          const searchButton = document.getElementById('searchButton');
 
-        </div>
+          function performSearch() {
+            const query = searchInput.value.trim();
+          if (!query) {
+            alert('Please enter a search term!');
+            return;
+          } else {
+            window.location.href = `/search?query=${encodeURIComponent(query)}`;
+          }
+
+
+          }
+
+
+          searchButton.addEventListener('click', performSearch);
+
+
+          searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') performSearch();
+          });
+        </script>
 
 
 

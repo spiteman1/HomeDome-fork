@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Product;
 Route::get('/', function () {
     return view('home');
 });
@@ -20,4 +22,4 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/search', [SearchController::class, 'search'])->name('search');

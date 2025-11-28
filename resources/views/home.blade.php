@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <div class="welcome-banner">
         <h1>Welcome to the home of home products</h1>
 </div>
