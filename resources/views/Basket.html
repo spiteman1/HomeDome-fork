@@ -147,12 +147,12 @@
 #Checkout:hover {
   background: #ea580c;
 }
+
     #title{
         padding-bottom: 20px;
         justify-content: center;
         padding-top: 20px;
-        background-color: #F57C00;
-        margin-top: 40px;
+        background-color: #806c58;
         margin-bottom: 40px;
         text-align: center;
         color: white;
@@ -163,7 +163,7 @@
         padding-left: 30px;
         padding-top: 20px;
         font-weight: bolder;
-
+        gap: 100px;
     }
     .ProductInfo{
         background-color: #6e5b3b;
@@ -173,9 +173,11 @@
     align-items: flex-start;
     gap: 16px;
     color: white;
-    border-radius: 6px;
     padding: 20px 30px;
     padding-right: 40px;
+    flex: 0.1 2 1900px;
+    min-width: 520px;
+    border-radius: 20px;
     }
 
     #delete {
@@ -193,9 +195,9 @@
     flex:1;
     margin: 0;
     font-weight: bolder;
-
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #ffffff;
+    margin-top: 5px;
 }
     
     #BasketImg{
@@ -208,8 +210,7 @@
 
     .summary{
         height: 300px;
-        width: 300px;
-        background-color: #6e5b3b;
+        background-color: #584b37;
         padding-top: 20px;
         padding-left: 30px;
         margin-right: 40px;
@@ -217,6 +218,8 @@
         justify-content: space-around;
         flex-direction: column;
         color: white;
+        flex: 1 1 400px;   
+    border-radius: 20px;
     }
     .ProductDetails{
             text-align: right;
@@ -228,9 +231,7 @@
     flex-shrink: 0;
 
 }
-.price {
-    margin: 0 0 110px;
-}
+
 .controls-row {
     display: flex;
     align-items: center;
@@ -257,6 +258,21 @@
     cursor: pointer;
 }
 
+#BasketTitle{
+margin-left: 30px;
+}
+.priceInformation{
+    display: flex;
+    padding-left: 75px;
+}
+.price {
+    margin: 8px 0 110px;
+}
+#priceTitle{
+    margin: 8px;
+    font-weight: bolder;
+        color: #f1efde;
+}
     </style>
 </head>
 <body>
@@ -298,19 +314,24 @@
 </div>
 
 <h2 id="title">Your Trolley</h2>
-<!--Add in aomething that says your items and then it also calculates how many items there are-->
-<!--The amount of items the user has should be displayed here-->
+<h2 id="BasketTitle">Your Items (1)</h2>
+<!--Add in something that says your items and then it also calculates how many items there are-->
 
 <div class="BasketContainer">
 <div class="ProductInfo">
     <img id= "BasketImg" src="table.webp" alt="ProductImage">
 
     <div class="ProductName">
-    <p>Premium French Door Refrigerator</p>
+    <p>Premium French Wooden Table</p>
     </div>
 <!--Add in the colour of what we have selected-->
     <div class="ProductDetails">
-        <p class="price">£247.39</p>
+
+        <div class="priceInformation">
+            <p id="priceTitle">Price: </p>           
+            <p class="price">£247.39</p>
+
+        </div>
 
         <div class="controls-row">
             <span class="qty-label">Qty</span>
@@ -326,7 +347,7 @@
 </div>
 </div>
 <div class="summary">
-    <h2 class="summaryTitle">Order Summary</h3>
+    <h2 class="summaryTitle" style="text-decoration: underline;">Order Summary</h3>
     <p id="subtotal">Subtotal:</p>
     <!--Here the price without delivery will be displayed-->
     <p id="delivery">Estimated delivery cost:</p>
