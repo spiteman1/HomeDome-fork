@@ -168,7 +168,7 @@
     .ProductInfo{
         background-color: #6e5b3b;
         width: 750px;
-        height: 200px;
+         max-height: 200px;
         display: flex;
     align-items: flex-start;
     gap: 16px;
@@ -177,7 +177,11 @@
     padding-right: 40px;
     flex: 0.1 2 1900px;
     min-width: 520px;
-    border-radius: 20px;
+    border-left: 4px #E67E22 solid;
+    border-right: 4px #E67E22 solid;
+    border-bottom: 4px #E67E22 solid;
+    border-top: 4px #E67E22 solid;
+
     }
 
     #delete {
@@ -202,7 +206,6 @@
     
     #BasketImg{
           width: 150px;
-  border-radius: 4px;
   flex-shrink: 0; 
   padding-left: 15px;
   padding-top: 15px;
@@ -212,7 +215,7 @@
         height: 300px;
         background-color: #584b37;
         padding-top: 20px;
-        padding-left: 30px;
+        padding: 30px;
         margin-right: 40px;
         display: flex;
         justify-content: space-around;
@@ -266,12 +269,26 @@ margin-left: 30px;
     padding-left: 75px;
 }
 .price {
-    margin: 8px 0 110px;
+    margin: 8px 0 97px;
 }
 #priceTitle{
     margin: 8px;
     font-weight: bolder;
         color: #f1efde;
+}
+.summary p{
+            color: #f1efde;
+}
+.Subtotal, .total, .delivery{
+    display: flex;
+    justify-content: space-between;
+}
+#SubtotalPrice, #deliveryPrice, #totalPrice{
+color: #f9f7e5;
+}
+.BasketItems{
+    display: flex;
+    flex-direction: column;
 }
     </style>
 </head>
@@ -318,6 +335,7 @@ margin-left: 30px;
 <!--Add in something that says your items and then it also calculates how many items there are-->
 
 <div class="BasketContainer">
+    <div class="BasketItems">
 <div class="ProductInfo">
     <img id= "BasketImg" src="table.webp" alt="ProductImage">
 
@@ -346,13 +364,53 @@ margin-left: 30px;
     </div>
 </div>
 </div>
+
+<div class="ProductInfo">
+    <img id= "BasketImg" src="washing mashine.jpg" alt="ProductImage">
+
+    <div class="ProductName">
+    <p>Black Washing Machine</p>
+    </div>
+<!--Add in the colour of what we have selected-->
+    <div class="ProductDetails">
+
+        <div class="priceInformation">
+            <p id="priceTitle">Price: </p>           
+            <p class="price">£199.99</p>
+
+        </div>
+
+        <div class="controls-row">
+            <span class="qty-label">Qty</span>
+        <select name="quantity" id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button id="delete">Delete</button>
+    </div>
+</div>
+</div>
+
+</div>
 <div class="summary">
-    <h2 class="summaryTitle" style="text-decoration: underline;">Order Summary</h3>
-    <p id="subtotal">Subtotal:</p>
+    <div class="Subtotal">
+        <p id="subtotalLabel">Subtotal:</p>
+        <p id="SubtotalPrice">£247.39</p>
+    </div>
     <!--Here the price without delivery will be displayed-->
-    <p id="delivery">Estimated delivery cost:</p>
+    <div class="delivery">
+    <p id="deliveryLabel">Estimated delivery cost:</p>
+    <p id="deliveryPrice"> £25</p>
+</div>
+
     <!--Here the delivery price will be displayed-->
-    <p id="total">Total Price:</p>
+    <div class="total">
+    <p id="totalLabel">Total Price:</p>
+    <p id="totalPrice">£252.39</p>
+    </div>
     <!--Here the total price will be displayed-->
     <button id="Checkout">Go to Checkout</button>
 </div>
