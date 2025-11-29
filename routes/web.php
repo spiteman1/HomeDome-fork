@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +18,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // lo
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
-});
 
 Route::get('/product', function () {
     // Sample product data matching database schema
@@ -62,14 +61,14 @@ Route::get('/product', function () {
             ],
         ]
     ];
-    
+
     // Calculate average rating from reviews
     $totalRating = 0;
     foreach ($product->reviews as $review) {
         $totalRating += $review->rating;
     }
     $product->average_rating = count($product->reviews) > 0 ? round($totalRating / count($product->reviews), 1) : 0;
-    
+
     return view('product', ['product' => $product]);
 });
 
