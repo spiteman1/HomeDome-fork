@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script defer="" src="Contact-us.js"></script>
     <link rel="icon" href="HomeDome.jpg" type="image/x-icon">
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "EU4C10z7pKbVAnulR",
+      });
+   })();
+</script>
     <style>
 :root {
 --hd-orange: #F57C00;       
@@ -285,8 +295,9 @@ function validateForm(){
     let lastName = document.getElementById("last-name").value;
     let email = document.getElementById("email").value;
     let confirmEmail = document.getElementById("confirm-email").value;
+    let Subject = document.getElementById("Subject").value();
 
-    if(firstName === "" || lastName === "" || email === "" || confirmEmail === ""){
+    if(firstName === "" || lastName === "" || email === "" || confirmEmail === "" || Subject == ""){
         errors("The fields must be filled");
     }
 }
@@ -308,6 +319,7 @@ function checkEmails() {
 }
 
 document.getElementById("Contact-submission").addEventListener("submit", function(event) {
-    alert("Your message has successfully been sent to us!");
+    event.preventDefault();
+    sendMail();
 });
 </script>
