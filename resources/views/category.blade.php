@@ -1,4 +1,3 @@
-
 @vite('resources/css/app.css')
 
 
@@ -377,17 +376,17 @@
     </header>
 
     <div class="category-bar">
-       <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
-            <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
-            <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
-            <a href="{{ route('category.show', 'kitchenware') }}">Kitchenware</a>
-            <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
+          <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
+              <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
+              <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
+              <a href="{{ route('category.show', 'kitchenware') }}">Kitchenware</a>
+              <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
         <a class= "headerLinks" href="/aboutUs">About Us</a>
         <a class= "headerLinks" href="/ourProducts">Our Products</a>
     </div>
 
-<h1 class="product_showing">Search Results For: {{ $query }}</h1>
 
+<h1 class="product_showing">{{ ucwords(str_replace('-', ' ', $slug)) }}</h1>
 
 @if($results->isEmpty())
     <p>No products found.</p>
@@ -407,4 +406,3 @@
          @endforeach
     </div>
 @endif
-

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\CategoryController;
 Route::get('/', function () {
     return view('home');
 });
@@ -23,3 +24,4 @@ Route::get('/register', function () {
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');

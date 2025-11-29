@@ -344,11 +344,11 @@
     </header>
 
     <div class="category-bar">
-        <a href="/furniture">Furniture</a>
-        <a href="/appliances">Appliances</a>
-        <a href="/home-decor">Home Decor</a>
-        <a href="/kitchen-ware">Kitchenware</a>
-        <a href="/lighting">Lighting</a>
+         <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
+              <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
+              <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
+              <a href="{{ route('category.show', 'kitchenware') }}">Kitchenware</a>
+              <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
     </div>
 
     <main class="content">
