@@ -264,7 +264,7 @@ h2 {
                 <img src="ChatGPT Image Nov 24, 2025, 08_26_04 PM.png" width="500" height="300" class="contactUs-img ">
 
     </div>
-    <div class="contactUs-box">
+    <section class="contactUs-box">
         <form id="Contact-submission" class="contact-form">
 
             <label>Your First Name</label>
@@ -284,7 +284,7 @@ h2 {
 
             <button type="submit"><strong>Send Message</strong></button>
         </form>
-    </div>
+</section>
         </body>
         </html>
 <?php

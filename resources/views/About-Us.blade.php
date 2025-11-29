@@ -394,7 +394,7 @@ But HomeDome is more than the products we sell it’s the experience we create. 
     </p>
 </div>
 
-<div class="card-section">
+<section class="card-section">
     <div class="cards">
         <div class="card">
             <h3>Our Mission</h3>
@@ -418,7 +418,7 @@ But HomeDome is more than the products we sell it’s the experience we create. 
             </p>
         </div>
     </div>
-</div>
+</section>
 <div class="our-story">
     <h2>Our Story</h2>
 <p>
@@ -427,9 +427,9 @@ But HomeDome is more than the products we sell it’s the experience we create. 
     As we’ve grown, our mission has remained the same: to make home living simple, enjoyable, and inspiring. We listen to our customers, adapt to trends, and continually expand our collections to meet the changing needs of modern homes. Whether it’s helping a young couple furnish their first apartment, assisting a family in creating a cozy living space, or offering smart, energy efficient appliances to make daily life easier, HomeDome is here every step of the way. Our story is one of growth, passion, and dedication and it’s far from over. We’re excited to continue helping people create homes that truly reflect their personalities and lifestyles
 </p>
 </div>
-<div class="why-choose-us">
+<section class="why-choose-us">
 <h2>Why Choose Us?</h2>
-<div class="qualities">
+<section class="qualities">
 <div class="quality">
 <h3>Premium Quality</h3>
 <p>Every product is carefully selected for durability, comfort, and long lasting performance in your home.</p>
@@ -446,15 +446,15 @@ But HomeDome is more than the products we sell it’s the experience we create. 
 <h3>Friendly, Personalized Service</h3>
 <p>We guide you every step of the way, ensuring a smooth and enjoyable shopping experience.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
-<div class="end">
+<section class="end">
 <h2>Let’s Build Your Dream Home Together!</h2>
 <p>
 Explore our collections, visit our showroom, or reach out to our friendly team we’re here to guide you every step of the way. Your perfect home starts with the right pieces, and we can’t wait to help you bring it to life.
 </p>
 <button class="end-button">Shop Now</button>
-</div>
+</section>
 </body>
 </html>
