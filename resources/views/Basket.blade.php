@@ -175,8 +175,9 @@
     color: white;
     padding: 20px 30px;
     padding-right: 40px;
-    flex: 0.1 2 1900px;
-    min-width: 520px;
+    flex: 1 1 1900px;
+    min-width: 500px;
+    max-width: 1000px;
     border-left: 4px #E67E22 solid;
     border-right: 4px #E67E22 solid;
     border-bottom: 4px #E67E22 solid;
@@ -221,7 +222,7 @@
         justify-content: space-around;
         flex-direction: column;
         color: white;
-        flex: 1 1 400px;   
+        flex: 0.1 1 400px;   
     border-radius: 20px;
     }
     .ProductDetails{
@@ -352,7 +353,7 @@ color: #f9f7e5;
         </div>
 
         <div class="controls-row">
-            <span class="qty-label">Qty</span>
+            <span class="qty-label">Quantity:</span>
         <select name="quantity" id="quantity">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -381,7 +382,7 @@ color: #f9f7e5;
         </div>
 
         <div class="controls-row">
-            <span class="qty-label">Qty</span>
+            <span class="qty-label">Quantity:</span>
         <select name="quantity" id="quantity">
             <option value="1">1</option>
             <option value="2">2</option>
