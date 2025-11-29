@@ -58,7 +58,7 @@
             ])->unique('text')->values()->all()
         ]; 
 
-        return view('/show', array('product'=>$product));
+        return view('/product', array('product'=>$product));
     }
  }
 
