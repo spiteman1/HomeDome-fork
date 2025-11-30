@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Custom Product Styles -->
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <!-- 3D Model Viewer Script -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -307,6 +309,38 @@
                 </div>
             </div>
         @endif
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewerModal" class="viewer-modal">
+        <div class="viewer-content">
+            <button class="close-viewer" onclick="close3DViewer()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            @php
+                $modelUrl = '';
+                if (isset($product->media)) {
+                    foreach ($product->media as $media) {
+                        if ($media->media_type === '3D_MODEL') {
+                            $modelUrl = asset($media->url);
+                            break;
+                        }
+                    }
+                }
+            @endphp
+
+            @if($modelUrl)
+                <model-viewer src="{{ $modelUrl }}" alt="A 3D model of {{ $product->name }}" auto-rotate camera-controls ar
+                    shadow-intensity="1" style="width: 100%; height: 100%; background-color: #f5f5f5;">
+                </model-viewer>
+            @else
+                <div class="no-model-message">
+                    <i class="fa-solid fa-cube"></i>
+                    <p>3D Model not available for this product.</p>
+                </div>
+            @endif
+        </div>
     </div>
 
     <!-- Custom Product Script -->

@@ -54,9 +54,34 @@ function addToWishlist() {
 }
 
 function open3DViewer() {
-    alert('Opening 3D Product Viewer...');
-    // function to be considered later
+    const modal = document.getElementById('viewerModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    } else {
+        console.error('Viewer modal not found');
+    }
 }
+
+function close3DViewer() {
+    const modal = document.getElementById('viewerModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('viewerModal');
+    if (modal) {
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                close3DViewer();
+            }
+        });
+    }
+});
 
 function writeReview() {
     alert('Opening review form...');
