@@ -332,23 +332,24 @@ color: #f9f7e5;
 </div>
 
 <h2 id="title">Your Trolley</h2>
-<h2 id="BasketTitle">Your Items (1)</h2>
+<h2 id="BasketTitle">Your Items ({{ count($basketProducts) }})</h2>
 <!--Add in something that says your items and then it also calculates how many items there are-->
 
 <div class="BasketContainer">
     <div class="BasketItems">
+@foreach ($basketProducts as $product)
 <div class="ProductInfo">
     <img id= "BasketImg" src="table.webp" alt="ProductImage">
-
+    
     <div class="ProductName">
-    <p>Premium French Wooden Table</p>
+    <p>{{ $product->name }}</p>
     </div>
 <!--Add in the colour of what we have selected-->
     <div class="ProductDetails">
 
         <div class="priceInformation">
             <p id="priceTitle">Price: </p>           
-            <p class="price">£247.39</p>
+            <p class="price">{{ $product->price }}</p>
 
         </div>
 
@@ -361,57 +362,36 @@ color: #f9f7e5;
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button id="delete">Delete</button>
+
+        <!--id is the shopping basket id-->
+        <form method ="POST" action="{{ route('removeProduct.removeProduct', ['bid' => $product->id]) }}">
+            <button id="delete">Delete</button>
+        </form>
     </div>
 </div>
 </div>
+@endforeach
 
-<div class="ProductInfo">
-    <img id= "BasketImg" src="washing mashine.jpg" alt="ProductImage">
-
-    <div class="ProductName">
-    <p>Black Washing Machine</p>
-    </div>
-<!--Add in the colour of what we have selected-->
-    <div class="ProductDetails">
-
-        <div class="priceInformation">
-            <p id="priceTitle">Price: </p>           
-            <p class="price">£199.99</p>
-
-        </div>
-
-        <div class="controls-row">
-            <span class="qty-label">Quantity:</span>
-        <select name="quantity" id="quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <button id="delete">Delete</button>
-    </div>
-</div>
-</div>
 
 </div>
 <div class="summary">
     <div class="Subtotal">
         <p id="subtotalLabel">Subtotal:</p>
-        <p id="SubtotalPrice">£247.39</p>
+        <p id="SubtotalPrice">
+            ${{ number_format($basketProducts->sum(fn($p) => $p->price * $p->quantity), 2) }}
+        </p>
     </div>
-    <!--Here the price without delivery will be displayed-->
+    <!--Here the price without delivery will be displayed
     <div class="delivery">
     <p id="deliveryLabel">Estimated delivery cost:</p>
     <p id="deliveryPrice"> £25</p>
-</div>
+</div>-->
 
-    <!--Here the delivery price will be displayed-->
+    <!--Here the delivery price will be displayed
     <div class="total">
     <p id="totalLabel">Total Price:</p>
     <p id="totalPrice">£252.39</p>
-    </div>
+    </div>-->
     <!--Here the total price will be displayed-->
     <button id="Checkout">Go to Checkout</button>
 </div>

@@ -11,7 +11,7 @@
             ->select('shopping_basket.*', 'products.*', 'product_media.*')
             ->where('shopping_basket.user_id', Auth::id()) //User ID 
             ->get(); 
-        return view('/basket', $basketProducts); 
+        return view('/basket', array('basketProducts' => $basketProducts)); 
     }
 
 
@@ -32,7 +32,7 @@
     public function addProduct(Request $request, $product_id){
         //Validate the quantity so that it is an integer and it's minimum is 1
         $validateQuantity = $request->validate(['quantity'=>'required|integer|min:1']); 
-        $productInsert = DB::table('shopping_baskey')
+        $productInsert = DB::table('shopping_basket')
             ->insert([
                 'user_id' => Auth::id(), 
                 'product_id' => $product_id, 
