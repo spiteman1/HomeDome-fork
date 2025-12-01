@@ -186,10 +186,14 @@ body {
     font-size: 14px;
 }
 
+
+/* viewer 3d button */
 .viewer-3d-button {
     position: absolute;
     bottom: 16px;
+
     left: 50%;
+
     transform: translateX(-50%);
     background: var(--hd-orange);
     color: white;
@@ -204,10 +208,13 @@ body {
     font-size: 14px;
 }
 
+/* when hover button*/
 .viewer-3d-button:hover {
     background: var(--hd-dark-red);
 }
 
+
+/* thumbnail gallery */
 .thumbnail-gallery {
     display: flex;
     gap: 12px;
@@ -225,6 +232,7 @@ body {
     padding: 4px;
 }
 
+/* when hover thumbnail */
 .thumbnail:hover,
 .thumbnail.active {
     border-color: var(--hd-orange);
@@ -545,4 +553,75 @@ body {
     .product-title-desktop {
         display: none;
     }
+}
+
+/* 3D Viewer Modal */
+.viewer-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.viewer-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.viewer-content {
+    width: 90%;
+    max-width: 1000px;
+    height: 80vh;
+    background: white;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.close-viewer {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.close-viewer:hover {
+    transform: scale(1.1);
+    background: var(--hd-light-grey);
+}
+
+.no-model-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--hd-text-muted);
+    gap: 16px;
+}
+
+.no-model-message i {
+    font-size: 48px;
 }

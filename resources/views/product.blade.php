@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Custom Product Styles -->
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <!-- 3D Model Viewer Script -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 
 <body>
     <!-- Header -->
+
     <header class="top-bar">
         <a href="/" class="top-logo">
             <img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo">
             <span class="top-logo-text">HomeDome</span>
         </a>
+
 
         <div class="top-search">
             <input class="top-search-input" type="text" placeholder="Search products...">
@@ -27,6 +31,7 @@
             <a href="/login" class="icon-item">
                 <i class="fa-solid fa-user"></i>
                 <span>Account</span>
+
             </a>
             <a href="/cart" class="icon-item">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -35,7 +40,7 @@
         </div>
     </header>
 
-    <!-- the diffrent categories  bar-->
+    <!-- the diffrent categories bar-->
     <div class="category-bar">
         <a href="/furniture">Furniture</a>
         <a href="/appliances">Appliances</a>
@@ -44,7 +49,7 @@
         <a href="/lighting">Lighting</a>
     </div>
 
-    <!-- Breadcrumbs -->
+    <!-- breadcrumbs section -->
     <div class="breadcrumbs">
         <a href="/">Home</a> >
         <a href="/appliances">{{ $product->category ?? 'Products' }}</a> >
@@ -56,11 +61,13 @@
 
     <!--Product Section -->
     <div class="product-container">
+
         <!-- Left  Media -->
         <div class="product-media">
             <div class="product-title-mobile">
                 <h1 class="product-title">{{ $product->name }}</h1>
                 <p class="product-sku">SKU: {{ $product->sku }}</p>
+
             </div>
 
             <!-- Main Image -->
@@ -74,6 +81,7 @@
                 @endif
 
                 @if($product->energy_rating)
+
                     <span class="energy-badge">
                         <i class="fa-solid fa-leaf"></i> {{ $product->energy_rating }}
                     </span>
@@ -99,6 +107,16 @@
                 </div>
             @endif
         </div>
+
+
+
+
+
+
+
+
+
+
 
         <!-- Right Purchase Info -->
         <div class="product-info">
@@ -171,8 +189,11 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                         ADD TO BASKET
                     </button>
+                    <!-- Add to wishlist button to be implemented later after mvp-->
                     <button class="btn btn-secondary" onclick="addToWishlist()">
+
                         <i class="fa-regular fa-heart"></i>
+
                         Add to Wishlist
                     </button>
                 </div>
@@ -307,6 +328,38 @@
                 </div>
             </div>
         @endif
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewerModal" class="viewer-modal">
+        <div class="viewer-content">
+            <button class="close-viewer" onclick="close3DViewer()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            @php
+                $modelUrl = '';
+                if (isset($product->media)) {
+                    foreach ($product->media as $media) {
+                        if ($media->media_type === '3D_MODEL') {
+                            $modelUrl = asset($media->url);
+                            break;
+                        }
+                    }
+                }
+            @endphp
+
+            @if($modelUrl)
+                <model-viewer src="{{ $modelUrl }}" alt="A 3D model of {{ $product->name }}" auto-rotate camera-controls ar
+                    shadow-intensity="1" style="width: 100%; height: 100%; background-color: #f5f5f5;">
+                </model-viewer>
+            @else
+                <div class="no-model-message">
+                    <i class="fa-solid fa-cube"></i>
+                    <p>3D Model not available for this product.</p>
+                </div>
+            @endif
+        </div>
     </div>
 
     <!-- Custom Product Script -->

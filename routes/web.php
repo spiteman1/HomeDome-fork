@@ -35,29 +35,30 @@ Route::get('/product', function () {
         'subcategory' => 'Refrigerators',
         // Media from product_media table
         'media' => [
-            (object)['media_type' => 'image', 'url' => 'images/productImages/Refrigerator.jpg'],
-            (object)['media_type' => 'image', 'url' => 'images/productImages/Microwave Oven.jpg'],
-            (object)['media_type' => 'image', 'url' => 'images/productImages/Washing Machine.jpg'],
+            (object) ['media_type' => 'image', 'url' => 'images/productImages/Refrigerator.jpg'],
+            (object) ['media_type' => 'image', 'url' => 'images/productImages/Microwave Oven.jpg'],
+            (object) ['media_type' => 'image', 'url' => 'images/productImages/Washing Machine.jpg'],
+            (object) ['media_type' => '3D_MODEL', 'url' => 'models/washing_machine.glb'],
         ],
         // Reviews data
         'reviews' => [
-            (object)[
+            (object) [
                 'rating' => 5,
                 'review_text' => 'Excellent product! Highly recommend. This appliance exceeded all my expectations. The build quality is outstanding, and it operates incredibly quietly.',
                 'submission_date' => '2024-11-15',
-                'user' => (object)['name' => 'Sarah M.']
+                'user' => (object) ['name' => 'Sarah M.']
             ],
-            (object)[
+            (object) [
                 'rating' => 4,
                 'review_text' => 'Great value for money. Very satisfied with this purchase. The design is sleek and modern, fitting perfectly in my kitchen.',
                 'submission_date' => '2024-11-10',
-                'user' => (object)['name' => 'James P.']
+                'user' => (object) ['name' => 'James P.']
             ],
-            (object)[
+            (object) [
                 'rating' => 5,
                 'review_text' => 'Perfect addition to our home. We\'ve had this for three weeks now and couldn\'t be happier. The energy savings are real.',
                 'submission_date' => '2024-11-05',
-                'user' => (object)['name' => 'Emily R.']
+                'user' => (object) ['name' => 'Emily R.']
             ],
         ]
     ];
