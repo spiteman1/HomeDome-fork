@@ -186,10 +186,14 @@ body {
     font-size: 14px;
 }
 
+
+/* viewer 3d button */
 .viewer-3d-button {
     position: absolute;
     bottom: 16px;
+
     left: 50%;
+
     transform: translateX(-50%);
     background: var(--hd-orange);
     color: white;
@@ -204,10 +208,13 @@ body {
     font-size: 14px;
 }
 
+/* when hover button*/
 .viewer-3d-button:hover {
     background: var(--hd-dark-red);
 }
 
+
+/* thumbnail gallery */
 .thumbnail-gallery {
     display: flex;
     gap: 12px;
@@ -225,6 +232,7 @@ body {
     padding: 4px;
 }
 
+/* when hover thumbnail */
 .thumbnail:hover,
 .thumbnail.active {
     border-color: var(--hd-orange);

@@ -14,11 +14,13 @@
 
 <body>
     <!-- Header -->
+
     <header class="top-bar">
         <a href="/" class="top-logo">
             <img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo">
             <span class="top-logo-text">HomeDome</span>
         </a>
+
 
         <div class="top-search">
             <input class="top-search-input" type="text" placeholder="Search products...">
@@ -29,6 +31,7 @@
             <a href="/login" class="icon-item">
                 <i class="fa-solid fa-user"></i>
                 <span>Account</span>
+
             </a>
             <a href="/cart" class="icon-item">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -37,7 +40,7 @@
         </div>
     </header>
 
-    <!-- the diffrent categories  bar-->
+    <!-- the diffrent categories bar-->
     <div class="category-bar">
         <a href="/furniture">Furniture</a>
         <a href="/appliances">Appliances</a>
@@ -46,7 +49,7 @@
         <a href="/lighting">Lighting</a>
     </div>
 
-    <!-- Breadcrumbs -->
+    <!-- breadcrumbs section -->
     <div class="breadcrumbs">
         <a href="/">Home</a> >
         <a href="/appliances">{{ $product->category ?? 'Products' }}</a> >
@@ -58,11 +61,13 @@
 
     <!--Product Section -->
     <div class="product-container">
+
         <!-- Left  Media -->
         <div class="product-media">
             <div class="product-title-mobile">
                 <h1 class="product-title">{{ $product->name }}</h1>
                 <p class="product-sku">SKU: {{ $product->sku }}</p>
+
             </div>
 
             <!-- Main Image -->
@@ -76,6 +81,7 @@
                 @endif
 
                 @if($product->energy_rating)
+
                     <span class="energy-badge">
                         <i class="fa-solid fa-leaf"></i> {{ $product->energy_rating }}
                     </span>
@@ -101,6 +107,16 @@
                 </div>
             @endif
         </div>
+
+
+
+
+
+
+
+
+
+
 
         <!-- Right Purchase Info -->
         <div class="product-info">
@@ -173,8 +189,11 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                         ADD TO BASKET
                     </button>
+                    <!-- Add to wishlist button to be implemented later after mvp-->
                     <button class="btn btn-secondary" onclick="addToWishlist()">
+
                         <i class="fa-regular fa-heart"></i>
+
                         Add to Wishlist
                     </button>
                 </div>
