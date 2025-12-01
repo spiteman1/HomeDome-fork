@@ -72,10 +72,4 @@ Route::get('/product', function () {
     return view('product', ['product' => $product]);
 });
 
-Route::view('/login', 'login')->name('login');
-Route::view('/register', 'register')->name('register');
-Route::get('p.search', function () {
-    return view('home');
-});
-
 Route::get('show/{rid}', [ProductController::class, 'show']);
