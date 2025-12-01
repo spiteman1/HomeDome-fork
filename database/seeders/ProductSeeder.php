@@ -13,6 +13,29 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. Create Categories
+        $categories = [
+            'Appliances' => null,
+            'Electronics' => null,
+            'Home Decor' => null,
+            'Kitchen' => 'Appliances', // Subcategory example
+            'Cleaning' => 'Appliances',
+        ];
+
+        $categoryIds = [];
+        foreach ($categories as $name => $parentName) {
+            $parentId = $parentName ? $categoryIds[$parentName] : null;
+
+            $id = DB::table('categories')->insertGetId([
+                'name' => $name,
+                'parent_id' => $parentId,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+            $categoryIds[$name] = $id;
+        }
+
+        // 2. Create Products
         $products = [
             [
                 'name' => 'Premium French Door Refrigerator',
@@ -26,6 +49,7 @@ class ProductSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/french_door_refrigerator_-_stainless.glb',
+                'category' => 'Kitchen',
             ],
             [
                 'name' => 'Smart Front Load Washer',
@@ -39,22 +63,24 @@ class ProductSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/washing_machine.glb',
+                'category' => 'Cleaning',
             ],
             [
                 'name' => 'Convection Microwave Oven',
                 'sku' => 'HD-MW-2024-003',
                 'price' => 129.99,
                 'stock_quantity' => 25,
-                'description' => 'Versatile convection microwave oven for baking, grilling, and reheating. Compact design ',
+                'description' => 'Versatile convection microwave oven for baking, grilling, and reheating. Compact design fits perfectly in any kitchen.',
                 'dimensions' => '30cm x 50cm x 40cm',
                 'energy_rating' => 'A',
                 'is_available' => true,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'model_file' => null, // No model for microwave yet will be used an example to show what happenes when theres no microawve
+                'model_file' => null,
+                'category' => 'Kitchen',
             ],
             [
-                'name' => 'samsung 4K Smart LED TV 55"',
+                'name' => '4K Smart LED TV 55"',
                 'sku' => 'HD-TV-2024-004',
                 'price' => 450.00,
                 'stock_quantity' => 10,
@@ -65,6 +91,7 @@ class ProductSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/samsung_55_curved_tv_and_remote.glb',
+                'category' => 'Electronics',
             ],
             [
                 'name' => 'Robot Vacuum Cleaner',
@@ -78,28 +105,38 @@ class ProductSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/robot_vacuum_cleaner_low_poly.glb',
+                'category' => 'Cleaning',
             ],
         ];
 
         foreach ($products as $productData) {
-            // Extract model 
+            // Extract extra fields
             $modelFile = $productData['model_file'];
+            $categoryName = $productData['category'];
             unset($productData['model_file']);
+            unset($productData['category']);
 
             $productId = DB::table('products')->insertGetId($productData);
 
-            // Adds the  Media
+            // Link Category
+            if (isset($categoryIds[$categoryName])) {
+                DB::table('product_category')->insert([
+                    'product_id' => $productId,
+                    'category_id' => $categoryIds[$categoryName],
+                ]);
+            }
+
+            // Add Media
             DB::table('product_media')->insert([
                 [
                     'product_id' => $productId,
                     'media_type' => 'image',
-                    'url' => 'images/productImages/placeholder.jpg', // placeholder if theres no image
+                    'url' => 'images/productImages/placeholder.jpg',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]
             ]);
 
-            // Add 3D Model if available
             if ($modelFile) {
                 DB::table('product_media')->insert([
                     [
@@ -112,7 +149,7 @@ class ProductSeeder extends Seeder
                 ]);
             }
 
-            // Add Reviews (Randomly 1-3 reviews)
+            // Add Reviews
             $numReviews = rand(1, 3);
             for ($i = 0; $i < $numReviews; $i++) {
                 $userId = DB::table('users')->inRandomOrder()->value('id');
@@ -122,7 +159,7 @@ class ProductSeeder extends Seeder
                         'product_id' => $productId,
                         'user_id' => $userId,
                         'rating' => rand(3, 5),
-                        'review_text' => 'This is a sample review for the product. it works as intended ',
+                        'review_text' => 'This is a sample review for the product. It works great!',
                         'submission_date' => Carbon::now()->subDays(rand(1, 30)),
                         'is_approved' => true,
                         'created_at' => Carbon::now(),
