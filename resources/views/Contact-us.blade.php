@@ -291,25 +291,24 @@ h2 {
 ?>
 <script>
 function validateForm(){
-    let firstName = document.getElementById("first-name").value;
-    let lastName = document.getElementById("last-name").value;
-    let email = document.getElementById("email").value;
-    let confirmEmail = document.getElementById("confirm-email").value;
+    let firstName = document.getElementById("first-name").value();
+    let lastName = document.getElementById("last-name").value();
+    let email = document.getElementById("email").value();
+    let confirmEmail = document.getElementById("confirm-email").value();
     let Subject = document.getElementById("Subject").value();
 
-    if(firstName === "" || lastName === "" || email === "" || confirmEmail === "" || Subject == ""){
-        errors("The fields must be filled");
-    }
+if(firstName ==="" || lastName ==="" || email ==="" || confirmEmail ==="" || Subject == ""){
+    errors("The fields must be filled");
 }
-
+}
 let email = document.getElementById("email");
 let confirmEmail = document.getElementById("confirm-email");
 document.getElementById("email").onchange = checkEmails;
 document.getElementById("confirm-email").onchange = checkEmails;
 
 function checkEmails() {
-    let email = document.getElementById("email");
-    let confirmEmail = document.getElementById("confirm-email");
+ let email = document.getElementById("email");
+  let confirmEmail = document.getElementById("confirm-email");
 
     if (email.value === confirmEmail.value) {
         confirmEmail.setCustomValidity("");
@@ -317,9 +316,28 @@ function checkEmails() {
         confirmEmail.setCustomValidity("Emails must match.");
     }
 }
-
 document.getElementById("Contact-submission").addEventListener("submit", function(event) {
     event.preventDefault();
     sendMail();
 });
+
+function sendMail() {
+    let params = {
+        first_name: document.getElementById("first-name").value,
+        last_name: document.getElementById("last-name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("Subject").value,
+        message: document.getElementById("Message").value
+    };
+
+    emailjs.send("service_t15q8pr", "template_0xm9e9r", params)
+        .then(function(response) {
+            alert("Your message has been successfully sent!");
+            document.getElementById("Contact-submission").reset();
+        })
+        .catch(function(error) {
+            alert("Error sending message.");
+            console.log(error);
+        });
+}
 </script>
