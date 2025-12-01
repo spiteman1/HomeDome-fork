@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
             'Appliances' => null,
             'Electronics' => null,
             'Home Decor' => null,
-            'Kitchen' => 'Appliances', // Subcategory example
+            'Kitchen' => 'Appliances',
             'Cleaning' => 'Appliances',
         ];
 
@@ -50,6 +50,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/french_door_refrigerator_-_stainless.glb',
                 'category' => 'Kitchen',
+                'images' => ['images/productImages/Refrigerator.jpg'],
             ],
             [
                 'name' => 'Smart Front Load Washer',
@@ -64,6 +65,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/washing_machine.glb',
                 'category' => 'Cleaning',
+                'images' => ['images/productImages/Washing Machine.jpg'],
             ],
             [
                 'name' => 'Convection Microwave Oven',
@@ -78,6 +80,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'model_file' => null,
                 'category' => 'Kitchen',
+                'images' => ['images/productImages/Microwave Oven.jpg'],
             ],
             [
                 'name' => '4K Smart LED TV 55"',
@@ -92,6 +95,7 @@ class ProductSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/samsung_55_curved_tv_and_remote.glb',
                 'category' => 'Electronics',
+                'images' => [], // No specific image found in list, using placeholder logic below if empty
             ],
             [
                 'name' => 'Robot Vacuum Cleaner',
@@ -106,6 +110,12 @@ class ProductSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'model_file' => 'models/robot_vacuum_cleaner_low_poly.glb',
                 'category' => 'Cleaning',
+                'images' => [
+                    'images/productImages/RobotVacumeCleaner1.jpg',
+                    'images/productImages/RobotVacumeCleaner2.jpg',
+                    'images/productImages/RobotVacumeCleaner3.jpg',
+                    'images/productImages/RobotVacumeCleaner4.jpg',
+                ],
             ],
         ];
 
@@ -113,8 +123,11 @@ class ProductSeeder extends Seeder
             // Extract extra fields
             $modelFile = $productData['model_file'];
             $categoryName = $productData['category'];
+            $images = $productData['images'] ?? [];
+
             unset($productData['model_file']);
             unset($productData['category']);
+            unset($productData['images']);
 
             $productId = DB::table('products')->insertGetId($productData);
 
@@ -126,26 +139,36 @@ class ProductSeeder extends Seeder
                 ]);
             }
 
-            // Add Media
-            DB::table('product_media')->insert([
-                [
+            // Add Images
+            if (!empty($images)) {
+                foreach ($images as $imageUrl) {
+                    DB::table('product_media')->insert([
+                        'product_id' => $productId,
+                        'media_type' => 'image',
+                        'url' => $imageUrl,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+                }
+            } else {
+                // Default placeholder if no images provided
+                DB::table('product_media')->insert([
                     'product_id' => $productId,
                     'media_type' => 'image',
                     'url' => 'images/productImages/placeholder.jpg',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
-                ]
-            ]);
+                ]);
+            }
 
+            // Add 3D Model
             if ($modelFile) {
                 DB::table('product_media')->insert([
-                    [
-                        'product_id' => $productId,
-                        'media_type' => '3D_MODEL',
-                        'url' => $modelFile,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                    ]
+                    'product_id' => $productId,
+                    'media_type' => '3D_MODEL',
+                    'url' => $modelFile,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]);
             }
 
