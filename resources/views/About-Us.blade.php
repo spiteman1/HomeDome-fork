@@ -387,10 +387,9 @@ h3{
 <div class="us-info">
     <h2>Who We Are</h2>
     <p id="p1">
-At HomeDome, we’re more than just a store we’re a team of people who genuinely care about the way you live. We believe a home isn’t simply a place you stay; it’s where life happens, where families gather, and where comfort should always come first. That’s why we bring together a wide variety of modern furniture, innovative appliances, and smart home solutions designed to elevate everyday living. From cozy sofas and stylish dining sets to energy efficient refrigerators and next generation washing machines, every product is thoughtfully chosen to offer both long lasting quality and contemporary design. We partner with trusted manufacturers and designers to ensure our collections bring together durability, functionality, and style in a way that fits seamlessly into today’s lifestyle.
-<br>
-<br>
-But HomeDome is more than the products we sell it’s the experience we create. We’re dedicated to making your home building or home upgrading journey smooth, enjoyable, and stress free. Whether you’re furnishing your first apartment, renovating a family home, or upgrading to smarter appliances, our team is here with friendly guidance, honest recommendations, and real attention to your needs. As a community driven brand, we continually listen, learn, and evolve based on what real households want in their homes. We’re proud to help customers design spaces that feel inspiring, warm, and uniquely personal. At HomeDome, our purpose is simple: to make everyday living better one room, one appliance, and one meaningful choice at a time.
+        At HomeDome, we are a team dedicated to helping people create comfortable and beautiful living spaces. We offer a wide range of modern furniture, innovative appliances, and practical home solutions that bring style, reliability, and convenience into everyday life. From cozy sofas and elegant dining sets to energy efficient refrigerators and smart washing machines, every product is selected with care to ensure quality and lasting comfort.
+
+HomeDome is built on a passion for making home improvement simple and enjoyable. Whether you are furnishing your first apartment, refreshing a room, or upgrading your household appliances, our friendly team is here to guide you with helpful advice and genuine support. We continue to learn from our customers and adapt to what real homes need. Our goal is to help you create spaces that feel warm, inspiring, and truly personal.
     </p>
 </div>
 
@@ -422,9 +421,9 @@ But HomeDome is more than the products we sell it’s the experience we create. 
 <div class="our-story">
     <h2>Our Story</h2>
 <p>
-    HomeDome began with a simple idea: to create a place where people could find both beautiful furniture and reliable home appliances in one convenient, friendly space. What started as a small local shop has grown into a modern home-living brand dedicated to helping families design spaces that are stylish, functional, and welcoming. From the very beginning, we focused on curating products that combine quality craftsmanship, contemporary design, and everyday practicality because we believe that a home should be as comfortable as it is beautiful. Over the years, our commitment to excellence, attention to detail, and understanding of our customers’ needs has helped us build a reputation as a trusted destination for all things home.
-    <br>
-    As we’ve grown, our mission has remained the same: to make home living simple, enjoyable, and inspiring. We listen to our customers, adapt to trends, and continually expand our collections to meet the changing needs of modern homes. Whether it’s helping a young couple furnish their first apartment, assisting a family in creating a cozy living space, or offering smart, energy efficient appliances to make daily life easier, HomeDome is here every step of the way. Our story is one of growth, passion, and dedication and it’s far from over. We’re excited to continue helping people create homes that truly reflect their personalities and lifestyles
+    HomeDome began with a vision to bring stylish furniture and dependable home appliances together in one welcoming place. What started as a small local idea quickly grew into a brand focused on offering quality products that make everyday living easier and more enjoyable. From the start, we have believed that a home should feel comfortable, functional, and uniquely personal.
+
+As we expanded, we stayed committed to listening to our customers and understanding what real homes need. Whether it is helping someone furnish a new space or upgrade their appliances, our team works to provide honest guidance and a smooth experience. HomeDome continues to grow with the same purpose we began with: helping people create homes they love
 </p>
 </div>
 <section class="why-choose-us">
