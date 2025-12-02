@@ -339,7 +339,7 @@ color: #f9f7e5;
     <div class="BasketItems">
 @foreach ($basketProducts as $product)
 <div class="ProductInfo">
-    <img id= "BasketImg" src="table.webp" alt="ProductImage">
+    <img id= "BasketImg" src="{{ asset($product->url) }}" alt="ProductImage">
     
     <div class="ProductName">
     <p>{{ $product->name }}</p>
@@ -375,10 +375,10 @@ color: #f9f7e5;
 
 </div>
 <div class="summary">
-    <div class="Subtotal">
-        <p id="subtotalLabel">Subtotal:</p>
-        <p id="SubtotalPrice">
-            ${{ number_format($basketProducts->sum(fn($p) => $p->price * $p->quantity), 2) }}
+    <div class="total">
+        <p id="totalLabel">Total:</p>
+        <p id="totalPrice">
+            £{{ number_format($basketProducts->sum(fn($p) => $p->price * $p->quantity), 2) }}
         </p>
     </div>
     <!--Here the price without delivery will be displayed
