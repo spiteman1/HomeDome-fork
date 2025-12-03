@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('product/{rid}', [ProductController::class, 'show']);
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
 Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity');
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
@@ -72,7 +72,7 @@ Route::get('/product', function () {
     $product->average_rating = count($product->reviews) > 0 ? round($totalRating / count($product->reviews), 1) : 0;
 
     return view('product', ['product' => $product]);
-});
+})->name('product');
 
 Route::get('/', [HomeController::class, 'index']);
 

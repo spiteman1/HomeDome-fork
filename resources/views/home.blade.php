@@ -11,14 +11,15 @@
 <div class= product_showing>
 <h2> Liven up your living room with our furniture  </h2>
 </div>
-    <div class="product-container">
+    <div class="product-container"  >
         @for ($i=0;$i<3;$i++)
             <div class="product-card">
                 <h3>{{ $products[$i]->name }}</h3>
 
                 @if($products[$i]->url)
-
+                    <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
                     <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                    </a>
                 @endif
 
                 <p>£{{ number_format($products[$i]->price, 2) }}</p>
