@@ -56,7 +56,8 @@
             'reviews' => $rows->map(fn($r) => [
                 'text' => $r->review_text,
                 'rating' => $r->rating,
-                'approved' => $r->is_approved
+                'approved' => $r->is_approved,
+                'submission_date'=> $r->submission_date
             ])->unique('text')->values()->all()
         ];
 

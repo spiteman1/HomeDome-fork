@@ -397,8 +397,11 @@
                         <h3>{{ $product->name }}</h3>
 
                         @if($product->url)
+                         <a href="{{ route('product.show', ['id' => $product->product_id]) }}">
+
 
                             <img src="{{ asset( $product->url) }}" alt="{{ $product->name }}">
+                             </a>
                         @endif
 
                         <p>£{{ number_format($product->price, 2) }}</p>

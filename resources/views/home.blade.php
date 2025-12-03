@@ -37,7 +37,9 @@
 
                 @if($products[$i]->url)
 
-                    <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                    <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
+                                       <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                                       </a>
                 @endif
 
                 <p>£{{ number_format($products[$i]->price, 2) }}</p>
@@ -55,7 +57,9 @@
 
                 @if($products[$i]->url)
 
-                    <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
+                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                                        </a>
                 @endif
 
                 <p>£{{ number_format($products[$i]->price, 2) }}</p>
@@ -73,7 +77,9 @@
 
                 @if($products[$i]->url)
 
-                    <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
+                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                                        </a>
                 @endif
 
                 <p>£{{ number_format($products[$i]->price, 2) }}</p>
@@ -91,7 +97,9 @@
 
                 @if($products[$i]->url)
 
-                    <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
+                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                                        </a>
                 @endif
 
                 <p>£{{ number_format($products[$i]->price, 2) }}</p>
