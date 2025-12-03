@@ -370,7 +370,7 @@
                 <span>Wishlist</span>
                 <span class="icon-badge wishlist">{{ $wishlistCount ?? 0 }}</span>
             </a>
-            <a href="/cart" class="icon-item">
+            <a href="{{ route('Basket') }}" class="icon-item">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span>Basket</span>
                 <span class="icon-badge basket">{{ $cartCount ?? 0 }}</span>
@@ -385,6 +385,6 @@
          <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
          <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
          <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
-         <a class= "headerLinks" href="/aboutUs">About Us</a>
-        <a class= "headerLinks" href="/ourProducts">Our Products</a>
+         <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
+
     </div>

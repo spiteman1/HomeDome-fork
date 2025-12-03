@@ -14,16 +14,16 @@ Route::get('/', function () {
 });
 
 Route::get('product/{rid}', [ProductController::class, 'show']);
-Route::get('/basket', [BasketController::class, 'listProducts'])->name('listBasketProducts'); 
-Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity'); 
-Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct'); 
-Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct'); 
+Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
+Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity');
+Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
+Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 Route::get('/product', function () {
     // Sample product data matching database schema
     $product = (object) [
-        'id' => 1,
+        'product_id' => 1,
         'name' => 'Premium French Door Refrigerator',
         'sku' => 'HD-REF-2024-001',
         'price' => 899.99,
@@ -78,7 +78,11 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
+
+Route::get('/About-Us', function () {
+    return view('About-Us');
+})->name('About-Us');
 
 Route::get('/register', function () {
     return view('register');
