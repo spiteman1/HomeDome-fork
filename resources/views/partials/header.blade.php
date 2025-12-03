@@ -386,5 +386,6 @@
          <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
          <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
          <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
+         <a href="{{route('Contact-us')}}"> Contact Us </a>
 
     </div>

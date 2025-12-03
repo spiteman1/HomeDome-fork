@@ -84,6 +84,10 @@ Route::get('/About-Us', function () {
     return view('About-Us');
 })->name('About-Us');
 
+Route::get('/Contact-us', function () {
+    return view('Contact-us');
+})->name('Contact-us');
+
 Route::get('/register', function () {
     return view('register');
 });

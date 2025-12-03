@@ -55,9 +55,9 @@ border-radius: 8px;
 border: 2px solid #ffffff; }
 
 .top-logo-text { font-weight: 800;
-font-size: 20px;
-color: #ffffff; }
-
+            font-size: 20px;
+            color: #ffffff;
+             text-decoration: none;}
 .top-search { flex: 1;
 display: flex;
 justify-content: center; }
@@ -324,6 +324,7 @@ h3{
   color: white;
 }
 .end-button {
+
   background:white;
   color: brown;
   padding: 12px 26px;
@@ -348,10 +349,10 @@ h3{
     <div class="page">
 
         <header class="top-bar">
-            <div class="top-logo">
-                <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
-                <a href="/"><span class="top-logo-text">HomeDome</span></a>
-            </div>
+          <div class="top-logo">
+                     <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
+                     <a href="/"><span class="top-logo-text">HomeDome</span></a>
+                 </div>
 
            <div class="top-search">
              <input
@@ -425,7 +426,7 @@ h3{
         </div>
 <br>
 <div class="About-us">
-    <img src="furnture & appliances in a room.png" alt="About us banner">
+    <img src="/images/furnture & appliances in a room.png" alt="About us banner">
     <h1><strong><u>About Us</u></strong></h1>
 </div>
 
@@ -506,7 +507,7 @@ As we expanded, we stayed committed to listening to our customers and understand
 <p>
 Explore our collections, visit our showroom, or reach out to our friendly team we’re here to guide you every step of the way. Your perfect home starts with the right pieces, and we can’t wait to help you bring it to life.
 </p>
-<button class="end-button">Shop Now</button>
+<a href='/'><button class="end-button">Shop Now</button></a>
 </section>
 </body>
 </html>
