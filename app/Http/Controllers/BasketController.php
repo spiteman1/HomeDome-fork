@@ -1,17 +1,18 @@
-<?php 
- namespace App\Http\Controllers; 
+<?php
+ namespace App\Http\Controllers;
  use Illuminate\Support\Facades\Auth;
+ use Illuminate\Support\Facades\DB;
 
  class BasketController extends Controller{
     public function listProducts(){
         //Get the products that the user has put into the basket
         $basketProducts = DB::table('shopping_basket')
             ->join('products', 'shopping_basket.product_id', '=', 'products.product_id')
-            ->join('products_media', 'shopping_basket.product_id', '=', 'products_media.product_id')
+            ->join('product_media', 'shopping_basket.product_id', '=', 'product_media.product_id')
             ->select('shopping_basket.*', 'products.*', 'product_media.*')
-            ->where('shopping_basket.user_id', Auth::id()) //User ID 
-            ->get(); 
-        return view('/basket', array('basketProducts' => $basketProducts)); 
+            ->where('shopping_basket.user_id', Auth::id()) //User ID
+            ->get();
+        return view('/basket', array('basketProducts' => $basketProducts));
     }
 
 
@@ -19,36 +20,36 @@
         //Remove the product based on it's basket id
         $removeProductFromBasket = DB::table('shopping_basket')
             ->where('id', $basket_id)
-            ->delete(); 
+            ->delete();
 
-        //Validate delete operation 
+        //Validate delete operation
         if ($removeProductFromBasket){
-            redirect()->route('listBasketProducts')->with('success', 'Successfully removed product from basket'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully removed product from basket');
         } else {
-            redirect()->route('listBasketProducts')->with('error', 'Unable to remove product from the basket'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to remove product from the basket');
         }
     }
 
     public function addProduct(Request $request, $product_id){
         //Validate the quantity so that it is an integer and it's minimum is 1
-        $validateQuantity = $request->validate(['quantity'=>'required|integer|min:1']); 
+        $validateQuantity = $request->validate(['quantity'=>'required|integer|min:1']);
         $productInsert = DB::table('shopping_basket')
             ->insert([
-                'user_id' => Auth::id(), 
-                'product_id' => $product_id, 
+                'user_id' => Auth::id(),
+                'product_id' => $product_id,
                 'quantity' => $validateQuantity
-            ]); 
-        
+            ]);
+
         //Verify insert operation
         if ($productInsert){
-            redirect()->route('listBasketProducts')->with('success', 'Successfully added product to the basket'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully added product to the basket');
         } else {
-            redirect()->route('listBasketProducts')->with('error', 'Unable to add product to the basket'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to add product to the basket');
         }
     }
 
     public function updateQuantity(Request $request, $basket_id){
-        $quantity = $request->quantity;  
+        $quantity = $request->quantity;
 
         if ($quantity <= 0){
             $quantity = 1; //Overwrite quantity to 1 so that it's default is 1
@@ -56,14 +57,14 @@
         $update = DB::table('shopping_basket')
             ->where('id', $basket_id)
             ->update([
-                'quantity', $quantity, 
-            ]); 
-        
-        
+                'quantity', $quantity,
+            ]);
+
+
         if ($update){
-            redirect()->route('listBasketProducts')->with('success', 'Successfully updated quantity'); 
+            redirect()->route('listBasketProducts')->with('success', 'Successfully updated quantity');
         } else {
-            redirect()->route('listBasketProducts')->with('error', 'Unable to update the quantity'); 
+            redirect()->route('listBasketProducts')->with('error', 'Unable to update the quantity');
         }
     }
 
@@ -71,7 +72,7 @@
         //Delete rows from shopping basket as there no longer needed
         $deleteFromBasket = DB::table('shopping_basket')
             ->where('user_id', $userId)
-            ->delete(); 
-        return $deleteFromBasket; //Return whether the deletion was successful 
+            ->delete();
+        return $deleteFromBasket; //Return whether the deletion was successful
     }
  }

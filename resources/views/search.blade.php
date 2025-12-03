@@ -383,7 +383,7 @@
             <a href="{{ route('category.show', 'kitchenware') }}">Kitchenware</a>
             <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
         <a class= "headerLinks" href="/aboutUs">About Us</a>
-        <a class= "headerLinks" href="/ourProducts">Our Products</a>
+
     </div>
 
 <h1 class="product_showing">Search Results For: {{ $query }}</h1>
