@@ -372,7 +372,7 @@ h3{
 </div>
 <br>
 <div class="About-us">
-    <img src="ChatGPT Image Nov 28, 2025, 12_47_33 AM.png" alt="About us banner">
+    <img src="furnture & appliances in a room.png" alt="About us banner">
     <h1><strong><u>About Us</u></strong></h1>
 </div>
 

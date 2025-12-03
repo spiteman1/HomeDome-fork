@@ -261,7 +261,7 @@ h2 {
             <strong>We understand you may have questions you want to ask us,
            just fill out the form and we'll get back to you!</strong>
         </p>
-                <img src="ChatGPT Image Nov 24, 2025, 08_26_04 PM.png" width="500" height="300" class="contactUs-img ">
+                <img src="furniture & appliances with no room.png" width="500" height="300" class="contactUs-img ">
 
     </div>
     <section class="contactUs-box">
