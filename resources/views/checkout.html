@@ -111,7 +111,7 @@
             color: #B03A2E; }
 
         .icon-badge.basket { background: #ffffff;
-            color: #B03A2E; }
+            color: #66423e; }
 
         .category-bar { background: var(--hd-orange-brown);
             color: #ffffff;
@@ -133,6 +133,49 @@
             background: #ffffff;
             min-height: calc(100vh - 70px); 
             align-items: stretch; }
+
+        .FirstRow{
+            display: flex;
+            justify-content: space-around;
+            padding-top: 25px;
+        }
+        .contactInfo, .orderSummary, .locationInfo {
+           
+            color: #22070f;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .CheckoutPage input,.CheckoutPage select{
+            min-height: 40px;
+            min-width: 600px;
+            max-width: 600px;
+            border: #66423e 2px solid;
+            border-radius: 10px;
+        }
+        .orderSummary{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: #000000 2px solid;
+            width: 300px;
+            max-height: 150px;
+            margin-top: 100px;
+        }
+        
+        #title,#TotalAmount, #subtotal {
+            font-weight: bolder;
+            color: rgb(57, 43, 30);
+        }
+        .TotalAmount, .subtotal, .OrderTitle{
+            display: flex;
+            justify-content: space-between;
+        }
+        .locationInfo{
+            padding-left: 90px;
+            padding-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -171,6 +214,66 @@
         <a href="/kitchen-ware">Kitchen Ware</a>
         <a href="/lighting">Lighting</a>
     </div>
+</div>
+<div class="CheckoutPage">
+
+    <div class="FirstRow">
+        <div class="contactInfo">
+        <h4 id="title">Contact information: </h4>
+
+        <p>Email Address:</p>
+        <input type="text" id="Email" placeholder="Type in your Email Address">
+
+        <p>Name title:</p>
+        <select id="titleDropDown">
+        <option hidden value=""></option>
+        <option value="volvo">Mr</option>
+        <option value="volvo">Mrs</option>
+        <option value="volvo">Miss</option>
+         <option value="volvo">Ms</option>
+        </select>
+
+        <p>First Name:</p>
+        <input type="text" id="firstName" placeholder="Type in your First Name">
+
+        <p>Last Name:</p>
+        <input type="text" id="LastName" placeholder="Type in your Last Name">
+
+        <p>Mobile Number</p>
+        <input type="text" id="MobileNumber" placeholder="Type in your Mobile Number">
+
+        </div>
+        <div class="orderSummary">
+        <div class="OrderTitle">
+        <h4 class="title">Your Order:</h4>
+        <h4 class="title" id="ItemNumbers">2 Items</h4>
+        </div>
+        <div class="subtotal">
+        <p>Subtotal:</p>
+        <p id="subtotal">£250</p>
+        </div> 
+        <div class="TotalAmount">
+        <p>Total amount:</p>
+        <p id="TotalAmount">£250</p>
+        </div>
+        </div>
+
+    </div>
+    <div class="locationInfo">
+    <h4 id="title">Location Address:</h4>
+    <p>House Number: </p>
+    <input type="text" id="HouseNumber" placeholder="Type in your House Number">
+    <p>Street/Road Name: </p>
+    <input type="text" id="RoadName" placeholder="Type in your Street Name">
+    <p>Input your county: </p>
+    <input type="text" id="County" placeholder="Type in your county">
+    <p>Postcode: </p>
+    <input type="text" id="PostCode" placeholder="Type in your Post code">
+    </div>
+
+    <div class="displayPayment">
+    </div>
+    <button id="checkOut">Checkout</button>
 </div>
 
 </body>
