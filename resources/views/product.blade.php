@@ -402,8 +402,8 @@
              <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
              <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
              <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
-             <a class= "headerLinks" href="/aboutUs">About Us</a>
-
+              <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
+                                     <a href="{{route('Contact-us')}}"> Contact Us </a>
         </div>
 
 
