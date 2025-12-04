@@ -264,7 +264,7 @@ footer h4{
           <div class="top-logo">
                      <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
                      <a href="/"><span class="top-logo-text">HomeDome</span></a>
-                 </div>
+                    </div>
                  <div class="top-search">
              <input id="searchInput" class="top-search-input" type="text" placeholder="Search for products...">
              <button id="searchButton" class="top-search-button">
