@@ -5,12 +5,14 @@
     <title>About Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" href="HomeDome.jpg" type="image/x-icon">
-    <style>
+    @vite('resources/css/app.css')
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
 :root {
---hd-orange: #F57C00;       
---hd-orange-brown: #E67E22; 
---hd-dark-red: #B03A2E;      
+--hd-orange: #F57C00;
+--hd-orange-brown: #E67E22;
+--hd-dark-red: #B03A2E;
 --hd-black: #000000;
 --hd-grey: #333333;
 --hd-text-muted: #6b7280; }
@@ -48,9 +50,9 @@ border-radius: 8px;
 border: 2px solid #ffffff; }
 
 .top-logo-text { font-weight: 800;
-font-size: 20px;
-color: #ffffff; }
-
+            font-size: 20px;
+            color: #ffffff;
+             text-decoration: none;}
 .top-search { flex: 1;
 display: flex;
 justify-content: center; }
@@ -115,7 +117,7 @@ padding: 8px 40px;
 display: flex;
 justify-content: space-between;
 align-items: center; }
-    
+
 .category-bar a { color: #ffffff;
 text-decoration: none;
 font-weight: 500;
@@ -126,11 +128,11 @@ white-space: nowrap; }
 .content { display: flex;
 flex-wrap: wrap;
 background: #ffffff;
-min-height: calc(100vh - 70px); 
+min-height: calc(100vh - 70px);
 align-items: stretch; }
 
 .About-us{
-    position: relative; 
+    position: relative;
     text-align: left;
 }
 .About-us img {
@@ -140,7 +142,6 @@ align-items: stretch; }
     height: 500px;
     border-radius: 12px;
 }
-
 .About-us h1{
     position: absolute;
     top: 60px;
@@ -151,25 +152,22 @@ align-items: stretch; }
     text-shadow: 4px 4px 12px rgba(0,0,0,0.6);
     letter-spacing: 2px;
 }
-
 .Welcome{
     text-align: center;
-    width: 80%; 
+    width: 80%;
     margin: 40px auto 50px auto;
 }
 .Welcome p{
     font-size: 24px;
-    font-weight: 500; 
+    font-weight: 500;
     color:black;
     line-height: 1.7;
 }
-
 .us-info{
     width: 85%;
     margin: auto;
     line-height: 1.8;
 }
-
 h2{
     font-size: 38px;
     font-weight: 900;
@@ -177,7 +175,6 @@ h2{
     color: black;
     text-align: center;
 }
-
 #p1 {
     width: 100%;
     background:var(--hd-orange);
@@ -189,190 +186,234 @@ h2{
     color:white;
     transition: 0.3s ease;
 }
-
 #p1:hover {
     transform: translateY(-15px);
 }
-
 h3{
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 10px;
     color:#B03A2E;
 }
-
 .card-section {
-    width: 85%;
-    margin: 60px auto;
+    width: 80%;
+    margin: 30px auto;
 }
-
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 30px;
     margin-top: 30px;
 }
-
 .card {
     background: white;
     padding: 25px;
     border-radius: 15px;
     border: 3px solid brown;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     transition: 0.3s ease;
 }
-
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.068);
 }
-
 .card h3 {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 12px;
 }
-
 .card p {
     font-size: 17px;
     line-height: 1.6;
     color:black;
 }
 .our-story {
-  width: 85%;
-  margin: 48px auto;
-  color: #222;
+    width: 85%;
+    margin: 48px auto;
+    color: #222;
 }
 .our-story h2 {
-  font-size: 34px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  color: black;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: black;
 }
 .our-story p {
-  font-size: 17px;
-  color:black;
-  margin-bottom: 12px;
-  line-height: 1.7;
-  text-align: center;
+    font-size: 17px;
+    color:black;
+    margin-bottom: 12px;
+    line-height: 1.7;
+    text-align: center;
 }
-
 .why-choose-us {
-  width: 90%;
-  margin: 56px auto;
-  text-align: center;
+    width: 80%;
+    margin: 56px auto;
+    text-align: center;
 }
 .why-choose-us h2 {
-  font-size: 34px;
-  font-weight: 800;
-  margin-bottom: 14px;
-  color: var(--hd-black);
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--hd-black);
 }
 .qualities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-  margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    margin-top: 22px;
 }
 .quality {
-  background:white;
-  padding: 22px;
-  border-radius: 12px;
-  border: 3px solid brown;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-  transition: transform .25s ease;
+    background:white;
+    padding: 22px;
+    border-radius: 12px;
+    border: 3px solid brown;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    transition:.25s ease;
 }
 .quality:hover {
-  transform: translateY(-6px);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.068);
 }
 .quality h3 {
-  font-size: 20px;
-  color: brown;
-  margin-bottom: 8px;
+    font-size: 20px;
+    color: brown;
+    margin-bottom: 8px;
 }
 .quality p {
-  font-size: 17px;
-  color: black;
-  line-height: 1.6;
+    font-size: 17px;
+    color: black;
+    line-height: 1.6;
 }
 
 .end {
-  width: 90%;
-  margin: 60px auto 80px auto;
-  padding: 44px;
-  text-align: center;
-  background:var(--hd-orange);
-  color: white;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    width: 90%;
+    margin: 60px auto 80px auto;
+    padding: 44px;
+    text-align: center;
+    background:var(--hd-orange);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 .end h2 {
-  font-size: 34px;
-  margin-bottom: 8px;
-  font-weight: 900;
+    font-size: 34px;
+    margin-bottom: 8px;
+    font-weight: 900;
 }
 .end p {
-  font-size: 18px;
-  margin-bottom: 18px;
-  color: white;
+    font-size: 18px;
+    margin-bottom: 18px;
+    color: white;
 }
 .end-button {
-  background:white;
-  color: brown;
-  padding: 12px 26px;
-  font-size: 16px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
+    background:white;
+    color: brown;
+    padding: 6px 20px;
+    font-size: 16px;
+    border-radius: 1000px;
+    border-color: brown;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 .end-button:hover {
-  transform: translateY(-3px);
+    transform: translateY(-5px);
 }
 .end h2{
     color: white;
 }
-    </style>
+footer {
+    margin-top: auto;
+    background:brown; 
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+footer h4{
+    font-size: 10px;
+  }
+.footer-col1{
+    width: 15%;
+    padding: 0 15px;
+    text-align: left;
+  }
+.footer-col1 h5{
+    position: relative;
+    margin-bottom: 17px;
+    font-size: 17px;
+    font-weight: 350px;
+  }
+.footer-col1 a{
+    color:white;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 100px;
+  }
+.footer-col1 a:hover {
+    text-decoration: underline;
+  }
+
+</style>
 </head>
 <body>
-<div class="page">
+    <div class="page">
+        <header class="top-bar">
+          <div class="top-logo">
+                     <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
+                     <a href="/"><span class="top-logo-text">HomeDome</span></a>
+                 </div>
+                 <div class="top-search">
+             <input id="searchInput" class="top-search-input" type="text" placeholder="Search for products...">
+             <button id="searchButton" class="top-search-button">
+                Search
+             </button>
+           </div>
+           <script>
+              const searchInput = document.getElementById('searchInput');
+              const searchButton = document.getElementById('searchButton');
+              
+              function performSearch() {
+              const query = searchInput.value.trim();
+              if (!query) {
+              alert('Please enter a search term!');
+                return;
+              } else {
+              window.location.href = `/search?query=${encodeURIComponent(query)}`;
+              }
+              }
+              
+              searchButton.addEventListener('click', performSearch);
+              searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') performSearch();
+              });
+            </script>
 
-    <header class="top-bar">
-        <div class="top-logo">
-            <img src="HomeDome.jpg" alt="HomeDome logo">
-            <span class="top-logo-text">HomeDome</span>
+            <div class="top-icons">
+                <a href="/login"  class="icon-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Account</span>
+                </a>
+                <a href="/wishlist"  class="icon-item">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Wishlist</span>
+                    <span class="icon-badge wishlist">{{ $wishlistCount ?? 0 }}</span>
+                </a>
+                <a href="{{ route('Basket') }}"  class="icon-item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Basket</span>
+                    <span class="icon-badge basket">{{ $cartCount ?? 0 }}</span>
+                </a>
+            </div>
+        </header>
+        <div class="category-bar">
+            <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
+            <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
+            <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
+            <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
+            <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
         </div>
-
-        <div class="top-search">
-            <input class="top-search-input" type="text" placeholder="Search products...">
-            <button class="top-search-button">Search</button>
-        </div>
-
-        <div class="top-icons">
-            <a href="/login" class="icon-item">
-                <i class="fa-solid fa-user"></i>
-                <span>Account</span>
-            </a>
-            <a href="/cart" class="icon-item">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Basket</span>
-               <!-- <span class="icon-badge basket">{{ $cartCount ?? 0 }}</span> -->
-            </a>
-        </div>
-
-    </header>
-    
-    <div class="category-bar">
-        <a href="/furniture">Furniture</a>
-        <a href="/appliances">Appliances</a>
-        <a href="/home-decor">Home Decor</a>
-        <a href="/kitchen-ware">Kitchen Ware</a>
-        <a href="/lighting">Lighting</a>
-    </div>
-</div>
 <br>
 <div class="About-us">
-    <img src="ChatGPT Image Nov 28, 2025, 12_47_33 AM.png" alt="About us banner">
+<img src="{{ asset('images/furnture & appliances in a room.png')}}" alt= "About us banner">
     <h1><strong><u>About Us</u></strong></h1>
 </div>
 
@@ -453,7 +494,15 @@ As we expanded, we stayed committed to listening to our customers and understand
 <p>
 Explore our collections, visit our showroom, or reach out to our friendly team we’re here to guide you every step of the way. Your perfect home starts with the right pieces, and we can’t wait to help you bring it to life.
 </p>
-<button class="end-button">Shop Now</button>
+<a href="{{route('home')}}"><button class="end-button">Shop Now</button></a>
 </section>
+<footer><h4>© 2025 HomeDome</h4>
+    <div class="footer-col1">
+        <h5>Useful links</h5>
+        <a href="{{route('Contact-us')}}"><i>Contact Us</i></a>
+        <br>
+        <a href="{{route('About-Us')}}"><i>About Us</i></a>
+    </div>
+</footer>
 </body>
 </html>
