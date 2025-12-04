@@ -754,7 +754,10 @@
     <p id="totalPrice">£252.39</p>
     </div>-->
                     <!--Here the total price will be displayed-->
-                    <button id="Checkout">Go to Checkout</button>
+                    <form method="POST" action="{{ route('checkout') }}">
+                        @csrf
+                        <button id="Checkout">Place Order</button>
+                    </form>
                 </div>
             </div>
             <div class="footer">
