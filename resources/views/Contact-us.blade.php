@@ -95,9 +95,7 @@ body { min-height: 100vh;
 .icon-item i { font-size: 20px;
     margin-bottom: 4px; }
 
-   .top-icons { display: flex;
-   gap: 28px;
-   align-items: center; }
+.icon-item:hover { opacity: 0.8; }
 
 .icon-badge { position: absolute;
     top: -4px;
@@ -131,21 +129,7 @@ body { min-height: 100vh;
     font-weight: 500;
     white-space: nowrap; }
 
-   .icon-badge { position: absolute;
-   top: -4px;
-   right: -10px;
-   min-width: 16px;
-   height: 16px;
-   padding: 0 4px;
-   border-radius: 999px;
-   background: #ffffff;
-   color: var(--hd-dark-red);
-   font-size: 10px;
-   font-weight: 700;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   box-shadow: 0 0 4px rgba(0,0,0,0.25); }
+.category-bar a:hover { text-decoration: underline;}
 
 .content { display: flex;
     flex-wrap: wrap;
@@ -264,7 +248,7 @@ footer h4{
           <div class="top-logo">
                      <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
                      <a href="/"><span class="top-logo-text">HomeDome</span></a>
-                 </div>
+                    </div>
                  <div class="top-search">
              <input id="searchInput" class="top-search-input" type="text" placeholder="Search for products...">
              <button id="searchButton" class="top-search-button">
