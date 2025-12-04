@@ -4,23 +4,18 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\Product;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
 
-Route::get('/', function () {
-    return view('home');
-});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
-Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity');
-Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
-Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
-Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 Route::get('/product', function () {
+
     // Sample product data matching database schema
     $product = (object) [
         'product_id' => 1,
@@ -34,32 +29,32 @@ Route::get('/product', function () {
         'is_available' => true,
         'category' => 'Kitchen Appliances',
         'subcategory' => 'Refrigerators',
-        // Media from product_media table
+    // Media from product_media table
         'media' => [
-            (object) ['media_type' => 'image', 'url' => 'images/productImages/Refrigerator.jpg'],
-            (object) ['media_type' => 'image', 'url' => 'images/productImages/Microwave Oven.jpg'],
-            (object) ['media_type' => 'image', 'url' => 'images/productImages/Washing Machine.jpg'],
-            (object) ['media_type' => '3D_MODEL', 'url' => 'models/washing_machine.glb'],
+            (object)['media_type' => 'image', 'url' => 'images/productImages/Refrigerator.jpg'],
+            (object)['media_type' => 'image', 'url' => 'images/productImages/Microwave Oven.jpg'],
+            (object)['media_type' => 'image', 'url' => 'images/productImages/Washing Machine.jpg'],
+            (object)['media_type' => '3D_MODEL', 'url' => 'models/washing_machine.glb'],
         ],
-        // Reviews data
+    // Reviews data
         'reviews' => [
-            (object) [
+            (object)[
                 'rating' => 5,
                 'review_text' => 'Excellent product! Highly recommend. This appliance exceeded all my expectations. The build quality is outstanding, and it operates incredibly quietly.',
                 'submission_date' => '2024-11-15',
-                'user' => (object) ['name' => 'Sarah M.']
+                'user' => (object)['name' => 'Sarah M.']
             ],
-            (object) [
+            (object)[
                 'rating' => 4,
                 'review_text' => 'Great value for money. Very satisfied with this purchase. The design is sleek and modern, fitting perfectly in my kitchen.',
                 'submission_date' => '2024-11-10',
-                'user' => (object) ['name' => 'James P.']
+                'user' => (object)['name' => 'James P.']
             ],
-            (object) [
+            (object)[
                 'rating' => 5,
                 'review_text' => 'Perfect addition to our home. We\'ve had this for three weeks now and couldn\'t be happier. The energy savings are real.',
                 'submission_date' => '2024-11-05',
-                'user' => (object) ['name' => 'Emily R.']
+                'user' => (object)['name' => 'Emily R.']
             ],
         ]
     ];
@@ -69,16 +64,26 @@ Route::get('/product', function () {
     foreach ($product->reviews as $review) {
         $totalRating += $review->rating;
     }
-    $product->average_rating = count($product->reviews) > 0 ? round($totalRating / count($product->reviews), 1) : 0;
+    $product->average_rating = count($product->reviews) > 0
+        ? round($totalRating / count($product->reviews), 1)
+        : 0;
 
     return view('product', ['product' => $product]);
 })->name('product');
 
-Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
+Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity');
+Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
+Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
+
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login-submit');
+
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
+
 
 Route::get('/About-Us', function () {
     return view('About-Us');
@@ -88,11 +93,6 @@ Route::get('/Contact-us', function () {
     return view('Contact-us');
 })->name('Contact-us');
 
-Route::get('/register', function () {
-    return view('register');
-});
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
-
-
