@@ -95,7 +95,9 @@ body { min-height: 100vh;
 .icon-item i { font-size: 20px;
     margin-bottom: 4px; }
 
-.icon-item:hover { opacity: 0.8; }
+.icon-item:hover { 
+opacity: 0.8; 
+}
 
 .icon-badge { position: absolute;
     top: -4px;
@@ -129,7 +131,9 @@ body { min-height: 100vh;
     font-weight: 500;
     white-space: nowrap; }
 
-.category-bar a:hover { text-decoration: underline;}
+.category-bar a:hover { 
+text-decoration: underline;
+}
 
 .content { display: flex;
     flex-wrap: wrap;
