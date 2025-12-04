@@ -283,7 +283,29 @@
 
         .helper-text a:hover { text-decoration: underline; }
 
+        footer {margin-top: auto;
+                background: brown;
+                color: white;
+                padding: 20px;
+                text-align: center; }
 
+            footer h4 { font-size: 10px;}
+
+           .footer-col1 { width: 15%;
+                padding: 0 15px;
+                text-align: left; }
+
+        .footer-col1 h5 { position: relative;
+                margin-bottom: 17px;
+                font-size: 17px;
+                font-weight: 350px; }
+
+        .footer-col1 a { color: white;
+                font-size: 15px;
+                text-decoration: none;
+                font-weight: 100px; }
+
+        .footer-col1 a:hover { text-decoration: underline; } 
         @media (max-width: 900px) {
 
             .content { flex-direction: column;
@@ -393,8 +415,7 @@
          <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
          <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
          <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
-         <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
-                                <a href="{{route('Contact-us')}}"> Contact Us </a>
+ 
 
     </div>
 
@@ -471,6 +492,17 @@
                 </div>
             </section>
         </main>
+
+            <footer>
+        <h4>© 2025 HomeDome</h4>
+        <div class="footer-col1">
+            <h5>Useful links</h5>
+            <a href="{{ route('Contact-us') }}"><i>Contact Us</i></a>
+            <br>
+            <a href="{{ route('About-Us') }}"><i>About Us</i></a>
+        </div>
+    </footer>
+
     </div>
 </body>
 
