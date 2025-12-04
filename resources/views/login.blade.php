@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HomeDome – Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 @vite('resources/css/app.css')
 
 
@@ -386,6 +394,84 @@
          <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
          <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
          <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
-         <a href="{{route('Contact-us')}}"> Contact Us </a>
+                                <a href="{{route('Contact-us')}}"> Contact Us </a>
 
     </div>
+
+        <main class="content">
+            <section class="hero">
+                <div class="hero-inner">
+                    <h1 class="hero-title">
+                        Welcome to HomeDome
+                    </h1>
+                    <p class="hero-sub">
+                        Log in for a personalised experience at HomeDome.
+                    </p>
+                    <span class="hero-badge">Safe and Secure login | Protected with reCAPTCHA</span>
+                </div>
+            </section>
+
+            <section class="form-side">
+                <div class="form-inner">
+                    <h2 class="form-heading">Log in to your account</h2>
+                    <p class="form-sub">
+                        Enter your details to access your HomeDome account.
+                    </p>
+
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="field">
+                            <label for="email">Email address</label>
+
+                            <input id="email" name="email" type="email"
+                                placeholder="you@example.com"
+                                value="{{ old('email') }}" required>
+
+
+                            @error('email')
+                            <span style="color: var(--hd-dark-red); font-size: 12px; margin-top: 4px; display: block;">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" placeholder="**********" required>
+
+
+                            @error('password')
+                            <span style="color: var(--hd-dark-red); font-size: 12px; margin-top: 4px; display: block;">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="row-between">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+
+                            <a href="/forgot-password" class="link-inline">Forgot password?</a>
+                        </div>
+
+                        <div class="captcha-box">
+                            reCAPTCHA v2 (“I’m not a robot”) will appear here.
+                        </div>
+
+                        <button type="submit" class="btn-primary">Login</button>
+
+                        <p class="helper-text">
+                            New to HomeDome?
+                            <a href="/register">Create an account</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

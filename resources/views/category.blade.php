@@ -339,14 +339,10 @@
 
           function performSearch() {
             const query = searchInput.value.trim();
-          if (!query) {
-            alert('Please enter a search term!');
-            return;
-          } else {
-            window.location.href = `/search?query=${encodeURIComponent(query)}`;
-          }
+            if (query) {
 
-
+              window.location.href = `/search?query=${encodeURIComponent(query)}`;
+            }
           }
 
 
@@ -370,7 +366,7 @@
                 <span>Wishlist</span>
                 <span class="icon-badge wishlist">{{ $wishlistCount ?? 0 }}</span>
             </a>
-            <a href="{{ route('Basket') }}" class="icon-item">
+            <a href="/cart" class="icon-item">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span>Basket</span>
                 <span class="icon-badge basket">{{ $cartCount ?? 0 }}</span>
@@ -380,12 +376,37 @@
     </header>
 
     <div class="category-bar">
-        <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
-         <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
-         <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
-         <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
-         <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
+          <a href="{{ route('category.show', 'furniture') }}">Furniture</a>
+              <a href="{{ route('category.show', 'appliances') }}">Appliances</a>
+              <a href="{{ route('category.show', 'home-decor') }}">Home Decor</a>
+              <a href="{{ route('category.show', 'kitchenware') }}">Kitchenware</a>
+              <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
          <a class= "headerLinks" href="{{route('About-Us')}}">About Us</a>
-         <a href="{{route('Contact-us')}}"> Contact Us </a>
+                                <a href="{{route('Contact-us')}}"> Contact Us </a>
 
     </div>
+
+
+<h1 class="product_showing">{{ ucwords(str_replace('-', ' ', $slug)) }}</h1>
+
+@if($results->isEmpty())
+    <p>No products found.</p>
+@else
+     <div class="product-container">
+        @foreach($results as $product)
+         <div class="product-card">
+                        <h3>{{ $product->name }}</h3>
+
+                        @if($product->url)
+                         <a href="{{ route('product.show', ['id' => $product->product_id]) }}">
+
+
+                            <img src="{{ asset( $product->url) }}" alt="{{ $product->name }}">
+                             </a>
+                        @endif
+
+                        <p>£{{ number_format($product->price, 2) }}</p>
+         </div>
+         @endforeach
+    </div>
+@endif

@@ -1,16 +1,29 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Product;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BasketController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
+Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])->name('updateQuantity.updateQuantity');
+Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
+Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
+Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 Route::get('/product', function () {
     // Sample product data matching database schema
     $product = (object) [
-        'id' => 1,
+        'product_id' => 1,
         'name' => 'Premium French Door Refrigerator',
         'sku' => 'HD-REF-2024-001',
         'price' => 899.99,
@@ -59,6 +72,27 @@ Route::get('/product', function () {
     $product->average_rating = count($product->reviews) > 0 ? round($totalRating / count($product->reviews), 1) : 0;
 
     return view('product', ['product' => $product]);
+})->name('product');
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/About-Us', function () {
+    return view('About-Us');
+})->name('About-Us');
+
+Route::get('/Contact-us', function () {
+    return view('Contact-us');
+})->name('Contact-us');
+
+Route::get('/register', function () {
+    return view('register');
 });
 
-Route::get('show/{rid}', [ProductController::class, 'show']);
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
+
+

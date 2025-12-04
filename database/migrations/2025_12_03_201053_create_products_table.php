@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('product_id');
             $table->string('name');
             $table->string('sku')->unique();
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 10);
             $table->integer('stock_quantity')->default(0);
             $table->text('description')->nullable();
             $table->string('dimensions')->nullable();
@@ -33,4 +33,3 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
-

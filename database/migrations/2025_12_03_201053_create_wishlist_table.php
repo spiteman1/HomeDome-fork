@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wishlist', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id')->index('wishlist_product_id_foreign');
             $table->timestamp('added_date')->useCurrent();
             $table->timestamps();
 
@@ -30,5 +30,3 @@ return new class extends Migration
         Schema::dropIfExists('wishlist');
     }
 };
-
-
