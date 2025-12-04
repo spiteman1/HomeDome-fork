@@ -343,20 +343,20 @@ footer h4{
     </div>
 </footer>
         </body>
-        <script>
+<script>
 function validateForm(){
-    let firstName = document.getElementById("first-name").value();
-    let lastName = document.getElementById("last-name").value();
-    let email = document.getElementById("email").value();
-    let confirmEmail = document.getElementById("confirm-email").value();
-    let Subject = document.getElementById("Subject").value();
+    let firstName = document.getElementById("first-name").value;
+    let lastName = document.getElementById("last-name").value;
+    let email = document.getElementById("email").value;
+    let confirmEmail = document.getElementById("confirm-email").value;
+    let Subject = document.getElementById("Subject").value;
 
 if(firstName ==="" || lastName ==="" || email ==="" || confirmEmail ==="" || Subject == ""){
-    errors("The fields must be filled");
+    alert("The fields must be filled");
+    return false;
 }
 }
-let email = document.getElementById("email");
-let confirmEmail = document.getElementById("confirm-email");
+
 document.getElementById("email").onchange = checkEmails;
 document.getElementById("confirm-email").onchange = checkEmails;
 
