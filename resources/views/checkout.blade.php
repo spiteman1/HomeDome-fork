@@ -247,6 +247,9 @@
     flex-direction: column;
     gap: 4px;
 }
+.BasketSummary{
+    
+}
 
     </style>
 </head>

@@ -205,6 +205,7 @@
         width: 250px;
         cursor: pointer;
         margin-left: 30px;
+        font-weight: bolder;
         }
         #checkOut:hover{
               background: #ea580c;
@@ -248,6 +249,31 @@
     gap: 4px;
 }
 
+.BasketSummary{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    border:#22070f 3px solid;
+    padding: 10px;
+}
+.BasketSummary, 
+.ItemName{
+    font-weight: bolder;
+}
+.quantity, .ItemPrice{
+    display: flex;
+    justify-content: space-between;
+}
+img{
+    height: 100px;
+    width: 100px;
+}
+#qtyLabel, #ItemPriceLabel{
+
+}
+#Title{
+    margin-top: 20px;
+}
     </style>
 </head>
 <body>
@@ -323,17 +349,31 @@
         </div>
         <div class="subtotal">
         <p>Subtotal:</p>
-        <p id="subtotal">£250</p>
+        <p id="subtotal">£250.00</p>
         </div> 
         <div class="TotalAmount">
         <p>Total amount:</p>
-        <p id="TotalAmount">£250</p>
+        <p id="TotalAmount">£250.00</p>
         </div>
         </div>
         <div class="Checkout">
-    <button id="checkOut">Checkout</button>
+    <button id="checkOut">Place Order and Pay now</button>
     </div>
-
+            <h3 id="Title">Your Items</h3>
+    <div class="BasketSummary">
+        <div class="img">
+        <img src="table.webp" alt="Item Image">
+        </div>
+        <p class="ItemName">Luxurious wooden table</p>
+        <div class="ItemPrice">
+            <p id="ItemPriceLabel">Price:</p>
+            <p id="ItemPrice">£250.00</p> 
+        </div>
+        <div class="quantity">
+        <p id="qtyLabel">Quantity:</p>
+        <p id="ItemPrice">1</p>
+        </div> 
+    </div> 
         </div>
 
     </div>
