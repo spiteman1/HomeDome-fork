@@ -19,11 +19,9 @@ class SearchController extends Controller
 
 
         $results = DB::table('products')
-            ->join('product_media', 'products.id', '=', 'product_media.product_id')
-            ->select('products.*', 'product_media.url')
+            ->select('products.*', DB::raw('(SELECT url FROM product_media WHERE product_media.product_id = products.id AND media_type = "image" LIMIT 1) as url'))
             ->where('name', 'like', "%{$query}%")
             ->orWhere('description', 'like', "%{$query}%")
-
             ->get();
 
 
