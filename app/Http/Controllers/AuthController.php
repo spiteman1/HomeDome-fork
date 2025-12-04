@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         Auth::login($user); // logs in immediately after registeration
 
-        return redirect()->intended('home'); // redirected to home page
+        return redirect()->intended('/'); // redirected to home page
     }
 
     public function showLogin()
@@ -53,7 +53,7 @@ class AuthController extends Controller
         $remember = $request->filled('remember');
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('home'); // redirecting to home page
+            return redirect()->intended('/'); // redirecting to home page
         }
 
         // message for wrong information

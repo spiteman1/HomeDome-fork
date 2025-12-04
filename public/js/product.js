@@ -24,13 +24,10 @@ function changeImage(thumbnail) {
 
 // Quantity controls
 function increaseQuantity() {
-
     const input = document.getElementById('quantity');
     const max = parseInt(input.max);
-
     const current = parseInt(input.value);
     if (current < max) {
-
         input.value = current + 1;
     }
 }
@@ -39,23 +36,9 @@ function decreaseQuantity() {
     const input = document.getElementById('quantity');
     const min = parseInt(input.min);
     const current = parseInt(input.value);
-
     if (current > min) {
         input.value = current - 1;
     }
-}
-
-// Action buttons
-function addToBasket() {
-    const quantity = document.getElementById('quantity').value;
-    alert(`Added ${quantity} item(s) to basket!`);
-
-    // function  to be considered later when the basket is implemented
-}
-
-function addToWishlist() {
-    alert('Added to wishlist!');
-    // action to be considered later
 }
 
 function open3DViewer() {
@@ -88,7 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function writeReview() {
-    alert('Opening review form...');
-    // unfinished functions to be considered later when the review is implemented and cookies are added
+function toggleReviewForm() {
+    const formContainer = document.getElementById('reviewFormContainer');
+    if (formContainer.style.display === 'none') {
+        formContainer.style.display = 'block';
+        // Scroll to form
+        formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+        formContainer.style.display = 'none';
+    }
 }

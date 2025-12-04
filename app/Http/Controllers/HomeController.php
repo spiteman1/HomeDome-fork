@@ -11,11 +11,11 @@ class HomeController extends Controller
     public function index()
     {
 
-     $products = DB::table('products')
-         ->join('product_media', 'products.product_id', '=', 'product_media.product_id')
-         ->select('products.*', 'product_media.url')
-         ->take(25)
-         ->get();
+        $products = DB::table('products')
+            ->join('product_media', 'products.id', '=', 'product_media.product_id')
+            ->select('products.*', 'product_media.url')
+            ->take(25)
+            ->get();
 
         return view('home', compact('products'));
     }
