@@ -138,6 +138,7 @@
             padding-left: 100px;
             display: flex;
             flex-direction: column;
+            gap: 20px;
         }
         .FirstRow{
             display: flex;
@@ -152,7 +153,15 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            background-color: #ced0d4;
+            padding: 20px 20px;
+            
         }
+        #checkout{
+            padding-left: 40px;
+            border: #000000 5px solid;
+        }
+
         .CheckoutPage input,.CheckoutPage select{
             min-height: 40px;
             min-width: 600px;
@@ -164,7 +173,6 @@
             display: flex;
             flex-direction: column;
             padding: 20px;
-            border: #000000 2px solid;
             width: 300px;
             max-height: 150px;
             margin-top: 100px;
@@ -173,29 +181,73 @@
         #title,#TotalAmount, #subtotal {
             font-weight: bolder;
             color: rgb(57, 43, 30);
+
+        }
+        #title{
+            text-decoration: underline;
         }
         .TotalAmount, .subtotal, .OrderTitle{
             display: flex;
             justify-content: space-between;
         }
         .locationInfo{
-            padding-top: 30px;
+            width: 150%;
+            max-width: 640px;
         }
         #checkOut{
-            margin-top: 20px;
-             color: white;
-    background-color:#F57C00 ;
-    font-size: 14px;
-    border: none;
-    padding: 10px;
-    border-radius: 999px;
-    width: 250px;
+        margin-top: 10px;
+        color: white;
+        background-color:#F57C00 ;
+        font-size: 14px;
+        border: none;
+        padding: 10px;
+        border-radius: 999px;
+        width: 250px;
         cursor: pointer;
+        margin-left: 30px;
         }
         #checkOut:hover{
               background: #ea580c;
-              align-self: center;
+
         }
+
+        .rightSide{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .paymentSection {
+    margin-top: 20px;
+    background-color: #ced0d4;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 640px;
+    color: #22070f;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-icons {
+    font-size: 24px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.payment-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-row .field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
     </style>
 </head>
 <body>
@@ -246,7 +298,7 @@
 
         <p>Name title:</p>
         <select id="titleDropDown">
-        <option hidden value=""></option>
+        <option hidden value="">Input your Title</option>
         <option value="volvo">Mr</option>
         <option value="volvo">Mrs</option>
         <option value="volvo">Miss</option>
@@ -263,6 +315,7 @@
         <input type="text" id="MobileNumber" placeholder="Type in your Mobile Number" required>
 
         </div>
+        <div class="rightSide">
         <div class="orderSummary">
         <div class="OrderTitle">
         <h4 class="title">Your Order:</h4>
@@ -276,6 +329,11 @@
         <p>Total amount:</p>
         <p id="TotalAmount">£250</p>
         </div>
+        </div>
+        <div class="Checkout">
+    <button id="checkOut">Checkout</button>
+    </div>
+
         </div>
 
     </div>
@@ -291,9 +349,39 @@
     <input type="text" id="PostCode" placeholder="Type in your Post code" required>
     </div>
 
-    <div class="displayPayment">
+    <div class="paymentSection">
+    <h4 id="title">Payment Method:</h4>
+
+    <p>Accepted Cards:</p>
+    <div class="payment-icons">
+        <i class="fa-brands fa-cc-visa"></i>
+        <i class="fa-brands fa-cc-mastercard"></i>
+        <i class="fa-brands fa-cc-amex"></i>
+        <i class="fa-brands fa-cc-discover"></i>
     </div>
-    <button id="checkOut">Checkout</button>
+
+    <p>Name on Card:</p>
+    <input type="text" id="cardName" placeholder="Name on card" required>
+
+    <p>Card Number:</p>
+    <input type="text" id="cardNumber" placeholder="1111 2222 3333 4444" required>
+
+    <div class="payment-row">
+        <div class="field">
+            <p>Exp Month:</p>
+            <input type="text" id="expMonth" placeholder="09" required>
+        </div>
+        <div class="field">
+            <p>Exp Year:</p>
+            <input type="text" id="expYear" placeholder="2028" required>
+        </div>
+        <div class="field">
+            <p>CVV:</p>
+            <input type="text" id="cvv" placeholder="123" required>
+        </div>
+    </div>
+</div>
+
 </div>
 
 </body>
