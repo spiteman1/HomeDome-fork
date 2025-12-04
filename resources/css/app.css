@@ -1,11 +1,157 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+
+html {
+  font-family: "Noto Sans", sans-serif;
 }
+.removeWhitespace{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+}
+.headerLinks {
+  color:white ;
+  text-decoration: none;
+}
+.headerLinks:hover {
+color:#8a3324;
+ text-decoration: underline;
+}
+.center {
+  margin: auto;
+  width: 50%;
+
+  padding: 5px;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: #FF8C00;
+    margin: 0;
+    border: 5px  #FF8C00;
+    box-sizing: border-box;
+}
+#categories{
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: #E97451;
+    margin: 0;
+    border: 5px  #E97451;
+    box-sizing: border-box;
+    color:white ;
+      text-decoration: none;
+
+}
+
+#categoryColour{
+color: brown;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+#searchBar {
+  display: flex;
+  width: 50%;
+  gap: 8px;
+}
+
+#searchBar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#searchBar button {
+  padding: 10px 16px;
+  border: none;
+  background-color: brown;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.product-container {
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 20px;
+
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+
+  flex: 0 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+
+.product-card img {
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;}
+
+
+  .welcome-banner {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fff8f0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #FF8C00;
+  }
+
+  .welcome-banner h1 {
+    font-family: "Noto Sans", sans-serif;
+    color: #8a3324;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+.product_showing {
+  text-align: center;
+  padding: 20px 10px;
+  margin: 30px auto 20px auto;
+  max-width: 1200px;
+  background-color: #fff8f0;
+
+}
+
+
+.product_showing h2 {
+  font-family: "Noto Sans", sans-serif;
+  color: #8a3324;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+
