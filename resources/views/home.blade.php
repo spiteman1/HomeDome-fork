@@ -5,106 +5,102 @@
 @section('content')
 
 
-<div class="welcome-banner">
+    <div class="welcome-banner">
         <h1>Welcome to the home of home products</h1>
-</div>
-<div class= product_showing>
-<h2> Liven up your living room with our furniture  </h2>
-</div>
-    <div class="product-container"  >
-        @for ($i=0;$i<3;$i++)
+    </div>
+    <div class=product_showing>
+        <h2> Liven up your living room with our furniture </h2>
+    </div>
+    <div class="product-container">
+        @foreach ($products->slice(0, 3) as $product)
             <div class="product-card">
-                <h3>{{ $products[$i]->name }}</h3>
+                <h3>{{ $product->name }}</h3>
 
-                @if($products[$i]->url)
-                    <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
-                    <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
+                @if($product->url)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset($product->url) }}" alt="{{ $product->name }}">
                     </a>
                 @endif
 
-                <p>£{{ number_format($products[$i]->price, 2) }}</p>
+                <p>£{{ number_format($product->price, 2) }}</p>
             </div>
-        @endfor
+        @endforeach
     </div>
 
-<div class= product_showing>
-<h2> We take appliances seriously  </h2>
-</div>
+    <div class=product_showing>
+        <h2> We take appliances seriously </h2>
+    </div>
     <div class="product-container">
-        @for ($i=6;$i<9;$i++)
+        @foreach ($products->slice(6, 3) as $product)
             <div class="product-card">
-                <h3>{{ $products[$i]->name }}</h3>
+                <h3>{{ $product->name }}</h3>
 
-                @if($products[$i]->url)
-
-                    <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
-                                       <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
-                                       </a>
+                @if($product->url)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset($product->url) }}" alt="{{ $product->name }}">
+                    </a>
                 @endif
 
-                <p>£{{ number_format($products[$i]->price, 2) }}</p>
+                <p>£{{ number_format($product->price, 2) }}</p>
             </div>
-        @endfor
+        @endforeach
     </div>
 
-<div class= product_showing>
-<h2> We put the home in home decor </h2>
-</div>
- <div class="product-container">
-        @for ($i=11;$i<14;$i++)
+    <div class=product_showing>
+        <h2> We put the home in home decor </h2>
+    </div>
+    <div class="product-container">
+        @foreach ($products->slice(11, 3) as $product)
             <div class="product-card">
-                <h3>{{ $products[$i]->name }}</h3>
+                <h3>{{ $product->name }}</h3>
 
-                @if($products[$i]->url)
-
-                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
-                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
-                                        </a>
+                @if($product->url)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset($product->url) }}" alt="{{ $product->name }}">
+                    </a>
                 @endif
 
-                <p>£{{ number_format($products[$i]->price, 2) }}</p>
+                <p>£{{ number_format($product->price, 2) }}</p>
             </div>
-        @endfor
+        @endforeach
     </div>
 
-<div class= product_showing>
-<h2> Our kitchenware is affordable and built to last </h2>
-</div>
- <div class="product-container">
-        @for ($i=16;$i<19;$i++)
+    <div class=product_showing>
+        <h2> Our kitchenware is affordable and built to last </h2>
+    </div>
+    <div class="product-container">
+        @foreach ($products->slice(16, 3) as $product)
             <div class="product-card">
-                <h3>{{ $products[$i]->name }}</h3>
+                <h3>{{ $product->name }}</h3>
 
-                @if($products[$i]->url)
-
-                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
-                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
-                                        </a>
+                @if($product->url)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset($product->url) }}" alt="{{ $product->name }}">
+                    </a>
                 @endif
 
-                <p>£{{ number_format($products[$i]->price, 2) }}</p>
+                <p>£{{ number_format($product->price, 2) }}</p>
             </div>
-        @endfor
+        @endforeach
     </div>
 
-<div class= product_showing>
-<h2> Make your world brighter with our lighting options </h2>
-</div>
- <div class="product-container">
-        @for ($i=21;$i<24;$i++)
+    <div class=product_showing>
+        <h2> Make your world brighter with our lighting options </h2>
+    </div>
+    <div class="product-container">
+        @foreach ($products->slice(21, 3) as $product)
             <div class="product-card">
-                <h3>{{ $products[$i]->name }}</h3>
+                <h3>{{ $product->name }}</h3>
 
-                @if($products[$i]->url)
-
-                     <a href="{{ route('product.show', ['id' => $products[$i]->product_id]) }}">
-                                        <img src="{{ asset( $products[$i]->url) }}" alt="{{ $products[$i]->name }}">
-                                        </a>
+                @if($product->url)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset($product->url) }}" alt="{{ $product->name }}">
+                    </a>
                 @endif
 
-                <p>£{{ number_format($products[$i]->price, 2) }}</p>
+                <p>£{{ number_format($product->price, 2) }}</p>
             </div>
-        @endfor
+        @endforeach
     </div>
 
 

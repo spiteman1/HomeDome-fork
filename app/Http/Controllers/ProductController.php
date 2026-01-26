@@ -1,18 +1,22 @@
 <?php
- namespace App\Http\Controllers;
- use Illuminate\Support\Facades\DB;
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
- class ProductController extends Controller{
+class ProductController extends Controller
+{
 
-    public function show($pid){
+    public function show($pid)
+    {
         //Comment this line in case the join select query fails
         //$product = Products::where('product_id', $pid)->first();
         $rows = DB::table('products')
-            ->join('product_media', 'products.product_id', '=', 'product_media.product_id')
-            ->join('reviews', 'products.product_id', '=', 'reviews.product_id')
+            ->leftJoin('product_media', 'products.id', '=', 'product_media.product_id')
+            ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
             ->select(
                 //Products
-                'products.product_id',
+                'products.id',
                 'products.name',
                 'products.sku',
                 'products.price',
@@ -31,12 +35,12 @@
                 'reviews.submission_date',
                 'reviews.is_approved'
             )
-            ->where('products.product_id', $pid)
+            ->where('products.id', $pid)
             ->get();
 
         //Grouping the data
         $product = [
-            'product_id' => $rows[0]->product_id,
+            'id' => $rows[0]->id,
             'name' => $rows[0]->name,
             'sku' => $rows[0]->sku,
             'price' => $rows[0]->price,
@@ -57,11 +61,48 @@
                 'text' => $r->review_text,
                 'rating' => $r->rating,
                 'approved' => $r->is_approved,
-                'submission_date'=> $r->submission_date
+                'submission_date' => $r->submission_date,
+                'user' => ['name' => 'Anonymous'] // Placeholder for user name until we join with users table
             ])->unique('text')->values()->all()
         ];
 
-        return view('/product', array('product'=>$product));
+        // Calculate average rating
+        $totalRating = 0;
+        $reviewCount = count($product['reviews']);
+        if ($reviewCount > 0) {
+            foreach ($product['reviews'] as $review) {
+                $totalRating += $review['rating'];
+            }
+            $product['average_rating'] = round($totalRating / $reviewCount, 1);
+        } else {
+            $product['average_rating'] = 0;
+        }
+
+        return view('/product', array('product' => $product));
     }
- }
+    public function storeReview(Request $request, $id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to submit a review.');
+        }
+
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review_text' => 'nullable|string|max:1000',
+        ]);
+
+        DB::table('reviews')->insert([
+            'product_id' => $id,
+            'user_id' => Auth::id(),
+            'rating' => $request->rating,
+            'review_text' => $request->review_text,
+            'submission_date' => now(),
+            'is_approved' => true, // Auto-approve for MVP
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Review submitted successfully!');
+    }
+}
 
