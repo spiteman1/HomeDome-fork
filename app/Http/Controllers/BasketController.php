@@ -105,13 +105,4 @@ class BasketController extends Controller
             return redirect()->route('Basket')->with('error', 'Unable to update the quantity');
         }
     }
-
-    public function purgeBasket($userId)
-    {
-        //Delete rows from shopping basket as there no longer needed
-        $deleteFromBasket = DB::table('shopping_basket')
-            ->where('user_id', $userId)
-            ->delete();
-        return $deleteFromBasket; //Return whether the deletion was successful
-    }
 }
