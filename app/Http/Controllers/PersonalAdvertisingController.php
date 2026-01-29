@@ -29,6 +29,61 @@ class PersonalAdvertisingController {
         }
     }
 
+    //Generate a certain amount of random ids of products 
+    public function generateRandomIdArray($randomAmount){
+        $randomProductIds = []; 
+
+        //Collecting all the product ids
+        $allProductIds = DB::table('products')
+            ->select('id')
+            ->get(); 
+
+        for($i = 0; $i < $randomAmount; $i++){
+            $inArray = true; //Set initial flag
+            while ($inArray){
+                //Keep selecting random products until the product selected is not in the array
+                $randomProduct = array_rand($allProductIds); 
+                $inArray = in_array($randomProductIds, $randomProduct, true); 
+            }
+            $randomProductIds[] = $randomProduct; //Add randomly selected product to array 
+        }
+
+        return $randomProductIds; 
+    }
+
+    //Get products based on length of the array in the associative array of arrays
+    //Items in the array with the smallest length will be chosen
+    public function chooseElementsBasedOnArrayLength($dict, $randomAmount){
+        $chosenElements = []; 
+
+        foreach($dict as $array){
+            if ($randomAmount <= 0){ //If the selection amount is less than or equal to 0 then finish
+                break; 
+            }
+            if (!is_array($array)){
+                continue; //Skip over if this is not an array 
+            }
+
+            //If statement must be done after the checker of whether it is an array
+            if (count($array) == 0){
+                continue; //Skip over if the array is empty 
+            }
+
+            foreach($array as $item){
+                //Ensure no duplicates of the same item
+                if (!in_array($chosenElements, $item, true)){
+                    $chosenElements[] = $item; 
+                    $randomAmount -= 1; 
+                }
+                //If the selection amount is less than or equal to 0 then finish
+                //Even if there are still elements left in the array
+                if ($randomAmount <= 0){ 
+                    break; 
+                }
+            }
+        }
+    }
+
     //Considering the id array given - return the product information about those product ids
     public function getProductsById($idArray){
         $products = []; 
