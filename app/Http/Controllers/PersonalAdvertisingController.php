@@ -8,7 +8,7 @@ class PersonalAdvertisingController {
     //Get ids of the products of the users past orders
     public function getProductIDandCategoryBought(){
         $productsBought = DB::table('orders')
-            ->join('order_items', 'order.id', '=', 'order_items.order_id')
+            ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'order_items.product_id', '=', 'products.id')
             ->join('product_category', 'order_items.product_id', '=', 'product_category.product_id')
             ->join('categories', 'product_category.category_id', '=', 'categories.id')
@@ -118,6 +118,49 @@ class PersonalAdvertisingController {
             ]; 
             $products[] = $product; 
         }
+    }
+
+    //Main method for personalised advertising 
+    public function personalisedAdvertising(){
+        $SELECTION_AMOUNT = 5; //constant for the amount of products to be advertised, can be changed anytime
+
+        //Collect all the product IDs and categories that the user has bought
+        $boughtProducts = getProductIDandCategoryBought(); 
+
+        //Collect all the productIDs in general - will be referenced later 
+        $allProductIDs = DB::table('products')
+            ->select('id')
+            ->get(); 
+        
+
+        if (count($boughtProducts) == 0){
+            //Generate random set of product if user hasn't bought anything 
+            $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
+            $advertisedProducts = getProductsById($randomlySelectedIDs); 
+        } else {
+            $categoryProductDict = []; //Associative array of categories with array of products
+            
+            foreach($boughtProducts as $product){
+                $category = $boughtProducts->$category_name; 
+                $id = $boughtProducts->$product_id; 
+                addToDictionaryIfNotExist($categoryProductDict, $category, $id); //Add id to array of specific category
+            }
+
+            //Assuming each array of each category contains no duplicates - get length of each set 
+            $totalAmountOfIdsBought = 0; 
+            foreach($categoryProductDict as $category){
+                $totalAmountOfIdsBought += count($category); 
+            }
+
+            //If user has bought every product at least once 
+            if ($totalAmountOfIdsBought == count($allProductIDs)){
+                $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
+                $advertisedProducts = getProductsById($randomlySelectedIDs); 
+            } else {
+                //If the user has bought some products but NOT all products
+            }
+        }
+        
     }
 
 
