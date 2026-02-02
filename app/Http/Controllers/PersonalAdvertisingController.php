@@ -18,15 +18,45 @@ class PersonalAdvertisingController {
         return $productsBought; 
     }
 
+    //Get all ids of products from a certain category
+    public function getAllProductIdByCategory($category){
+        $allProductIDs = DB::table('products')
+            ->join('product_category', 'products.id', '=', 'product_category.product_id')
+            ->join('categories', 'product_category.category_id', '=', 'categories.id')
+            ->select('products.id')
+            ->where('categories.name', $category)
+            ->get(); 
+        return $allProductIDs; 
+    }
+
+    //Get the ids that the user has not bought
+    public function getMissingIDs($allIDs, $boughtIDs){
+        $missingIDs = array_values(array_diff($allIDs, $boughtIDs)); 
+        return $missingIDs; 
+    }
+
     //Add a category to dictionary (associative array of arrays) if category doesnt exist
     //And append item to that category if it doesn't exist in that array
-    public function addToDictionaryIfNotExist($dict, $group, $item){
+    //&$dict and not $dict is used because we want to mutate the dict not mutate a copy of the dict
+    public function addToDictionaryIfNotExist(&$dict, $group, $item){
         if (!array_key_exists($group, $dict)){
             $dict[$group] = []; //Create an empty array if it doesn't exist
         }
-        if (!in_array($value, $dict[$group], true)){
-            $dict[$group][] = $value; //Add item to an array if it doesn't exist
+        if (!in_array($item, $dict[$group], true)){
+            $dict[$group][] = $item; //Add item to an array if it doesn't exist
         }
+    }
+
+    //&$dict used to mutate the dict into a sorted dict 
+    public function compareArrayLengthInDict(&$dict){
+        uasort($dict, function($indexA, $indexB){
+            if(!is_array($indexA) || !is_array($indexB)){
+                return 0; 
+            } else {
+                return count($indexA) <=> count($indexB); //Sort in ascending order
+            }
+        }); 
+        //https://www.php.net/manual/en/function.uasort.php - uasort function document to preserve keys
     }
 
     //Generate a certain amount of random ids of products 
@@ -82,6 +112,7 @@ class PersonalAdvertisingController {
                 }
             }
         }
+        return $chosenElements; //Return the selected items 
     }
 
     //Considering the id array given - return the product information about those product ids
@@ -141,8 +172,8 @@ class PersonalAdvertisingController {
             $categoryProductDict = []; //Associative array of categories with array of products
             
             foreach($boughtProducts as $product){
-                $category = $boughtProducts->$category_name; 
-                $id = $boughtProducts->$product_id; 
+                $category = $boughtProducts->category_name; 
+                $id = $boughtProducts->product_id; 
                 addToDictionaryIfNotExist($categoryProductDict, $category, $id); //Add id to array of specific category
             }
 
@@ -158,9 +189,34 @@ class PersonalAdvertisingController {
                 $advertisedProducts = getProductsById($randomlySelectedIDs); 
             } else {
                 //If the user has bought some products but NOT all products
+
+                $categoryMissingProductDict = []; //Array of arrays of product ids not bought
+                $categoryNames = array_keys($categoryProductDict); 
+                foreach ($categoryNames as $category){
+                    //Get all product ids and bought products ids of a certain category
+                    $productIDsFromCategory = getAllProductIdByCategory($category); 
+                    $productIDsBoughtFromCategory = $categoryProductDict[$category];
+                    $missingIDFromCategory = []; //instantiate an empty array so that if check fails insert empty array
+
+                    if (is_array($productIDsFromCategory) && is_array($productIDsBoughtFromCategory)){
+                        $missingIDFromCategory = getMissingIDs($productIDsFromCategory, $productIDsBoughtFromCategory); 
+                    }
+
+                    if(!array_key_exists($category, $categoryMissingProductDict)){
+                        $categoryMissingProductDict[$category] = $missingIDFromCategory; 
+                    } else {
+                        //If category already exists - add all missing IDs 
+                        $categoryMissingProductDict[$category][] = $missingIDFromCategory; 
+                    }
+                }
+
+                //Order the missing product dict based on array length
+                compareArrayLengthInDict($categoryMissingProductDict); 
+
+                $advertisedProducts = chooseElementsBasedOnArrayLength($categoryMissingProductDict, $SELECTION_AMOUNT); 
             }
         }
-        
+        return $advertisedProducts; 
     }
 
 
