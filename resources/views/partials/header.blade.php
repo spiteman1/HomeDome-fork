@@ -425,24 +425,38 @@
 
 
     }
+   .filter {
+     color: white;
+     margin-left: 50px;
+        }
 </style>
 
 </head>
 
 <body>
+
     <div class="page">
 
         <header class="top-bar">
+
             <div class="top-logo">
                 <a href="/"><img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo"></a>
                 <a href="/"><span class="top-logo-text">HomeDome</span></a>
             </div>
+
+
 
             <div class="top-search">
                 <input id="searchInput" class="top-search-input" type="text" placeholder="Search for products...">
                 <button id="searchButton" class="top-search-button">
                     Search
                 </button>
+
+            <div class="filter">
+                                                                             <i class="fa-solid fa-filter"></i>
+                                                                          <span>Filter</span>
+                                                                              </div>
+
             </div>
 
             <script>
@@ -473,11 +487,15 @@
 
 
             <div class="top-icons">
+
+
                 @auth
                     <div class="icon-item">
                         <i class="fa-solid fa-user"></i>
                         <span>Hello, {{ Auth::user()->name }}</span>
                     </div>
+
+
 
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
@@ -495,6 +513,8 @@
                         <span>Login / Register</span>
                     </a>
                 @endguest
+
+
 
                 <a href="/wishlist" class="icon-item">
                     <i class="fa-regular fa-heart"></i>
