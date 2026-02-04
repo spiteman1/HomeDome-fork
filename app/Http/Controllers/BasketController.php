@@ -29,7 +29,7 @@ class BasketController extends Controller
                 ->first();
             $product->url = $media ? $media->url : null;
         }
-
+        
         return view('basket', array('basketProducts' => $basketProducts));
     }
 
