@@ -208,31 +208,38 @@
                     </div>
 
                     @if($product['is_available'] && $product['stock_quantity'] > 0)
-                        <form action="{{ route('addProduct.addProduct', ['pid' => $product['id']]) }}" method="POST">
+                        <!-- Quantity Selector Form for Basket -->
+                        <form id="basketForm" action="{{ route('addProduct.addProduct', ['pid' => $product['id']]) }}"
+                            method="POST">
                             @csrf
-                            <!-- Quantity Selector -->
                             <div class="quantity-selector">
                                 <label>Quantity:</label>
                                 <div class="quantity-controls">
                                     <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                                    <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1"
-                                        max="{{ $product['stock_quantity'] }}">
+                                    <input type="number" id="quantity" name="quantity" class="quantity-input" value="1"
+                                        min="1" max="{{ $product['stock_quantity'] }}">
                                     <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
                                 </div>
                             </div>
-
-                            <!-- Add to basket and wishlist -->
-                            <div class="cta-buttons">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    ADD TO BASKET
-                                </button>
-                                <button type="button" class="btn btn-secondary" onclick="addToWishlist()">
-                                    <i class="fa-regular fa-heart"></i>
-                                    Add to Wishlist
-                                </button>
-                            </div>
                         </form>
+
+                        <!-- Wishlist Form -->
+                        <form id="wishlistForm" action="{{ route('wishlist.add', ['id' => $product['id']]) }}"
+                            method="POST">
+                            @csrf
+                        </form>
+
+                        <!-- Add to basket and wishlist Buttons -->
+                        <div class="cta-buttons">
+                            <button type="submit" form="basketForm" class="btn btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                ADD TO BASKET
+                            </button>
+                            <button type="submit" form="wishlistForm" class="btn btn-secondary">
+                                <i class="fa-regular fa-heart"></i>
+                                Add to Wishlist
+                            </button>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -334,42 +341,54 @@
                                         <i class="fa-solid fa-pen"></i> Write a Review
                                     </button>
                                 @else
-                                    <a href="{{ route('login') }}" class="write-review-btn" style="text-decoration: none; display: inline-block;">
+                                    <a href="{{ route('login') }}" class="write-review-btn"
+                                        style="text-decoration: none; display: inline-block;">
                                         <i class="fa-solid fa-lock"></i> Login to Review
                                     </a>
                                 @endauth
                             </div>
 
                             <!-- Review Form (Hidden by default) -->
-                            <div id="reviewFormContainer" style="display: none; margin-bottom: 32px; padding: 24px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
+                            <div id="reviewFormContainer"
+                                style="display: none; margin-bottom: 32px; padding: 24px; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">
                                 <h3 style="margin-bottom: 16px;">Write your review</h3>
                                 <form action="{{ route('product.review', $product['id']) }}" method="POST">
                                     @csrf
                                     <div style="margin-bottom: 16px;">
                                         <label style="display: block; margin-bottom: 8px; font-weight: 600;">Rating</label>
                                         <div class="star-rating-input">
-                                            <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 stars"><i class="fa-solid fa-star"></i></label>
-                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fa-solid fa-star"></i></label>
-                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fa-solid fa-star"></i></label>
-                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fa-solid fa-star"></i></label>
-                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fa-solid fa-star"></i></label>
+                                            <input type="radio" id="star5" name="rating" value="5" required /><label
+                                                for="star5" title="5 stars"><i class="fa-solid fa-star"></i></label>
+                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4"
+                                                title="4 stars"><i class="fa-solid fa-star"></i></label>
+                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3"
+                                                title="3 stars"><i class="fa-solid fa-star"></i></label>
+                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2"
+                                                title="2 stars"><i class="fa-solid fa-star"></i></label>
+                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1"
+                                                title="1 star"><i class="fa-solid fa-star"></i></label>
                                         </div>
                                     </div>
                                     <div style="margin-bottom: 16px;">
-                                        <label for="review_text" style="display: block; margin-bottom: 8px; font-weight: 600;">Review</label>
-                                        <textarea name="review_text" id="review_text" rows="4" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db;" placeholder="Share your thoughts about this product..."></textarea>
+                                        <label for="review_text"
+                                            style="display: block; margin-bottom: 8px; font-weight: 600;">Review</label>
+                                        <textarea name="review_text" id="review_text" rows="4"
+                                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db;"
+                                            placeholder="Share your thoughts about this product..."></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit Review</button>
                                 </form>
                             </div>
 
                             @if(session('success'))
-                                <div style="background: #dcfce7; color: #166534; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                                <div
+                                    style="background: #dcfce7; color: #166534; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
                                     {{ session('success') }}
                                 </div>
                             @endif
                             @if(session('error'))
-                                <div style="background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                                <div
+                                    style="background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
                                     {{ session('error') }}
                                 </div>
                             @endif
@@ -390,7 +409,8 @@
                                             </div>
                                         </div>
                                         <div class="review-date">
-                                            {{ \Carbon\Carbon::parse($review['submission_date'])->format('F d, Y') }}</div>
+                                            {{ \Carbon\Carbon::parse($review['submission_date'])->format('F d, Y') }}
+                                        </div>
                                     </div>
                                     @if($review['text'])
                                         <div class="review-text">{{ $review['text'] }}</div>
