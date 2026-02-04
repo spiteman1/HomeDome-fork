@@ -371,7 +371,7 @@
         <div class="top-icons">
             <a href="/login" class="icon-item">
                 <i class="fa-solid fa-user"></i>
-                <span>Account</span>
+                <span>Login / Register</span>
             </a>
             <a href="/wishlist" class="icon-item">
                 <i class="fa-regular fa-heart"></i>
