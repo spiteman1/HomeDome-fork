@@ -81,8 +81,7 @@ class ProductController extends Controller
 
         //Suggest products for the user
         $advertisedProducts = $ads->personalisedAdvertising(Auth::id()); 
-        $randomProductIDS = $ads->generateRandomIdArray(5);
-        $backupProducts = $ads->getProductsById($randomProductIDS); 
+        $backupProducts = $ads->generateRandomProducts(5); //Select 5 backup products
         
         return view('/product', compact('product', 'advertisedProducts', 'backupProducts'));
     }

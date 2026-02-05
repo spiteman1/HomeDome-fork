@@ -1,7 +1,6 @@
 <?php
 namespace App\Services; 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class PersonalisedAdvertisedService {
     //Get ids of the products of the users past orders
@@ -132,6 +131,13 @@ class PersonalisedAdvertisedService {
         }
     }
 
+    //Function to select random ids and therefore select random products
+    public function generateRandomProducts($amount){
+        $randomIDs = generateRandomIdArray($amount); 
+        $randomProducts = getProductsById($randomIDs); 
+        return $randomProducts; 
+    }
+
     //Main method for personalised advertising 
     public function personalisedAdvertising($userID){
         $SELECTION_AMOUNT = 5; //constant for the amount of products to be advertised, can be changed anytime
@@ -147,8 +153,7 @@ class PersonalisedAdvertisedService {
 
         if (count($boughtProducts) == 0){
             //Generate random set of product if user hasn't bought anything 
-            $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
-            $advertisedProducts = getProductsById($randomlySelectedIDs); 
+            $advertisedProducts = generateRandomProducts($SELECTION_AMOUNT); 
         } else {
             $categoryProductDict = []; //Associative array of categories with array of products
             
@@ -166,8 +171,7 @@ class PersonalisedAdvertisedService {
 
             //If user has bought every product at least once 
             if ($totalAmountOfIdsBought == count($allProductIDs)){
-                $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
-                $advertisedProducts = getProductsById($randomlySelectedIDs); 
+                $advertisedProducts = generateRandomProducts($SELECTION_AMOUNT); 
             } else {
                 //If the user has bought some products but NOT all products
 
