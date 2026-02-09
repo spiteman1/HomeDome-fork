@@ -28,6 +28,35 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/force-password-change', [AuthController::class, 'showForcePasswordChange'])
+    ->middleware('auth');
+
+Route::post('/force-password-change', [AuthController::class, 'forcePasswordChange'])
+    ->middleware('auth');
+
+Route::get('/admin/create', [AuthController::class, 'showCreateAdmin'])
+    ->middleware(['auth']);
+
+Route::post('/admin/create', [AuthController::class, 'createAdmin'])
+    ->middleware(['auth']);
+
+Route::get('/admin/change-password', [AuthController::class, 'showAdminChangePassword'])
+    ->middleware(['auth'])
+    ->name('admin.change-password');
+
+Route::post('/admin/change-password', [AuthController::class, 'adminChangePassword'])
+    ->middleware(['auth'])
+    ->name('admin.change-password.post');
+    
+Route::get('/customer/change-password', [AuthController::class, 'showCustomerChangePassword'])
+    ->middleware(['auth'])
+    ->name('customer.change-password');
+
+Route::post('/customer/change-password', [AuthController::class, 'customerChangePassword'])
+    ->middleware(['auth'])
+    ->name('customer.change-password.post');
+
+    
 Route::get('/About-Us', function () {
     return view('About-Us');
 })->name('About-Us');

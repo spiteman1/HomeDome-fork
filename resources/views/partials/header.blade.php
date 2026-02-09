@@ -421,14 +421,86 @@
         .hero-title {
             font-size: 32px;
             white-space: normal;
+        }}
+        
+        .filter {
+            color: white;
+            margin-left: 50px;
         }
 
 
+    .account-menu {
+        position: relative;
     }
-   .filter {
-     color: white;
-     margin-left: 50px;
-        }
+
+    .account-trigger {
+        cursor: default;
+    }
+
+    .account-menu::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        height: 14px;
+    }
+
+    .account-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 220px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+        padding: 8px;
+        z-index: 9999;
+        display: none;
+
+        transform: translateY(10px);
+    }
+
+    .account-menu:hover .account-dropdown {
+        display: block;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .dropdown-item i {
+        font-size: 14px;
+        color: var(--hd-dark-red);
+    }
+
+    .dropdown-item:hover {
+        background: #f3f4f6;
+    }
+
+    .dropdown-divider {
+        height: 1px;
+        background: #e5e7eb;
+        margin: 8px 6px;
+    }
+
+    .dropdown-item-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: left;
+    }
 </style>
 
 </head>
@@ -489,23 +561,58 @@
             <div class="top-icons">
 
 
-                @auth
-                    <div class="icon-item">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Hello, {{ Auth::user()->name }}</span>
-                    </div>
+@auth
+    <div class="account-menu">
+        <div class="icon-item account-trigger">
+            <i class="fa-solid fa-user"></i>
+            <span>Hello, {{ Auth::user()->name }}</span>
+        </div>
 
+        <div class="account-dropdown">
+            @if (Auth::user()->is_admin)
+                <a class="dropdown-item" href="/admin/create">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Create admin account</span>
+                </a>
 
+                <a class="dropdown-item" href="/admin/change-password">
+                    <i class="fa-solid fa-key"></i>
+                    <span>Change password</span>
+                </a>
 
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="icon-item"
-                            style="background:none; border:none; cursor:pointer; font-family: inherit;">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span>Logout</span>
-                        </button>
-                    </form>
-                @endauth
+                <a class="dropdown-item" href="#">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Inventory</span>
+                </a>
+
+                <a class="dropdown-item" href="#">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Orders</span>
+                </a>
+            @else
+            
+                <a class="dropdown-item" href="/customer/change-password">
+                    <i class="fa-solid fa-key"></i>
+                    <span>Change password</span>
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Orders</span>
+                </a>
+            @endif
+
+            <div class="dropdown-divider"></div>
+
+            <form action="{{ route('logout') }}" method="POST" style="margin:0;">
+                @csrf
+                <button type="submit" class="dropdown-item dropdown-item-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+        </div>
+    </div>
+@endauth
 
                 @guest
                     <a href="{{ route('login') }}" class="icon-item">
