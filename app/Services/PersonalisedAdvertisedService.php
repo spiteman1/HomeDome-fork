@@ -1,19 +1,17 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Services; 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
-class PersonalAdvertisingController {
-
+class PersonalisedAdvertisedService {
     //Get ids of the products of the users past orders
-    public function getProductIDandCategoryBought(){
+    public function getProductIDandCategoryBought($userID){
         $productsBought = DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'order_items.product_id', '=', 'products.id')
             ->join('product_category', 'order_items.product_id', '=', 'product_category.product_id')
             ->join('categories', 'product_category.category_id', '=', 'categories.id')
             ->select('products.id as product_id', 'categories.name as category_name')
-            ->where('orders.user_id', Auth::id())
+            ->where('orders.user_id', $userID) 
             ->get(); 
         return $productsBought; 
     }
@@ -27,24 +25,6 @@ class PersonalAdvertisingController {
             ->where('categories.name', $category)
             ->get(); 
         return $allProductIDs; 
-    }
-
-    //Get the ids that the user has not bought
-    public function getMissingIDs($allIDs, $boughtIDs){
-        $missingIDs = array_values(array_diff($allIDs, $boughtIDs)); 
-        return $missingIDs; 
-    }
-
-    //Add a category to dictionary (associative array of arrays) if category doesnt exist
-    //And append item to that category if it doesn't exist in that array
-    //&$dict and not $dict is used because we want to mutate the dict not mutate a copy of the dict
-    public function addToDictionaryIfNotExist(&$dict, $group, $item){
-        if (!array_key_exists($group, $dict)){
-            $dict[$group] = []; //Create an empty array if it doesn't exist
-        }
-        if (!in_array($item, $dict[$group], true)){
-            $dict[$group][] = $item; //Add item to an array if it doesn't exist
-        }
     }
 
     //&$dict used to mutate the dict into a sorted dict 
@@ -151,12 +131,19 @@ class PersonalAdvertisingController {
         }
     }
 
+    //Function to select random ids and therefore select random products
+    public function generateRandomProducts($amount){
+        $randomIDs = generateRandomIdArray($amount); 
+        $randomProducts = getProductsById($randomIDs); 
+        return $randomProducts; 
+    }
+
     //Main method for personalised advertising 
-    public function personalisedAdvertising(){
+    public function personalisedAdvertising($userID){
         $SELECTION_AMOUNT = 5; //constant for the amount of products to be advertised, can be changed anytime
 
         //Collect all the product IDs and categories that the user has bought
-        $boughtProducts = getProductIDandCategoryBought(); 
+        $boughtProducts = getProductIDandCategoryBought($userID); 
 
         //Collect all the productIDs in general - will be referenced later 
         $allProductIDs = DB::table('products')
@@ -166,8 +153,7 @@ class PersonalAdvertisingController {
 
         if (count($boughtProducts) == 0){
             //Generate random set of product if user hasn't bought anything 
-            $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
-            $advertisedProducts = getProductsById($randomlySelectedIDs); 
+            $advertisedProducts = generateRandomProducts($SELECTION_AMOUNT); 
         } else {
             $categoryProductDict = []; //Associative array of categories with array of products
             
@@ -185,8 +171,7 @@ class PersonalAdvertisingController {
 
             //If user has bought every product at least once 
             if ($totalAmountOfIdsBought == count($allProductIDs)){
-                $randomlySelectedIDs = generateRandomIdArray($SELECTION_AMOUNT); 
-                $advertisedProducts = getProductsById($randomlySelectedIDs); 
+                $advertisedProducts = generateRandomProducts($SELECTION_AMOUNT); 
             } else {
                 //If the user has bought some products but NOT all products
 
@@ -219,6 +204,5 @@ class PersonalAdvertisingController {
         }
         return $advertisedProducts; 
     }
-
 
 }

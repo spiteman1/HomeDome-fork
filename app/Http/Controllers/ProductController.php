@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Services\PersonalisedAdvertisedService; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -7,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
 
-    public function show($pid)
+    public function show($pid, PersonalisedAdvertisedService $ads)
     {
         //Comment this line in case the join select query fails
         //$product = Products::where('product_id', $pid)->first();
@@ -78,7 +79,11 @@ class ProductController extends Controller
             $product['average_rating'] = 0;
         }
 
-        return view('/product', array('product' => $product));
+        //Suggest products for the user
+        $advertisedProducts = $ads->personalisedAdvertising(Auth::id()); 
+        $backupProducts = $ads->generateRandomProducts(5); //Select 5 backup products
+        
+        return view('/product', compact('product', 'advertisedProducts', 'backupProducts'));
     }
     public function storeReview(Request $request, $id)
     {
