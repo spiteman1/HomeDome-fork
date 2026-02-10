@@ -405,8 +405,8 @@
             white-space: normal;
         }
 }
-        
-    
+
+
     .filter {
         color: white;
         margin-left: 50px;
@@ -484,6 +484,44 @@
         font-family: inherit;
         text-align: left;
     }
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  color:white;
+
+  display: inline-block;
+  font-weight: bold;
+}
+
+
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #F57C00;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 200px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  z-index: 10;
+  color:;
+}
+
+
+.dropdown-content label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color:white;
+}
 </style>
 
     <div class="page">
@@ -503,10 +541,58 @@
                     Search
                 </button>
 
+
+
             <div class="filter">
-                                                                             <i class="fa-solid fa-filter"></i>
-                                                                          <span>Filter</span>
-                                                                              </div>
+
+
+            </div>
+        <details class="filter-dropdown">
+
+            <summary> <i class="fa-solid fa-filter"></i>
+                                      <span>Filter</span></summary>
+
+            <div class="dropdown-content">
+                <form action="filter.php" method="GET">
+                    By Price
+                    <label>
+                        <input type="radio" name="price" value="0-50"> Under £50
+                    </label>
+                    <label>
+                        <input type="radio" name="price" value="50-100"> £50 - £100
+                    </label>
+                    <label>
+                        <input type="radio" name="price" value="100-200"> £100 - £200
+                    </label>
+                <label>
+                 <input type="radio" name="price" value="200-300"> £200 - £300
+                   </label>
+                 <label>
+                    <input type="radio" name="price" value="300+"> £300+
+                    </label>
+
+                    By Category
+                    <label>
+                    <input type="radio" name="category" value="Furniture"> Furniture
+                     </label>
+                     <label>
+                           <input type="radio" name="category" value="Appliances"> Appliances
+                           </label>
+                     <label>
+                      <input type="radio" name="category" value="Home Decor"> Home Decor
+                      </label>
+                        <label>
+                            <input type="radio" name="category" value="Kitchenware"> Kitchenware
+                         </label>
+                        <label>
+                            <input type="radio" name="category" value="Lighting"> Lighting
+                            </label>
+
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+
+        </details>
 
             </div>
 
@@ -553,7 +639,7 @@
                     <i class="fa-solid fa-user-shield"></i>
                     <span>Create admin account</span>
                 </a>
-                
+
                 <a class="dropdown-item" href="/admin/customers">
                     <i class="fa-solid fa-users"></i>
                     <span>Customer management</span>
@@ -574,7 +660,7 @@
                     <span>Orders</span>
                 </a>
             @else
-            
+
                 <a class="dropdown-item" href="/customer/change-password">
                     <i class="fa-solid fa-key"></i>
                     <span>Change password</span>
@@ -616,7 +702,7 @@
                 <span>Register</span>
             </a>
         </div>
-    </div> 
+    </div>
 @endguest
 
                 <a href="/wishlist" class="icon-item">
