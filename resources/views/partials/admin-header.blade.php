@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
     :root {
         --hd-orange: #F57C00;
@@ -15,34 +13,29 @@
         padding: 12px 24px;
         display: flex;
         align-items: center;
-        gap: 16px;
-    }
+        gap: 16px; }
 
     .top-logo {
         display: flex;
         align-items: center;
-        gap: 8px;
-    }
+        gap: 8px; }
 
     .top-logo img {
         width: 44px;
         height: 44px;
         border-radius: 8px;
-        border: 2px solid #ffffff;
-    }
+        border: 2px solid #ffffff; }
 
     .top-logo-text {
         font-weight: 800;
         font-size: 20px;
-        color: #ffffff;
-    }
+        color: #ffffff; }
 
     .top-icons {
         margin-left: auto;
         display: flex;
         gap: 28px;
-        align-items: center;
-    }
+        align-items: center; }
 
     .icon-item {
         display: flex;
@@ -52,25 +45,25 @@
         text-decoration: none;
         font-size: 12px;
         font-weight: 500;
-        position: relative;
-    }
+        position: relative; }
 
     .icon-item i {
         font-size: 20px;
-        margin-bottom: 4px;
-    }
+        margin-bottom: 4px; }
 </style>
 
 <header class="top-bar">
     <div class="top-logo">
+       <a href="/" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
         <img src="{{ asset('images/homeDomeLogo.png') }}" alt="HomeDome logo">
         <span class="top-logo-text">HomeDome</span>
+       </a>
     </div>
 
     <div class="top-icons">
         <div class="icon-item">
             <i class="fa-solid fa-shield-halved"></i>
-            <span>Admin Security</span>
+            <span>Admin Dashboard</span>
         </div>
     </div>
 </header>

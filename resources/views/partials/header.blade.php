@@ -1,8 +1,4 @@
 @vite('resources/css/app.css')
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
     :root {
         --hd-orange: #F57C00;
@@ -11,20 +7,6 @@
         --hd-black: #000000;
         --hd-grey: #333333;
         --hd-text-muted: #6b7280;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    body {
-        min-height: 100vh;
-        background: #ffffff;
-        display: block;
-        margin: 0;
     }
 
     .page {
@@ -421,13 +403,14 @@
         .hero-title {
             font-size: 32px;
             white-space: normal;
-        }}
-        
-        .filter {
-            color: white;
-            margin-left: 50px;
         }
-
+}
+        
+    
+    .filter {
+        color: white;
+        margin-left: 50px;
+    }
 
     .account-menu {
         position: relative;
@@ -449,7 +432,7 @@
     .account-dropdown {
         position: absolute;
         top: 100%;
-        right: 0;
+        right: -110px;
         width: 220px;
         background: #ffffff;
         border: 1px solid #e5e7eb;
@@ -502,10 +485,6 @@
         text-align: left;
     }
 </style>
-
-</head>
-
-<body>
 
     <div class="page">
 
@@ -574,6 +553,11 @@
                     <i class="fa-solid fa-user-shield"></i>
                     <span>Create admin account</span>
                 </a>
+                
+                <a class="dropdown-item" href="/admin/customers">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Customer management</span>
+                </a>
 
                 <a class="dropdown-item" href="/admin/change-password">
                     <i class="fa-solid fa-key"></i>
@@ -614,14 +598,26 @@
     </div>
 @endauth
 
-                @guest
-                    <a href="{{ route('login') }}" class="icon-item">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Login / Register</span>
-                    </a>
-                @endguest
+@guest
+    <div class="account-menu">
+        <div class="icon-item account-trigger">
+            <i class="fa-solid fa-user"></i>
+            <span>Account</span>
+        </div>
 
+        <div class="account-dropdown">
+            <a class="dropdown-item" href="/login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span>
+            </a>
 
+            <a class="dropdown-item" href="/register">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Register</span>
+            </a>
+        </div>
+    </div> 
+@endguest
 
                 <a href="/wishlist" class="icon-item">
                     <i class="fa-regular fa-heart"></i>

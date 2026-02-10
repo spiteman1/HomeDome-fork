@@ -61,12 +61,15 @@
     }
 
     .hero-title {
-        font-size: 48px;
+        font-size: clamp(32px, 4vw, 44px);
         font-weight: 900;
         letter-spacing: -0.03em;
         line-height: 1.1;
         display: block;
         white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
         animation: fadeSlide 0.8s ease-out forwards;
         opacity: 0;
         transform: translateY(12px);
@@ -247,7 +250,7 @@
             <h2 class="form-heading">Log in to your account</h2>
             <p class="form-sub">Enter your details to access your HomeDome account.</p>
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login.submit') }}">
                 @csrf
 
                 <div class="field">

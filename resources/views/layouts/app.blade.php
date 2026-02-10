@@ -1,13 +1,13 @@
 <!DOCTYPE html>
  <html lang="en">
  <head >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
      @vite('resources/css/app.css')
      @vite('resources/js/app.js')
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>@yield('title', 'HomeDome')</title>
      <script src="{{ asset('js/search.js') }}"></script>
-     <link rel="stylesheet" href="resources/css/app.css">
       <style>
               :root {
                   --hd-orange: #F57C00;
@@ -64,7 +64,7 @@
               }
 
              .top-search-input {
-               width: 800px
+               width: 800px;
                max-width: 700px; /* increase if you want even bigger */
                padding: 12px 20px;
                font-size: 16px;

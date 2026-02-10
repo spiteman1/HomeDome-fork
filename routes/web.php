@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AdminController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -25,7 +26,7 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
 
 
@@ -74,10 +75,15 @@ Route::get('/Contact-us', function () {
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/customers', [AdminController::class, 'customersIndex']);
+    Route::post('/admin/customers', [AdminController::class, 'customersStore']);
+    Route::post('/admin/customers/{id}/update', [AdminController::class, 'customersUpdate']);
+    Route::post('/admin/customers/{id}/delete', [AdminController::class, 'customersDelete']);
+});
 

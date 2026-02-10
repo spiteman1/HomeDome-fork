@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Created | HomeDome</title>
+@extends('layouts.admin')
 
+@section('title', 'Admin Created | HomeDome')
+
+@section('content')
     <style>
-        body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;margin:0}
         .wrap{max-width:700px;margin:50px auto;padding:0 16px}
         .card{border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 10px 26px rgba(0,0,0,.08)}
         h1{margin:0 0 10px;font-size:22px}
@@ -17,10 +14,6 @@
         .btn{display:inline-block;margin-top:14px;text-decoration:none;border-radius:999px;padding:10px 16px;background:#F57C00;color:#fff;font-weight:800}
         .btn:hover{opacity:.9}
     </style>
-</head>
-<body>
-
-    @include('partials.admin-header')
 
     <div class="wrap">
         <div class="card">
@@ -48,6 +41,4 @@
             <a class="btn" href="/">Return to homepage</a>
         </div>
     </div>
-
-</body>
-</html>
+@endsection

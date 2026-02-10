@@ -1,27 +1,9 @@
-@vite('resources/css/app.css')
+@extends('layouts.admin')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Password | HomeDome</title>
+@section('title', 'Change Password | HomeDome')
 
+@section('content')
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            background: #ffffff;
-            display: block;
-            margin: 0;
-        }
-
         .page {
             width: 100%;
             height: 100%;
@@ -129,57 +111,50 @@
             padding-left: 18px;
         }
     </style>
-</head>
 
-<body>
-<div class="page">
+    <div class="page">
+        <div class="container">
+            <div class="card">
+                <div class="card-head">
+                    <div class="title">Change your password</div>
+                    <div class="subtitle">For the purpose of security, new admin accounts must create a new password after first login.</div>
+                </div>
 
-    @include('partials.admin-header')
+                <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert">
+                            <ul style="margin:0; padding-left:18px;">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-    <div class="container">
-        <div class="card">
-            <div class="card-head">
-                <div class="title">Change your password</div>
-                <div class="subtitle">For the purpose of security, new admin accounts must create a new password after first login.</div>
-            </div>
+                    <form method="POST" action="/force-password-change">
+                        @csrf
 
-            <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert">
-                        <ul style="margin:0; padding-left:18px;">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                        <div class="field">
+                            <label for="password">New password</label>
+                            <input id="password" type="password" name="password" required>
+                        </div>
 
-                <form method="POST" action="/force-password-change">
-                    @csrf
+                        <div class="field">
+                            <label for="password_confirmation">Confirm new password</label>
+                            <input id="password_confirmation" type="password" name="password_confirmation" required>
+                        </div>
 
-                    <div class="field">
-                        <label for="password">New password</label>
-                        <input id="password" type="password" name="password" required>
-                    </div>
+                        <button type="submit" class="btn-primary">Update password</button>
 
-                    <div class="field">
-                        <label for="password_confirmation">Confirm new password</label>
-                        <input id="password_confirmation" type="password" name="password_confirmation" required>
-                    </div>
-
-                    <button type="submit" class="btn-primary">Update password</button>
-
-                    <div class="rules">
-                        <ul>
-                            <li>Must have at least 8 characters</li>
-                            <li>Cannot reuse old password</li>
-                        </ul>
-                    </div>
-                </form>
+                        <div class="rules">
+                            <ul>
+                                <li>Must have at least 8 characters</li>
+                                <li>Cannot reuse old password</li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
-</div>
-</body>
-</html>
+@endsection

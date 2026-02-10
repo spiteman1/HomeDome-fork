@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Admin | HomeDome</title>
+@extends('layouts.admin')
+
+@section('title', 'Create Admin | HomeDome')
+
+@section('content')
     <style>
-        body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;margin:0}
         .wrap{max-width:600px;margin:50px auto;padding:0 16px}
         .card{border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 10px 26px rgba(0,0,0,.08)}
         h1{margin:0 0 6px;font-size:22px}
@@ -16,10 +14,6 @@
         .btn:hover{background:#8b241b}
         .alert{border:1px solid #f1c0c0;background:#fff1f1;color:#7a1f1f;padding:12px 14px;border-radius:10px;margin-bottom:12px}
     </style>
-</head>
-<body>
-
-    @include('partials.admin-header')
 
     <div class="wrap">
         <div class="card">
@@ -45,10 +39,8 @@
                 <label for="email">Admin email</label>
                 <input id="email" name="email" type="email" required value="{{ old('email') }}">
 
-                <button class="btn" type="submit">Create admin</button>
+                <button class="btn" type="submit">Create</button>
             </form>
         </div>
     </div>
-
-</body>
-</html>
+@endsection
