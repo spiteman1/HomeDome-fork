@@ -543,13 +543,10 @@ details > summary {
 
 
 
-            <div class="filter">
 
-
-            </div>
         <details class="filter-dropdown">
 
-            <summary> <i class="fa-solid fa-filter"></i>
+            <summary> <i class="fa-solid fa-filter fa-2xs"></i>
                                       <span>Filter</span></summary>
 
             <div class="dropdown-content">
@@ -588,13 +585,35 @@ details > summary {
                             <input type="radio" name="category" value="Lighting"> Lighting
                             </label>
 
-                    <button type="submit">Apply</button>
+                    <button type="submit" id="FilterButton">Apply</button>
                 </form>
             </div>
 
         </details>
 
             </div>
+
+    <script>
+                const searchInput = document.getElementById('searchInput');
+                const filterButton = document.getElementById('FilterButton');
+
+                function performFilter() {
+                    const query = searchInput.value.trim();
+                    if (!query) {
+                        alert('Please enter a search term!');
+                        return;
+                    } else {
+                        window.location.href = `/filter?query=${encodeURIComponent(query)}`;
+                    }
+
+
+                }
+
+
+                filterButton.addEventListener('click', performFilter);
+
+
+               );
 
             <script>
                 const searchInput = document.getElementById('searchInput');
