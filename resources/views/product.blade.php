@@ -220,6 +220,40 @@
             </div>
         </div>
 
+        <!--Suggest products either random or based on user preferences-->
+        @if (isset($advertisedProducts || $backupProducts))
+            <div class="SuggestedProductContainer">
+                <h2 id="SuggestedProductTitle">Suggested Products</h2>
+                <div class="SuggestedProducts">
+                    @if (isset($advertisedProducts) && is_array($advertisedProducts) && count($advertisedProducts) > 0)
+                        @foreach($advertisedProducts as $advertisedProduct)
+                            <div class="SuggestedProduct">
+                                @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
+                                    <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
+                                @else 
+                                    <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                @endif
+                                <p id="SuggestedProductName">$advertisedProducts['name']</p>
+                                <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
+                            </div>
+                        @endforeach
+                    @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
+                        @foreach($backupProductsProducts as $backupProduct)
+                            <div class="SuggestedProduct">
+                                @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
+                                    <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
+                                @else 
+                                    <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                @endif
+                                <p id="SuggestedProductName">$backupProduct['name']</p>
+                                <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span> 
+                            </div>
+                         @endforeach
+                    @endif
+                </div>
+            </div>
+        @endif
+
         <script src="{{ asset('js/product.js') }}"></script>
 
 @endsection

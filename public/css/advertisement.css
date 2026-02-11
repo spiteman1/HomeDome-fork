@@ -1,0 +1,13 @@
+.SuggestedProductContainer{ 
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgb(8, 8, 8);
+}
+.SuggestedProduct{
+    flex: 0 0 180px;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
