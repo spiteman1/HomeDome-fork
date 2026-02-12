@@ -536,7 +536,7 @@ details > summary {
 
 
             <div class="top-search">
-                <input id="searchInput" class="top-search-input" type="text" placeholder="Search for products...">
+                <input id="searchInput" value="{{ request('query') }}" class="top-search-input" type="text" placeholder="Search for products...">
                 <button id="searchButton" class="top-search-button">
                     Search
                 </button>
@@ -544,76 +544,64 @@ details > summary {
 
 
 
-        <details class="filter-dropdown">
+       <details class="filter-dropdown">
+           <summary>
+               <i class="fa-solid fa-filter fa-2xs"></i>
+               <span>Filter</span>
+           </summary>
 
-            <summary> <i class="fa-solid fa-filter fa-2xs"></i>
-                                      <span>Filter</span></summary>
+           <div class="dropdown-content">
+               <form id="filterForm">
 
-            <div class="dropdown-content">
-                <form action="filter.php" method="GET">
-                    By Price
-                    <label>
-                        <input type="radio" name="price" value="0-50"> Under £50
-                    </label>
-                    <label>
-                        <input type="radio" name="price" value="50-100"> £50 - £100
-                    </label>
-                    <label>
-                        <input type="radio" name="price" value="100-200"> £100 - £200
-                    </label>
-                <label>
-                 <input type="radio" name="price" value="200-300"> £200 - £300
-                   </label>
-                 <label>
-                    <input type="radio" name="price" value="300+"> £300+
-                    </label>
+                   <h4>By Price</h4>
+                   <label><input type="radio" name="price" value="0-50"> Under £50</label>
+                   <label><input type="radio" name="price" value="50-100"> £50 - £100</label>
+                   <label><input type="radio" name="price" value="100-200"> £100 - £200</label>
+                   <label><input type="radio" name="price" value="200-300"> £200 - £300</label>
+                   <label><input type="radio" name="price" value="300+"> £300+</label>
 
-                    By Category
-                    <label>
-                    <input type="radio" name="category" value="Furniture"> Furniture
-                     </label>
-                     <label>
-                           <input type="radio" name="category" value="Appliances"> Appliances
-                           </label>
-                     <label>
-                      <input type="radio" name="category" value="Home Decor"> Home Decor
-                      </label>
-                        <label>
-                            <input type="radio" name="category" value="Kitchenware"> Kitchenware
-                         </label>
-                        <label>
-                            <input type="radio" name="category" value="Lighting"> Lighting
-                            </label>
+                   <h4>By Category</h4>
+                   <label><input type="radio" name="category" value="Furniture"> Furniture</label>
+                   <label><input type="radio" name="category" value="Appliances"> Appliances</label>
+                   <label><input type="radio" name="category" value="Home Decor"> Home Decor</label>
+                   <label><input type="radio" name="category" value="Kitchen Ware"> Kitchenware</label>
+                   <label><input type="radio" name="category" value="Lighting"> Lighting</label>
 
-                    <button type="submit" id="FilterButton">Apply</button>
-                </form>
-            </div>
+                   <button type="submit" id="FilterButton">Apply</button>
+               </form>
+           </div>
+       </details>
 
-        </details>
+       <script>
+           document.getElementById('FilterButton').addEventListener('click', function(event) {
 
-            </div>
-
-    <script>
-                const searchInput = document.getElementById('searchInput');
-                const filterButton = document.getElementById('FilterButton');
-
-                function performFilter() {
-                    const query = searchInput.value.trim();
-                    if (!query) {
-                        alert('Please enter a search term!');
-                        return;
-                    } else {
-                        window.location.href = `/filter?query=${encodeURIComponent(query)}`;
-                    }
+               event.preventDefault();
 
 
-                }
+               const searchInput = document.getElementById('searchInput');
+               const priceEl = document.querySelector('input[name="price"]:checked');
+               const categoryEl = document.querySelector('input[name="category"]:checked');
 
 
-                filterButton.addEventListener('click', performFilter);
+               const query = searchInput ? searchInput.value.trim() : '';
+               const priceVal = priceEl ? priceEl.value : '';
+               const catVal = categoryEl ? categoryEl.value : '';
+
+               if (!query && !priceVal && !catVal) {
+                   alert('Please select a filter or enter a search term!');
+                   return;
+               }
 
 
-               );
+               const params = new URLSearchParams();
+               if (query) params.append('query', query);
+               if (categoryEl) params.append('catVal', catVal);
+               if (priceEl) params.append('priceVal', priceVal);
+
+
+               window.location.href = `/filter?${params.toString()}`;
+           });
+       </script>
 
             <script>
                 const searchInput = document.getElementById('searchInput');

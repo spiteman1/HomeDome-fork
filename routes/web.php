@@ -10,6 +10,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FilterController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -55,7 +56,7 @@ Route::get('/admin/change-password', [AuthController::class, 'showAdminChangePas
 Route::post('/admin/change-password', [AuthController::class, 'adminChangePassword'])
     ->middleware(['auth'])
     ->name('admin.change-password.post');
-    
+
 Route::get('/customer/change-password', [AuthController::class, 'showCustomerChangePassword'])
     ->middleware(['auth'])
     ->name('customer.change-password');
@@ -64,7 +65,7 @@ Route::post('/customer/change-password', [AuthController::class, 'customerChange
     ->middleware(['auth'])
     ->name('customer.change-password.post');
 
-    
+
 Route::get('/About-Us', function () {
     return view('About-Us');
 })->name('About-Us');
@@ -78,6 +79,7 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware(['auth'])->group(function () {
