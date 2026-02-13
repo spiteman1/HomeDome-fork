@@ -5,6 +5,7 @@
 @section('content')
 
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/advertisement.css') }}"> 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <div class="breadcrumbs">
@@ -221,33 +222,42 @@
         </div>
 
         <!--Suggest products either random or based on user preferences-->
-        @if (isset($advertisedProducts || $backupProducts))
+        @if (isset($advertisedProducts) || isset($backupProducts))
             <div class="SuggestedProductContainer">
                 <h2 id="SuggestedProductTitle">Suggested Products</h2>
                 <div class="SuggestedProducts">
-                    @if (isset($advertisedProducts) && is_array($advertisedProducts) && count($advertisedProducts) > 0)
+                    <!--Check if advertisedProducts is not null and is an array with at least 1 item and that the user is logged in-->
+                    @if (isset($advertisedProducts) && is_array($advertisedProducts) && count($advertisedProducts) > 0 && Auth::check())
                         @foreach($advertisedProducts as $advertisedProduct)
-                            <div class="SuggestedProduct">
-                                @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
-                                    <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
-                                @else 
-                                    <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
-                                @endif
-                                <p id="SuggestedProductName">$advertisedProducts['name']</p>
-                                <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
-                            </div>
+                            <!--Ensure that the product being suggested is not the same as the product shown-->
+                            @if ($advertisedProduct['id'] != $product['id'])
+                                <div class="SuggestedProduct">
+                                    @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
+                                        <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
+                                    @else 
+                                        <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                    @endif
+                                    <p id="SuggestedProductName">$advertisedProducts['name']</p>
+                                    <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
+                                </div>
+                            @endif
                         @endforeach
+                    <!--Check if backupProducts is not null and is an array with at least 1 item-->
+                    <!--No need to consider authentication considering that backup products does not weight on the users previous orders-->
                     @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
                         @foreach($backupProductsProducts as $backupProduct)
-                            <div class="SuggestedProduct">
-                                @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
-                                    <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
-                                @else 
-                                    <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
-                                @endif
-                                <p id="SuggestedProductName">$backupProduct['name']</p>
-                                <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span> 
-                            </div>
+                            <!--Ensure that the product being suggested is not the same as the product shown-->
+                            @if ($advertisedProduct['id'] != $product['id'])
+                                <div class="SuggestedProduct">
+                                    @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
+                                        <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
+                                    @else 
+                                        <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $backupProduct['name'] }}"/>
+                                    @endif
+                                    <p id="SuggestedProductName">$backupProduct['name']</p>
+                                    <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span> 
+                                </div>
+                            @endif
                          @endforeach
                     @endif
                 </div>
