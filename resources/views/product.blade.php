@@ -233,9 +233,13 @@
                             @if ($advertisedProduct['id'] != $product['id'])
                                 <div class="SuggestedProduct">
                                     @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
-                                        <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
+                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']) }}">
+                                            <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
+                                        </a>
                                     @else 
-                                        <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']) }}">
+                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                        </a>
                                     @endif
                                     <p id="SuggestedProductName">$advertisedProducts['name']</p>
                                     <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
@@ -247,12 +251,16 @@
                     @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
                         @foreach($backupProductsProducts as $backupProduct)
                             <!--Ensure that the product being suggested is not the same as the product shown-->
-                            @if ($advertisedProduct['id'] != $product['id'])
+                            @if ($backupProduct['id'] != $product['id'])
                                 <div class="SuggestedProduct">
                                     @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
-                                        <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
+                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']) }}">
+                                                <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
+                                        </a>
                                     @else 
-                                        <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $backupProduct['name'] }}"/>
+                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']) }}">
+                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $backupProduct['name'] }}"/>
+                                        </a>
                                     @endif
                                     <p id="SuggestedProductName">$backupProduct['name']</p>
                                     <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span> 
