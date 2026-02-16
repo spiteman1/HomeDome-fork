@@ -1,18 +1,16 @@
 <style>
-    html, body {
+html, body {
     height: 100%;
     margin: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto;
 }
-main {
-    flex: 1;
-}
+
 footer {
-    margin-top: auto;
     background: brown;
     color: white;
     padding: 25px 20px;
@@ -56,7 +54,8 @@ footer h4 {
 }
 </style>
 <body>
-    <main></main>
+<div class="page-content">
+</div>
 <footer>
     <h4>© 2025 HomeDome</h4>
 
