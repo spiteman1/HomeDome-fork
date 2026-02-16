@@ -233,15 +233,15 @@
                             @if ($advertisedProduct['id'] != $product['id'])
                                 <div class="SuggestedProduct">
                                     @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
-                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']) }}">
+                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']]) }}">
                                             <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
                                         </a>
                                     @else 
                                         <a href="{{ route('product.show', ['id' => $advertisedProduct['id']) }}">
-                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}" alt ="{{ $advertisedProduct['name'] }}"/>
                                         </a>
                                     @endif
-                                    <p id="SuggestedProductName">$advertisedProducts['name']</p>
+                                    <p id="SuggestedProductName">$advertisedProduct['name']</p>
                                     <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
                                 </div>
                             @endif
@@ -249,7 +249,7 @@
                     <!--Check if backupProducts is not null and is an array with at least 1 item-->
                     <!--No need to consider authentication considering that backup products does not weight on the users previous orders-->
                     @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
-                        @foreach($backupProductsProducts as $backupProduct)
+                        @foreach($backupProducts as $backupProduct)
                             <!--Ensure that the product being suggested is not the same as the product shown-->
                             @if ($backupProduct['id'] != $product['id'])
                                 <div class="SuggestedProduct">
