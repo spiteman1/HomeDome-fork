@@ -5,7 +5,7 @@
 @section('content')
 
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/advertisement.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/advertisement.css') }}">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <div class="breadcrumbs">
@@ -234,39 +234,43 @@
                                 <div class="SuggestedProduct">
                                     @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
                                         <a href="{{ route('product.show', ['id' => $advertisedProduct['id']]) }}">
-                                            <img id="SuggestedProductImage"src="{{ asset($advertisedProduct['media'][0]['url']) }}" alt="{{ $advertisedProduct['name'] }}">
+                                            <img id="SuggestedProductImage" src="{{ asset($advertisedProduct['media'][0]['url']) }}"
+                                                alt="{{ $advertisedProduct['name'] }}">
                                         </a>
-                                    @else 
-                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']) }}">
-                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}" alt ="{{ $advertisedProduct['name'] }}"/>
+                                    @else
+                                        <a href="{{ route('product.show', ['id' => $advertisedProduct['id']]) }}">
+                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}"
+                                                alt="{{ $advertisedProduct['name'] }}" />
                                         </a>
                                     @endif
-                                    <p id="SuggestedProductName">$advertisedProduct['name']</p>
-                                    <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span> 
+                                    <p id="SuggestedProductName">{{ $advertisedProduct['name'] }}</p>
+                                    <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span>
                                 </div>
                             @endif
                         @endforeach
-                    <!--Check if backupProducts is not null and is an array with at least 1 item-->
-                    <!--No need to consider authentication considering that backup products does not weight on the users previous orders-->
+                        <!--Check if backupProducts is not null and is an array with at least 1 item-->
+                        <!--No need to consider authentication considering that backup products does not weight on the users previous orders-->
                     @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
                         @foreach($backupProducts as $backupProduct)
                             <!--Ensure that the product being suggested is not the same as the product shown-->
                             @if ($backupProduct['id'] != $product['id'])
                                 <div class="SuggestedProduct">
                                     @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
-                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']) }}">
-                                                <img id="SuggestedProductImage"src="{{ asset($backupProduct['media'][0]['url']) }}" alt="{{ $backupProduct['name'] }}">
+                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']]) }}">
+                                            <img id="SuggestedProductImage" src="{{ asset($backupProduct['media'][0]['url']) }}"
+                                                alt="{{ $backupProduct['name'] }}">
                                         </a>
-                                    @else 
-                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']) }}">
-                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png' }}" alt ="{{ $backupProduct['name'] }}"/>
+                                    @else
+                                        <a href="{{ route('product.show', ['id' => $backupProduct['id']]) }}">
+                                            <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}"
+                                                alt="{{ $backupProduct['name'] }}" />
                                         </a>
                                     @endif
-                                    <p id="SuggestedProductName">$backupProduct['name']</p>
-                                    <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span> 
+                                    <p id="SuggestedProductName">{{ $backupProduct['name'] }}</p>
+                                    <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span>
                                 </div>
                             @endif
-                         @endforeach
+                        @endforeach
                     @endif
                 </div>
             </div>
