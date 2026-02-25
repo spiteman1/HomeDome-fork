@@ -28,7 +28,7 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::get('/checkout/{id}', [CategoryController::class, 'index']->name('checkout.index')); 
+Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index'); 
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 

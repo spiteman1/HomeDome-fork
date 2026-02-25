@@ -237,6 +237,21 @@
 </style>
 
 <main class="content">
+
+    <!--UI success notifier for when a background process successfully ran-->
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!--UI error notifier for when a background process has failed-->
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <section class="hero">
         <div class="hero-inner">
             <h1 class="hero-title">Welcome to HomeDome</h1>
