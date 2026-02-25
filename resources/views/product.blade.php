@@ -19,6 +19,14 @@
         <span>{{ $product['name'] ?? 'Product' }}</span>
     </div>
 
+    <!--UI success notifier for when a background process successfully ran-->
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="product-container">
 
         <div class="product-media">
