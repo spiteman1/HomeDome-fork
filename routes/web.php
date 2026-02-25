@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\CheckoutController; 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -27,6 +28,7 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/{id}', [CategoryController::class, 'index']->name('checkout.index')); 
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 
