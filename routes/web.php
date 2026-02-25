@@ -80,6 +80,10 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+Route::get('/FAQs', function () {
+    return view('FAQs');
+})->name('FAQs');
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
