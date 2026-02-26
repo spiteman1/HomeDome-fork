@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\CheckoutController; 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -27,7 +28,8 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index'); 
+Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 
 
@@ -78,6 +80,10 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+Route::get('/FAQs', function () {
+    return view('FAQs');
+})->name('FAQs');
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
@@ -88,4 +94,3 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/customers/{id}/update', [AdminController::class, 'customersUpdate']);
     Route::post('/admin/customers/{id}/delete', [AdminController::class, 'customersDelete']);
 });
-

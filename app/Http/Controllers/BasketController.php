@@ -69,6 +69,12 @@ class BasketController extends Controller
                 ]);
         } else {
             // Insert new item
+
+            //If user isn't logged in
+            if (!Auth::check()){
+                return redirect()->route('login')->with('error', 'You must be logged in to add a product.');
+            }
+
             $productInsert = DB::table('shopping_basket')
                 ->insert([
                     'user_id' => Auth::id(),
