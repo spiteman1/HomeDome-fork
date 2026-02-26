@@ -84,6 +84,18 @@ Route::get('/FAQs', function () {
     return view('FAQs');
 })->name('FAQs');
 
+Route::get('/Delivery-information', function () {
+    return view('Delivery-information');
+})->name('Delivery-information');
+
+Route::get('/Shipping-options', function () {
+    return view('Shipping-options');
+})->name('Shipping-options');
+
+Route::get('/Track-order', function () {
+    return view('Track-order');
+})->name('Track-order');
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
