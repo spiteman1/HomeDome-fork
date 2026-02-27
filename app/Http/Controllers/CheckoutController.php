@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers; 
 use Illuminate\Support\Facades\DB; 
-use App\Services\PersonalisedAdvertisedService; 
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller { 
 
-    public function index($orderID, PersonalisedAdvertisedService $ads){
+    public function index($orderID){
         $rows = DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'order_items.product_id', '=', 'products.id')
@@ -33,11 +33,58 @@ class CheckoutController extends Controller {
 
             'quantity' => $rows[0]->quantity
         ]; 
+        $orderInformation = DB::table('orders')
+            ->select('id as orderID', 'total_amount as subtotal')
+            ->where('id', $orderID)
+            ->get();  
+            
+        return view('/checkout', compact('orderedProducts', 'orderedInformation')); 
+    }
 
-        //Suggest products for the user
-        $advertisedProducts = $ads->personalisedAdvertising(Auth::id()); 
-        $backupProducts = $ads->generateRandomProducts(5); //Select 5 backup products
+    public function submitDetails(Request $request, $orderID){
+        $deliveryFields = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email' . Auth::id()],
+            'street' => ['required', 'string', 'max:255'], 
+            'city' => ['required', 'string', 'max:255'], 
+            'postcode' => ['required', 'string', 'min:5', 'max:10']// post code must be 5-10 characters long
+        ]); 
 
-        return view('/checkout', compact('orderedProducts', 'advertisedProducts', 'backupProducts')); 
+        $finalisedPostcode = strtoupper($deliveryFields['postcode']); //Ensure postcode is capitalised
+        
+        if (!Auth::check()){ //ensure the user is logged in 
+            return redirect()->route('login')->with('error', 'You must be logged in to submit an order.');
+        } else {
+            $usersNameAndEmail = DB::table('users')
+                ->select('name', 'email')
+                ->where('id', Auth::id())
+                ->first(); 
+
+            if ($usersAndEmail->email !== $deliveryFields['email'] && $usersNameAndEmail->name !== $deliveryFields['name']){
+                //Redirect back to the checkout page since the email and name is not consistent 
+                return redirect()->route('checkout.index')->with('error', 'Your email/name is not consistent with the email/name you registered with');
+            }
+            $addressID = DB::table('addresses')
+                ->insertGetId([
+                    'user_id' => Auth::id(), 
+                    'street' => $deliveryFields['street'], 
+                    'city' => $deliveryFields['city'], 
+                    'postcode' => $finalisedPostcode
+                ]); 
+              
+            //Update order status to processing instead of pending 
+            $updatedOrder = DB::table('orders')
+                ->where('id', $orderID)
+                ->update([
+                    'status' => 'processing'
+                ]); 
+                
+            if($addressID && $updatedOrder) {
+                return redirect()->route('TBD')->with('success', 'Order has been successfully submitted and status of the order updated to processing'); 
+            } else {
+                //Redirect back to the checkout page since the insertion has failed
+                return redirect()->route('checkout.index')->with('error', 'Something went wrong with the insertion or the updating of the order status.'); 
+            }
+        }
     }
 }

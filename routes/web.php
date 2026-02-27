@@ -29,6 +29,7 @@ Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index'); 
+Route::post('/checkout/{id}', [CategoryController::class, 'submitDetails'])->name('checkout.submit'); 
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 
