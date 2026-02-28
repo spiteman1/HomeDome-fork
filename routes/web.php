@@ -29,6 +29,7 @@ Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index'); 
+Route::post('/checkout/{id}', [CategoryController::class, 'submitDetails'])->name('checkout.submit'); 
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 
@@ -83,6 +84,18 @@ Route::get('/register', function () {
 Route::get('/FAQs', function () {
     return view('FAQs');
 })->name('FAQs');
+
+Route::get('/Delivery-information', function () {
+    return view('Delivery-information');
+})->name('Delivery-information');
+
+Route::get('/Shipping-options', function () {
+    return view('Shipping-options');
+})->name('Shipping-options');
+
+Route::get('/Track-order', function () {
+    return view('Track-order');
+})->name('Track-order');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
