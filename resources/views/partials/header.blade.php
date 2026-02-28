@@ -787,7 +787,7 @@ footer h4 {
             <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
             <a class="headerLinks" href="{{route('About-Us')}}">About Us</a>
             <a href="{{route('Contact-us')}}"> Contact Us </a>
-            
+
 
         </div>
 <body>
@@ -801,6 +801,7 @@ footer h4 {
             <h5>Company</h5>
             <a href="{{ route('About-Us') }}">About Us</a>
             <a href="{{ route('Contact-us') }}">Contact Us</a>
+            <a href="{{route('Feedback')}}">Give Us Feedback</a>
         </div>
 
         <div class="footer-col">
