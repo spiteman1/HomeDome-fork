@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -11,7 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilterController;
-use App\Http\Controllers\CheckoutController; 
+use App\Http\Controllers\CheckoutController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
+Route::get('/Feedback', [FeedbackController::class, 'show'])->name('Feedback');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/product/{id}/review', [ProductController::class, 'storeReview'])->name('product.review');
 Route::get('/Basket', [BasketController::class, 'listProducts'])->name('Basket');
@@ -28,8 +28,8 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index'); 
-Route::post('/checkout/{id}', [CategoryController::class, 'submitDetails'])->name('checkout.submit'); 
+Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/{id}', [CategoryController::class, 'submitDetails'])->name('checkout.submit');
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
 
 
@@ -96,7 +96,7 @@ Route::get('/Shipping-options', function () {
 Route::get('/Track-order', function () {
     return view('Track-order');
 })->name('Track-order');
-
+Route::post('/submit-review', [FeedbackController::class, 'store']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/filter', [FilterController::class, 'filter'])->name('filter');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');

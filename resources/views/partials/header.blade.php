@@ -207,5 +207,6 @@
             <a href="{{ route('category.show', 'kitchen-ware') }}">Kitchenware</a>
             <a href="{{ route('category.show', 'lighting') }}">Lighting</a>
 
+
         </div>
         </div>
