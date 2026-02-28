@@ -174,11 +174,10 @@ input {
 
     <div class="ItemsSummary">
         <div class="section-title">Your Bag</div>
-            @foreach($orderedProducts as $product){
+            @foreach($orderedProducts as $product)
                 <div class="product">
-                    @if(isset($product['media']) && count($product['media']) > 0){
+                    @if(isset($product['media']) && count($product['media']) > 0)
                         <img src="{{ asset($product['media'][0]['url']) }}">
-                    }
                     @endif 
                     <div class="product-details">
                         <div class="product-name">{{ $product['name'] }}</div>
@@ -186,7 +185,7 @@ input {
                         <div class="product-price">{{ $product['price'] }}</div>
                     </div>
                 </div>
-            }
+            @endforeach
 
 
         <div class="summary-row">

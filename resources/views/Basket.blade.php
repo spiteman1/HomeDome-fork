@@ -180,6 +180,7 @@ select {
     flex-direction: column;
 }
 </style>
+<link rel="stylesheet" href="{{ asset('css/advertisement.css') }}">
 
 <!--UI success notifier for when a background process successfully ran-->
 @if (session('success'))
@@ -253,5 +254,55 @@ select {
         </form>
     </div>
 </div>
+
+<!--Personalised Advertisemen Feature-->
+@if (isset($advertisedProducts) || isset($basketProducts))
+    <div class="SuggestedProductContainer">
+        <h2 id="SuggestedProductTitle">Suggested Products</h2>
+        <div class="SuggestedProducts">
+            <!--Check if advertised products is not null and is an array with at least 1 item and that the user is logged in-->
+            @if (isset($advertisedProducts) && is_array($advertisedProducts) && count($advertisedProducts) > 0 && Auth::check())
+                @foreach($advertisedProducts as $advertisedProduct)
+                    <!--No need to check if the items in the basket are the same as the suggested ones as the user can have multiple of the same product-->
+                    <div class="SuggestedProduct">
+                        @if(isset($advertisedProduct['media']) && count($advertisedProduct['media']) > 0)
+                            <a href="{{ route('product.show', ['id' => $advertisedProduct['id']]) }}">
+                                <img id="SuggestedProductImage" src="{{ asset($advertisedProduct['media'][0]['url']) }}"
+                                     alt="{{ $advertisedProduct['name'] }}">
+                            </a>
+                        @else
+                            <a href="{{ route('product.show', ['id' => $advertisedProduct['id']]) }}">
+                                <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}"
+                                    alt="{{ $advertisedProduct['name'] }}" />
+                            </a>
+                        @endif 
+                        <p id="SuggestedProductName">{{ $advertisedProduct['name'] }}</p>
+                        <span class="price">£{{ number_format($advertisedProduct['price'], 2) }}</span>
+                    </div>
+                @endforeach
+                <!--Need to check if backupProducts is not null and has at least 1 item-->
+                <!--No need to check if the user is authenticated since these suggested products arent tailored to the user itself-->
+            @elseif (isset($backupProducts) && is_array($backupProducts) && count($backupProducts) > 0)
+                @foreach($backupProducts as $backupProduct)
+                    <div class="SuggestedProduct">
+                        @if(isset($backupProduct['media']) && count($backupProduct['media']) > 0)
+                            <a href="{{ route('product.show', ['id' => $backupProduct['id']]) }}">
+                                <img id="SuggestedProductImage" src="{{ asset($backupProduct['media'][0]['url']) }}"
+                                    alt="{{ $backupProduct['name'] }}">
+                            </a>
+                        @else 
+                            <a href="{{ route('product.show', ['id' => $backupProduct['id']]) }}">
+                                <img id="SuggestedProductImage" src="{{ asset('images/homeDomeLogo.png') }}"
+                                    alt="{{ $backupProduct['name'] }}" />
+                            </a>
+                        @endif 
+                        <p id="SuggestedProductName">{{ $backupProduct['name'] }}</p>
+                        <span class="price">£{{ number_format($backupProduct['price'], 2) }}</span>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+@endif
 
 @endsection
