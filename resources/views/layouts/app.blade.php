@@ -18,7 +18,7 @@
         --hd-grey: #333333;
         --hd-text-muted: #6b7280;
     }
- 
+
      body {
          min-height: 100vh;
          background: #ffffff;
@@ -83,7 +83,7 @@
     .top-search-input {
         width: 500px;
         height: 38px;
-        padding: 0 16px; 
+        padding: 0 16px;
         border-radius: 24px;
         border: 1px solid #d1d5db;
         font-size: 14px;
@@ -92,7 +92,7 @@
 
     .top-search-button {
         margin-left: 10px;
-        height: 38px; 
+        height: 38px;
         padding: 0 18px;
         border-radius: 24px;
         border: none;
@@ -510,41 +510,109 @@
         text-align: left;
     }
 
-details > summary {
+
+details.filter-dropdown > summary {
   list-style: none;
   cursor: pointer;
   padding: 10px 20px;
-  color:white;
-
-  display: inline-block;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: bold;
+  transition: opacity 0.2s ease;
+}
+
+
+details.filter-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.filter-dropdown > summary:hover {
+  opacity: 0.8;
 }
 
 
 .filter-dropdown {
   position: relative;
   display: inline-block;
+  font-family: inherit;
 }
-
 
 .dropdown-content {
   position: absolute;
-  top: 100%;
+  top: 120%;
   left: 0;
   background: #F57C00;
-  border: 1px solid #ccc;
-  padding: 15px;
-  width: 200px;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
   z-index: 10;
+  color: white;
+}
+
+
+.dropdown-content h4 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+
+.dropdown-content h4:nth-of-type(2) {
+  margin-top: 20px;
 }
 
 
 .dropdown-content label {
-  display: block;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
-  color:white;
+  color: white;
+  font-size: 0.95rem;
+  transition: transform 0.1s ease;
+}
+
+
+.dropdown-content label:hover {
+  transform: translateX(4px);
+}
+
+
+.dropdown-content input[type="radio"] {
+  accent-color: #333;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+
+#FilterButton {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: #F57C00;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+#FilterButton:hover {
+  background-color: #fdfdfd;
+  transform: translateY(-2px);
+}
+
+#FilterButton:active {
+  transform: translateY(0);
 }
 footer {
     background: brown;
@@ -590,7 +658,7 @@ footer h4 {
 }
           </style>
  </head>
- 
+
 <body>
     @include('partials.header')
 
