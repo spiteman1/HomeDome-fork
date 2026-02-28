@@ -54,6 +54,40 @@ button:hover {
     margin-bottom: 20px;
     font-weight: bold;
 }
+
+
+
+.login-prompt p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+
+.login-prompt .button {
+  display: inline-block;
+  background-color: #F57C00;
+  color: white;
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+
+.login-prompt .button:hover {
+  background-color: #e65100;
+  transform: translateY(-2px);
+}
+
+.login-prompt .button:active {
+  transform: translateY(0);
+}
 </style>
 @guest
   <div class="login-prompt">
