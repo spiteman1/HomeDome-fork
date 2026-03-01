@@ -129,6 +129,18 @@ function openForm() {
 function closeForm() {
   document.getElementById("chatbot").style.display = "none";
 }
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let text = input.value.trim();
+  if (text === "") return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    botReply(text.toLowerCase());
+  }, 600);
+}
 </script>
 </body>
 
