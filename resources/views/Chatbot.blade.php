@@ -141,6 +141,16 @@ function sendMessage() {
     botReply(text.toLowerCase());
   }, 600);
 }
+function addMessage(text, sender) {
+  let chat = document.getElementById("conversation");
+
+  let msg = document.createElement("div");
+  msg.className = "message " + sender;
+  msg.innerText = text;
+
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
 </script>
 </body>
 
