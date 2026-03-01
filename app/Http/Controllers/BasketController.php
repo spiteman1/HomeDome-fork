@@ -3,10 +3,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Services\PersonalisedAdvertisedService; 
 
 class BasketController extends Controller
 {
-    public function listProducts()
+    public function listProducts(PersonalisedAdvertisedService $ads)
     {
         //Get the products that the user has put into the basket
         $basketProducts = DB::table('shopping_basket')
@@ -29,8 +30,12 @@ class BasketController extends Controller
                 ->first();
             $product->url = $media ? $media->url : null;
         }
+
+        //Suggest products for the user
+        $advertisedProducts = $ads->personalisedAdvertising(Auth::id()); 
+        $backupProducts = $ads->generateRandomProducts(5); //Select 5 backup products
         
-        return view('basket', array('basketProducts' => $basketProducts));
+        return view('basket', compact('basketProducts', 'advertisedProducts', 'backupProducts'));
     }
 
 

@@ -129,6 +129,28 @@ function openForm() {
 function closeForm() {
   document.getElementById("chatbot").style.display = "none";
 }
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let text = input.value.trim();
+  if (text === "") return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    botReply(text.toLowerCase());
+  }, 600);
+}
+function addMessage(text, sender) {
+  let chat = document.getElementById("conversation");
+
+  let msg = document.createElement("div");
+  msg.className = "message " + sender;
+  msg.innerText = text;
+
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
 </script>
 </body>
 

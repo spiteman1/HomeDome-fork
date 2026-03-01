@@ -51,6 +51,8 @@
     font-size: 16px;
     font-weight: 600;
 }
+
+
 </style>
 
 <h1 class="product_showing">Search Results For: {{ $query }}</h1>
