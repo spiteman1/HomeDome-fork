@@ -181,6 +181,8 @@ function botResponse(input) {
   else if (input.includes("wardrobe") || input.includes("wardrobes")) {
     reply = "we sell a three-door wardrobe with mirror and drawers for just the price of £499.99, only 3 in stock!";
   }
+  addMessage(reply, "bot");
+}
 </script>
 </body>
 
