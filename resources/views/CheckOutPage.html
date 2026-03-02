@@ -194,7 +194,8 @@ input {
 
 <div class="form-group">
 <p id="DescriptionTitle">Card Number</p>
-<input type="text" required placeholder="Enter in your cards number" id="CardNum">
+<input type="text" required pattern="[0-9]{16}" maxlength="16" placeholder="Enter in your cards number" 
+id="CardNum">
 </div>
 
 <div class="form-group">
@@ -204,7 +205,7 @@ input {
 
 <div class="form-group">
 <p id="DescriptionTitle">CVV</p>
-<input type="text" required placeholder="Enter the CVV" id="CVV">
+<input type="text" required pattern="[0-9]{3,4}" maxlength="4" placeholder="Enter the CVV" id="CVV">
 </div>
 
 </div>
