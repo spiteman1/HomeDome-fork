@@ -9,7 +9,7 @@ class CheckoutController extends Controller {
         $rows = DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'order_items.product_id', '=', 'products.id')
-            ->join('product_media', 'products.id', '=', 'products_media.product_id')
+            ->join('product_media', 'products.id', '=', 'product_media.product_id')
             ->select(
                 'products.id', 
                 'products.name', 
@@ -55,6 +55,16 @@ class CheckoutController extends Controller {
         if (!Auth::check()){ //ensure the user is logged in 
             return redirect()->route('login')->with('error', 'You must be logged in to submit an order.');
         } else {
+            //Check if name or city contains a number 
+            if (preg_match('/\d+/', $deliveryFields['name']) || preg_match('/\d+/', $deliveryFields['city'])){
+                return redirect()->route('checkout.index')->with('error', "Your name or city can't contain any numbers"); 
+            }
+
+            //Validate the email to check it follows an appropriate structure
+            if (filter_var($deliveryFields['email'], FILTER_VALIDATE_EMAIL)){
+                return redirect()->route('checkout.index')->with('error', 'Not a valid email'); 
+            }
+
             $usersNameAndEmail = DB::table('users')
                 ->select('name', 'email')
                 ->where('id', Auth::id())
@@ -64,6 +74,7 @@ class CheckoutController extends Controller {
                 //Redirect back to the checkout page since the email and name is not consistent 
                 return redirect()->route('checkout.index')->with('error', 'Your email/name is not consistent with the email/name you registered with');
             }
+
             $addressID = DB::table('addresses')
                 ->insertGetId([
                     'user_id' => Auth::id(), 

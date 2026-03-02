@@ -137,34 +137,35 @@ input {
         <div class="PersonalDetails">
         <div class="section-title">Delivery Details</div>
             <form id = "deliveryForm" method = "post" action = "{{ route('checkout.submit', ['id' => $orderedInformation->orderID]) }}">
+                @csrf
                 <div class="form-group">
                     <p id="DescriptionTitle">Full Name</p>
-                    <input id="name" type="text">
+                    <input pattern="[A-Za-z\s]+" required placeholder="Enter your full name" id="name" type="text">
                 </div>
 
                 <div class="form-group">
                     <p id="DescriptionTitle">Email</p>
-                    <input id="email" type="email">
+                    <input id="email" type="email" required placeholder="Enter in your email address">
                  </div>
 
                 <div class="form-group">
                     <p id="DescriptionTitle">Phone Number</p>
-                    <input id="phoneNumber" type="email" placeholder="Optional">
+                    <input id="phoneNumber" type="tel" placeholder="Optional" inputmode="numeric" minlength="11">
                 </div>
 
                 <div class="form-group">
                     <p id="DescriptionTitle">Street</p>
-                    <input id="street" type="text">
+                    <input id="street" type="text" required placeholder="Enter in your Street">
                 </div>
 
                 <div class="form-group">
                     <p id="DescriptionTitle">City</p>
-                    <input id="city" type="text">
+                    <input id="city" type="text" required placeholder="Enter in your City">
                 </div>
 
                 <div class="form-group">
                     <p id="DescriptionTitle">Post Code</p>
-                    <input id="postcode" type="text">
+                    <input id="postcode" type="text" required placeholder="Enter in your Postcode">
                 </div>
 
                 <button class="checkout-btn">Submit Order</button>
