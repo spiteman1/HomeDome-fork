@@ -183,6 +183,11 @@ function botResponse(input) {
   }
   addMessage(reply, "bot");
 }
+document.getElementById("userInput").addEventListener("keydown", function(enter) {
+  if (enter.key === "Enter") {
+    sendMessage();
+  }
+});
 </script>
 </body>
 
