@@ -12,6 +12,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PastOrderController; 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
@@ -28,9 +29,10 @@ Route::post('updateQuantity/{bid}', [BasketController::class, 'updateQuantity'])
 Route::post('addProduct/{pid}', [BasketController::class, 'addProduct'])->name('addProduct.addProduct');
 Route::post('removeProduct/{bid}', [BasketController::class, 'removeProduct'])->name('removeProduct.removeProduct');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::get('/checkout/{id}', [CategoryController::class, 'index'])->name('checkout.index');
-Route::post('/checkout/{id}', [CategoryController::class, 'submitDetails'])->name('checkout.submit');
+Route::get('/checkout/{id}', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/{id}', [CheckoutController::class, 'submitDetails'])->name('checkout.submit');
 Route::post('/register', [AuthController::class, 'register'])->name('register-submit');
+Route::get('/pastOrders', [PastOrderController::class, 'index'])->name('pastOrders.index'); 
 
 
 
