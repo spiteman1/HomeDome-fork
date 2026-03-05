@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Services\PersonalisedAdvertisedService; 
+use App\Services\PersonalisedAdvertisedService;
 
 class BasketController extends Controller
 {
@@ -32,10 +32,10 @@ class BasketController extends Controller
         }
 
         //Suggest products for the user
-        $advertisedProducts = $ads->personalisedAdvertising(Auth::id()); 
+        $advertisedProducts = $ads->personalisedAdvertising(Auth::id());
         $backupProducts = $ads->generateRandomProducts(5); //Select 5 backup products
-        
-        return view('basket', compact('basketProducts', 'advertisedProducts', 'backupProducts'));
+
+        return view('Basket', compact('basketProducts', 'advertisedProducts', 'backupProducts'));
     }
 
 
