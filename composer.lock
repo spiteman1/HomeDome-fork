@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0627205bf8c8b1e2512bc403472799dc",
+    "content-hash": "b18093562e5098c4e966fc2bcf78f73c",
     "packages": [
         {
             "name": "brick/math",
@@ -6860,27 +6860,27 @@
         },
         {
             "name": "orangehill/iseed",
-            "version": "v3.1.1",
+            "version": "v3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orangehill/iseed.git",
-                "reference": "bfe8f5882641f70b309cd01e30f02e8e9d09b492"
+                "reference": "11ee04a43330b5241be9f7b97dcd9d44bc5745f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orangehill/iseed/zipball/bfe8f5882641f70b309cd01e30f02e8e9d09b492",
-                "reference": "bfe8f5882641f70b309cd01e30f02e8e9d09b492",
+                "url": "https://api.github.com/repos/orangehill/iseed/zipball/11ee04a43330b5241be9f7b97dcd9d44bc5745f2",
+                "reference": "11ee04a43330b5241be9f7b97dcd9d44bc5745f2",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-                "php": "^7.2|^8.0.2"
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "php": "^8.0.2"
             },
             "require-dev": {
-                "illuminate/filesystem": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "laravel/framework": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
                 "mockery/mockery": "^1.0.0",
-                "phpunit/phpunit": "^8.0|^11.5.3"
+                "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "library",
             "extra": {
@@ -6917,9 +6917,9 @@
             ],
             "support": {
                 "issues": "https://github.com/orangehill/iseed/issues",
-                "source": "https://github.com/orangehill/iseed/tree/v3.1.1"
+                "source": "https://github.com/orangehill/iseed/tree/v3.8.0"
             },
-            "time": "2025-03-04T07:56:48+00:00"
+            "time": "2026-02-23T07:40:35+00:00"
         },
         {
             "name": "phar-io/manifest",

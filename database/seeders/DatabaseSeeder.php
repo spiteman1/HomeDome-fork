@@ -10,30 +10,32 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
+
     public function run(): void
     {
 
 
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@homedome.com',
-            'password' => bcrypt('Admin123'),
-            'is_admin' => true,                
-             'must_change_password' => true, 
-    ]);
+        Schema::disableForeignKeyConstraints();
 
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'), // Ensure a password is set
-        ]);
+                $this->call([
+                    UsersTableSeeder::class,
+                    AddressesTableSeeder::class,
+                    CategoriesTableSeeder::class,
+                    ProductsTableSeeder::class,
+                    ProductCategoryTableSeeder::class,
+                    ProductMediaTableSeeder::class,
+                    OrdersTableSeeder::class,
+                    OrderItemsTableSeeder::class,
+                    ReviewsTableSeeder::class,
+                    SiteReviewsTableSeeder::class,
+                    ShoppingBasketTableSeeder::class,
+                    WishlistTableSeeder::class,
 
-    $this->call([
-        ProductSeeder::class,
-    ]);
+
+                ]);
+
+
+                Schema::enableForeignKeyConstraints();
+            }
 }}
