@@ -40,3 +40,5 @@ class DatabaseSeeder extends Seeder
                 Schema::enableForeignKeyConstraints();
             }
 }
+
+
