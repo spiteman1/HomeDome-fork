@@ -39,7 +39,12 @@ class DatabaseSeeder extends Seeder
 
 
                 Schema::enableForeignKeyConstraints();
-            }
+                $this->call(AddressesTableSeeder::class);
+        $this->call(OrderItemsTableSeeder::class);
+        $this->call(ShoppingBasketTableSeeder::class);
+        $this->call(WishlistTableSeeder::class);
+        $this->call(SiteReviewsTableSeeder::class);
+    }
 }
 
 
