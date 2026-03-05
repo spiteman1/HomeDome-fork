@@ -367,5 +367,5 @@ class ProductsTableSeeder extends Seeder
                    'created_at' => '2025-11-24 17:57:15',
                    'updated_at' => '2025-11-24 17:57:15',
                ),
-           ));
+           ));}
 }
