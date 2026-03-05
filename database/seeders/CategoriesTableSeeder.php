@@ -14,50 +14,50 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('categories')->delete();
-        
+
         \DB::table('categories')->insert(array (
-            0 => 
+            0 =>
             array (
-                'category_id' => 1,
+                'id' => 1,
                 'name' => 'Furniture',
                 'slug' => 'furniture',
                 'parent_id' => 1,
                 'created_at' => '2025-11-24 19:42:39',
                 'updated_at' => '2025-11-24 19:42:39',
             ),
-            1 => 
+            1 =>
             array (
-                'category_id' => 2,
+                'id' => 2,
                 'name' => 'Appliances',
                 'slug' => 'appliances',
                 'parent_id' => 2,
                 'created_at' => '2025-11-24 19:42:39',
                 'updated_at' => '2025-11-24 19:42:39',
             ),
-            2 => 
+            2 =>
             array (
-                'category_id' => 3,
+                'id' => 3,
                 'name' => 'Home Decor',
                 'slug' => 'home-decor',
                 'parent_id' => 3,
                 'created_at' => '2025-11-24 19:42:39',
                 'updated_at' => '2025-11-24 19:42:39',
             ),
-            3 => 
+            3 =>
             array (
-                'category_id' => 4,
+                'id' => 4,
                 'name' => 'Kitchen Ware',
                 'slug' => 'kitchenware',
                 'parent_id' => 4,
                 'created_at' => '2025-11-24 19:42:39',
                 'updated_at' => '2025-11-24 19:42:39',
             ),
-            4 => 
+            4 =>
             array (
-                'category_id' => 5,
+                'id' => 5,
                 'name' => 'Lighting',
                 'slug' => 'lighting',
                 'parent_id' => 5,
@@ -65,7 +65,7 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => '2025-11-24 19:42:39',
             ),
         ));
-        
-        
+
+
     }
 }
